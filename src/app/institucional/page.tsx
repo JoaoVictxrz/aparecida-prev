@@ -14,20 +14,20 @@ export default function Sobre() {
           Institucional
         </h1>
         <div className="w-full grid lg:grid-cols-2 items-center container gap-5">
-          <LinksInstitucional href="/" text="Demonstrativo variação Patrimonial" />
-          <LinksInstitucional href="/" text=" Comparativo de despesa" />
-          <LinksInstitucional href="/" text="DPIR Demonstrativo informações prev e repasse" />
-          <LinksInstitucional href="/" text="Relátorio mensal carteira financiera" />
-          <LinksInstitucional href="/" text="Balanço financeiro" />
-          <LinksInstitucional href="/" text="Balanço orçamentário" />
-          <LinksInstitucional href="/" text="Balanço patrimonial" />
-          <LinksInstitucional href="/" text="Comparativo da receita" />
-          <LinksInstitucional href="/" text="Situação fincanceira AparecidaPrev" />
-          <LinksInstitucional href="/" text="APR - Autorização de aplicação e resgate" />
-          <LinksInstitucional href="/" text=" Cálculo atuarial" />
-          <LinksInstitucional href="/" text="DPIN Politica de investimentos e suas revisões" />
-          <LinksInstitucional href="/" text="Calendário pagamento da folha" />
-          <LinksInstitucional href="/" text="Plano de trabalho atuario" />
+          <LinksPage href="/" text="Demonstrativo variação Patrimonial" />
+          <LinksPage href="/" text="Comparativo de despesa" />
+          <LinksPage href="/" text="DPIR Demonstrativo informações prev e repasse" />
+          <LinksPage href="/" text="Relátorio mensal carteira financiera" />
+          <LinksPage href="/" text="Balanço financeiro" />
+          <LinksPage href="/" text="Balanço orçamentário" />
+          <LinksPage href="/" text="Balanço patrimonial" />
+          <LinksPage href="/" text="Comparativo da receita" />
+          <LinksPage href="/" text="Situação fincanceira AparecidaPrev" />
+          <LinksPage href="/" text="APR - Autorização de aplicação e resgate" />
+          <LinksPage href="/" text="Cálculo atuarial" />
+          <LinksPage href="/" text="DPIN Politica de investimentos e suas revisões" />
+          <LinksPage href="/" text="Calendário pagamento da folha" />
+          <LinksPage href="/" text="Plano de trabalho atuario" />
         </div>
       </section>
     </article>
