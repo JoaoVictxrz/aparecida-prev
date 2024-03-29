@@ -10,7 +10,7 @@ import Carrosel from '@/components/carrosel'
 export default function Home() {
   return (
     <main className="w-full text-black min-h-screen flex flex-col items-center">
-      <div className="w-full bg-image-pref bg-cover bg-center bg-no-repeat fixed h-screen -z-50"></div>
+      <div className="w-full bg-image-pref bg-cover bg-center bg-no-repeat fixed h-full -z-50"></div>
       <div className="w-full bg-black/35 fixed h-screen -z-40"></div>
       <div className="w-full h-screen flex items-center justify-center container">
         <h1>Bem vindo</h1> <br />
