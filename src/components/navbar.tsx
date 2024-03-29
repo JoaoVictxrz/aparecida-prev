@@ -62,7 +62,7 @@ export const MobileNavbar = () => {
                 <Links href="/financeiro" text="FINANCEIRO" />
                 <Links href="/legislacao" text="LEGISLAÇÃO" />
                 <Links href="/ouvidoria" text="OUVIDORIA" />
-                <Links href="/" text="CONCURSOS" />
+                concurso
                 <Links href="/contato" text="CONTATO" />
                 {/* Pro-Gestão */}
                 <div className="flex flex-col items-center justify-center">
@@ -107,7 +107,7 @@ export const DesktopNavbar = () => {
                 <Links href="/financeiro" text="FINANCEIRO" />
                 <Links href="/legislacao" text="LEGISLAÇÃO" />
                 <Links href="/ouvidoria" text="OUVIDORIA" />
-                <Links href="/" text="CONCURSOS" />
+                <Links href="/concurso" text="CONCURSOS" />
                 <Links href="/contato" text="CONTATO" />
             </ul>
         </nav>
