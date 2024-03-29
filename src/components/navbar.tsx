@@ -61,7 +61,7 @@ export const MobileNavbar = () => {
                 <Links href="/conselho" text="CONSELHO" />
                 <Links href="/financeiro" text="FINANCEIRO" />
                 <Links href="/legislacao" text="LEGISLAÇÃO" />
-                <Links href="/" text="OUVIDORIA" />
+                <Links href="/ouvidoria" text="OUVIDORIA" />
                 <Links href="/" text="CONCURSOS" />
                 <Links href="/" text="CONTATO" />
                 {/* Pro-Gestão */}
@@ -106,7 +106,7 @@ export const DesktopNavbar = () => {
                 <Links href="/conselho" text="CONSELHO" />
                 <Links href="/financeiro" text="FINANCEIRO" />
                 <Links href="/legislacao" text="LEGISLAÇÃO" />
-                <Links href="/" text="OUVIDORIA" />
+                <Links href="/ouvidoria" text="OUVIDORIA" />
                 <Links href="/" text="CONCURSOS" />
                 <Links href="/" text="CONTATO" />
             </ul>
