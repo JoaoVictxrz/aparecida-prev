@@ -14,33 +14,72 @@ export default function Sobre() {
           Institucional
         </h1>
         <div className="w-full grid lg:grid-cols-2 items-center container gap-5 pb-20">
-          <LinksPage href="/" text="Acórdãos do tribunal de contas" />
           <LinksPage
-            href="/"
+            href="/institucional/acordaos-do-tribunal-de-contas"
+            text="Acórdãos do tribunal de contas"
+          />
+          <LinksPage
+            href="/institucional/acompanhamento-de-contratos-administrativos-e-licitacoes"
             text="Acompanhamento de contratos administrativos e licitações"
           />
-          <LinksPage href="/" text="Audiência publica" />
-          <LinksPage href="/" text="Certidões" />
-          <LinksPage href="/" text="Cartilha previdênciaria" />
-          <LinksPage href="/" text="Certificação" />
-          <LinksPage href="/" text="Controle interno" />
           <LinksPage
-            href="/"
+            href="/institucional/audiencia-publica"
+            text="Audiência publica"
+          />
+          <LinksPage href="/institucional/certidoes" text="Certidões" />
+          <LinksPage
+            href="/institucional/cartilha-previdenciaria"
+            text="Cartilha previdênciaria"
+          />
+          <LinksPage href="/institucional/certificacao" text="Certificação" />
+          <LinksPage
+            href="/institucional/controle-interno"
+            text="Controle interno"
+          />
+          <LinksPage
+            href="/institucional/codigo-de-etica-e-politica-de-seguranca-da-informacao"
             text="Código de ética/política de segurança da informação"
           />
           <LinksPage
-            href="/"
+            href="/institucional/crp-certificado-de-regularidade-previdenciaria"
             text="CRP - Certificado de regularidade Previdenciária"
           />
-          <LinksPage href="/" text="Gestão financeira e administrativa" />
-          <LinksPage href="/" text="Governança corporativa" />
-          <LinksPage href="/" text="Edital de credenciamento" />
-          <LinksPage href="/" text="Educação previdenciária" />
-          <LinksPage href="/" text="Instituições financeiras" />
-          <LinksPage href="/" text="Passivo Judicial" />
-          <LinksPage href="/" text="Planejamento estratégico" />
-          <LinksPage href="/" text="Prova anual de vida" />
-          <LinksPage href="/" text="Taxa de administração" />
+          <LinksPage
+            href="/institucional/gestao-financeira-e-administrativa"
+            text="Gestão financeira e administrativa"
+          />
+          <LinksPage
+            href="/institucional/governanca-corporativa"
+            text="Governança corporativa"
+          />
+          <LinksPage
+            href="/institucional/edital-de-credenciamento"
+            text="Edital de credenciamento"
+          />
+          <LinksPage
+            href="/institucional/educacao-previdenciaria"
+            text="Educação previdenciária"
+          />
+          <LinksPage
+            href="/institucional/instituições-financeiras"
+            text="Instituições financeiras"
+          />
+          <LinksPage
+            href="/institucional/passivo-judicial"
+            text="Passivo Judicial"
+          />
+          <LinksPage
+            href="/institucional/planejamento-estrategico"
+            text="Planejamento estratégico"
+          />
+          <LinksPage
+            href="/institucional/prova-anual-de-vida"
+            text="Prova anual de vida"
+          />
+          <LinksPage
+            href="/institucional/taxa-de-administracao"
+            text="Taxa de administração"
+          />
         </div>
       </section>
     </article>
