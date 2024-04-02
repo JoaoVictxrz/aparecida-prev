@@ -9,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <article className="w-full flex justify-center bg-white pb-2">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2 dark:text-white">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 ">
+        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 dark:text-zinc-100 dark:border-zinc-700">
           Audiência publica
         </h1>
         <div className="w-full container gap-5 pb-20">
-          <div className="flex flex-col items-start text-center gap-2 pb-5 border-b-[1px]">
+          <div className="flex flex-col items-start text-center gap-2 pb-5 border-b-[1px] dark:border-zinc-800">
             <p className="font-semibold uppercase">
               Audiencia pública n°002/2023
             </p>
@@ -38,7 +38,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="flex flex-col items-start text-center gap-2 py-5 border-b-[1px]">
+          <div className="flex flex-col items-start text-center gap-2 py-5 border-b-[1px] dark:border-zinc-800">
             <p className="font-semibold uppercase">
               Audiencia pública n°001/2023
             </p>

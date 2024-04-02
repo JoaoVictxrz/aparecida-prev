@@ -9,12 +9,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Equipe() {
   return (
-    <article className="w-full flex justify-center bg-white pb-2">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 ">
-          Presidência e diretoria executivas
+        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 dark:text-zinc-100 dark:border-zinc-700">
+          Presidência e diretoria
         </h1>
-        <div className="w-full flex flex-col items-center justify-center container gap-5 pb-20">
+        <div className="w-full flex flex-col items-center justify-center container gap-5 pb-20 dark:text-white">
           <h1 className="font-bold text-xl">Gestão 2021 - 2024</h1>
           <Image
             src="/sobre/FOTO-SECRETARIO-APARECIDAPREV-FOTOS-MICHEL-ABDALLAH.jpg"

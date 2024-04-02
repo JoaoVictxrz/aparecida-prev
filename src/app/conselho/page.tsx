@@ -1,13 +1,13 @@
-import { LinksPage } from "@/components/Links"
-import { Metadata } from "next"
+import { LinksPage } from "@/components/Links";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Conselho'
-}
+  title: "Conselho",
+};
 
 export default function Conselho() {
   return (
-    <article className="w-full flex justify-center bg-white pb-2">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2">
       <section className="px-2 container">
         <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 ">
           Conselhos
@@ -24,5 +24,5 @@ export default function Conselho() {
         </div>
       </section>
     </article>
-  )
+  );
 }

@@ -24,7 +24,7 @@ export default function Carrosel() {
   };
 
   return (
-    <div className="bg-white w-full">
+    <div className="bg-white dark:bg-zinc-900 w-full">
       <div className=" max-w-[1400px] h-[900px] w-full m-auto py-16 px-4 relative group">
         <div
           style={{ backgroundImage: `url(${"banner-calendario.jpg"})` }}

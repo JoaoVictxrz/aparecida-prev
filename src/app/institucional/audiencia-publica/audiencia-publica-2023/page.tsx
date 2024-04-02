@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <article className="w-full flex justify-center bg-white pb-2">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 text-white pb-2">
       <section className="px-2 container flex flex-col items-center pt-10 pb-20">
         <Image
           src="/audiencia-publica/Post-Instagram-Comunicado-Amarelo-Corporativo-1.jpg"

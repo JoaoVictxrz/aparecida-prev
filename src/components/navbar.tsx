@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="w-full bg-white p-2 px-5 flex items-center justify-between">
+      <header className="w-full bg-white dark:bg-zinc-950 p-2 px-5 flex items-center justify-between">
         <Image
           src="/logo-aparecidaprev-1.png"
           alt="logo"
@@ -62,7 +62,7 @@ export const MobileNavbar = ({
   setIsOpen: any;
 }) => {
   return (
-    <nav className="w-full bg-white text-black duration-500 trabsition-all">
+    <nav className="w-full bg-white dark:bg-slate-950 text-black duration-500 trabsition-all">
       <ul className="lg:hidden text-center flex flex-col items-center justify-center pb-5">
         <Links onClick={() => setIsOpen(!isOpen)} href="/" text="HOME" />
         <Links onClick={() => setIsOpen(!isOpen)} href="/sobre" text="SOBRE" />
@@ -141,7 +141,7 @@ export const MobileNavbar = ({
 export const DesktopNavbar = () => {
   return (
     <nav className="hidden w-full lg:flex lg:items-center">
-      <ul className=" bg-white flex w-full justify-end px-5">
+      <ul className=" bg-white dark:bg-zinc-950 flex w-full justify-end px-5">
         <Links href="/" text="HOME" />
         <Links href="/sobre" text="SOBRE" />
         <Links href="/institucional" text="INSTITUCIONAL" />
@@ -189,7 +189,7 @@ export const Links = ({ href, text, onClick }: any) => {
     <Link
       href={`${href}`}
       onClick={onClick}
-      className="text-xl md:text-sm text-zinc-500 font-light hover:text-zinc-700 p-2"
+      className="text-xl md:text-sm text-zinc-500 dark:text-white font-light hover:text-zinc-700 hover:dark:text-zinc-500  p-2"
     >
       {text}
     </Link>

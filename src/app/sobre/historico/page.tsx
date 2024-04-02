@@ -8,12 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Historico() {
   return (
-    <article className="w-full flex justify-center bg-white pb-2">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 ">
+        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 dark:text-zinc-100 dark:border-zinc-700">
           Histórico
         </h1>
-        <div className="w-full flex flex-col container gap-5 pb-20">
+        <div className="w-full flex flex-col container gap-5 pb-20 dark:text-white">
           <span className="font-semibold text-xl uppercase">APRESENTAÇÃO</span>
           <p>
             O Fundo de Previdência dos Servidores do Município de Aparecida de
