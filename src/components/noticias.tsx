@@ -63,9 +63,15 @@ export default function Noticias() {
           </h1>
           <Link
             href="/"
-            className="flex items-center hover:bg-zinc-100/90 hover:rounded-md p-2 my-8"
+            className="flex items-center hover:bg-zinc-200 hover:rounded-md p-2 my-8"
           >
-            <Image src="/mais.svg" alt="logo" width={20} height={200} />
+            <Image
+              src="/mais.svg"
+              alt="logo"
+              width={20}
+              height={20}
+              className=""
+            />
             Leia mais
           </Link>
         </div>
