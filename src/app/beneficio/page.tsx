@@ -13,12 +13,28 @@ export default function Benefício() {
         <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 ">
           Benefício
         </h1>
-        <div className="w-full grid lg:grid-cols-2 items-center container gap-5">
-          <LinksPage href="/" text="Aposentadoria por invalidez" />
-          <LinksPage href="/" text="Aposentadoria Compulsória" />
-          <LinksPage href="/" text="Aposentadoria por idade" />
-          <LinksPage href="/" text="Pensão por morte" />
-          <LinksPage href="/" text="Folha de pagamento" />
+        <div className="w-full grid lg:grid-cols-2 items-center container gap-5 pb-20">
+          <LinksPage
+            href="/beneficio/aposentadoria-por-invalidez"
+            text="Aposentadoria por invalidez"
+          />
+          <LinksPage
+            href="/beneficio/aposentadoria-compulsoria"
+            text="Aposentadoria Compulsória"
+          />
+          <LinksPage
+            href="/beneficio/aposentadoria-por-idade"
+            text="Aposentadoria por idade"
+          />
+          <LinksPage
+            href="/beneficio/pensao-por-morte"
+            text="Pensão por morte"
+          />
+          <LinksPage
+            target="_blank"
+            href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-transparency.jsf"
+            text="Folha de pagamento"
+          />
         </div>
       </section>
     </article>
