@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import LinkAzul from "../components/links";
+import Title from "@/components/title";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -12,9 +13,7 @@ export default function Home() {
   return (
     <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2 dark:text-white">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 dark:text-zinc-100 dark:border-zinc-700">
-          Acórdãos do tribunal de contas
-        </h1>
+        <Title title="ACÓRDÃO DO TRIBUNAL DE CONTAS – TCM" />
         <div className="w-full container flex flex-col gap-5 pb-20">
           <p className="font-semibold text-xl text-center">
             Aparecida Prev - Acórdãos do tribunal de contas

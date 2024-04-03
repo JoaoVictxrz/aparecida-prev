@@ -1,3 +1,4 @@
+import Title from "@/components/title";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -11,9 +12,7 @@ export default function Home() {
   return (
     <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-white pb-2">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] dark:border-zinc-800 dark:text-zinc-100 pb-2 ">
-          Institstituções Financeiras
-        </h1>
+        <Title title="Instituções Financeiras" />
         <div className="w-full container gap-5 pb-20">
           <div className="grid md:grid-cols-4">
             <LinkBancos

@@ -1,3 +1,4 @@
+import Title from "@/components/title";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,9 +11,7 @@ export default function Home() {
   return (
     <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-white pb-2">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] dark:border-zinc-800 dark:text-zinc-100 pb-2 ">
-          Pensão por morte
-        </h1>
+        <Title title="Pensão por morte" />
         <div className="w-full container gap-5 pb-20 space-y-4">
           <p className="font-bold">Da Pensão por Morte</p>
           <p>

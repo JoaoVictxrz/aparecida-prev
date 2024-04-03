@@ -1,4 +1,4 @@
-import { LinksPage } from "@/components/Links";
+import Title from "@/components/title";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,11 +7,9 @@ export const metadata: Metadata = {
 
 export default function Contato() {
   return (
-    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2 text-white">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 ">
-          Contato
-        </h1>
+        <Title title="Contato" />
         <div className="w-full flitems-center container gap-5">
           <p className="text-lg font-bold">Endereço AparecidaPrev</p>
           <p>

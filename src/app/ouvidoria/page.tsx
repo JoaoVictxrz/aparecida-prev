@@ -1,4 +1,5 @@
 import { LinksPage } from "@/components/Links";
+import Title from "@/components/title";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,9 +10,7 @@ export default function Ouvidoria() {
   return (
     <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2 dark:text-white">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] pb-2 dark:text-zinc-100 dark:border-zinc-700">
-          Ouvidoria
-        </h1>
+        <Title title="Ouvidoria" />
         <div className="w-full grid lg:grid-cols-2 items-center container gap-5">
           {/* Formulário */}
           <div>

@@ -1,4 +1,5 @@
 import LinkAzul from "@/app/institucional/components/links";
+import Title from "@/components/title";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,9 +12,7 @@ export default function Home() {
   return (
     <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-white pb-2">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] dark:border-zinc-800 dark:text-zinc-100 pb-2 ">
-          Atas comitê
-        </h1>
+        <Title title="Atas comitê" />
         <div className="w-full container gap-5 pb-20">
           <div className="flex flex-col w-3/4 md:w-2/4">
             <p className="font-bold uppercase pb-2">REGIMENTO DO COMITÊ</p>

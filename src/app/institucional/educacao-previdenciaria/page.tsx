@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import LinkAzul from "../components/links";
+import Title from "@/components/title";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -11,9 +12,7 @@ export default function Home() {
   return (
     <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-white pb-2">
       <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8 border-b-[1px] dark:border-zinc-800 dark:text-zinc-100 pb-2 ">
-          educação previdênciária
-        </h1>
+        <Title title="Educação previdênciária" />
         <div className="w-full container gap-5 pb-20">
           <div className="w-3/4 md:w-2/4 flex flex-col gap-2 pl-5">
             <LinkAzul
