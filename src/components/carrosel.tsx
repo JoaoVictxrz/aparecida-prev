@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
@@ -25,11 +26,16 @@ export default function Carrosel() {
 
   return (
     <div className="bg-white dark:bg-zinc-900 w-full">
-      <div className=" max-w-[1400px] h-[900px] w-full m-auto py-16 px-4 relative group">
-        <div
-          style={{ backgroundImage: `url(${"banner-calendario.jpg"})` }}
-          className="w-full h-full bg-center bg-cover duration-500"
-        ></div>
+      <div className="m-auto p-8 md:p-16 relative group">
+        <div className="duration-500 flex item justify-center">
+          <Image
+            src="/banner-calendario.jpg"
+            alt="banner"
+            width={500}
+            height={500}
+            className=" md:w-9/12 xl:w-3/4"
+          />
+        </div>
         {/* Left Arrow
         <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
           <BsChevronCompactLeft onClick={prevSlide} size={30} />
