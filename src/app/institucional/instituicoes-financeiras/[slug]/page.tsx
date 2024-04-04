@@ -144,6 +144,12 @@ export const GeneratePage = ({ params }: Props) => {
           />
         </PaginaSlug>
       );
+    default:
+      return (
+        <PaginaSlug nome="Página não encontrada" postadoEm="N/A">
+          <p>Desculpe, a página que você está procurando não foi encontrada.</p>
+        </PaginaSlug>
+      );
   }
 };
 
