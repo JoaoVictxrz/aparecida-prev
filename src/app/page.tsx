@@ -1,11 +1,8 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import AcessoRapido from '@/components/acesso-rapido'
-import Noticias from '@/components/noticias'
-import Transparencia from '@/components/transparencia'
-import Carrosel from '@/components/carrosel'
+"use client";
+import AcessoRapido from "@/components/acesso-rapido";
+import Noticias from "@/components/noticias";
+import Transparencia from "@/components/transparencia";
+import Carrosel from "@/components/carrosel";
 
 export default function Home() {
   return (
@@ -31,5 +28,5 @@ export default function Home() {
       <AcessoRapido />
       <Transparencia />
     </main>
-  )
+  );
 }

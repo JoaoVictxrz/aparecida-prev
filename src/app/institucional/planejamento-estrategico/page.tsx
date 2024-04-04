@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import LinkAzul from "../components/links";
-import Title from "@/components/title";
+import Container from "@/components/container";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -10,42 +10,37 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-white pb-2">
-      <section className="px-2 container">
-        <Title title="Planejamento estratégico" />
-        <div className="w-full container gap-5 pb-20">
-          <div className="gap-2 border-b-[1px] dark:border-zinc-800">
-            <p className="font-bold uppercase">planejamento</p>
-            <div className="flex flex-col pl-5 gap-1 pt-2 pb-2">
-              <LinkAzul
-                href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANEJAMENTO-ESTRATEGICO-APARECIDAPREV-2019-2023.pdf"
-                text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2019-2023"
-              />
-              <LinkAzul
-                href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANEJAMENTO-ESTRATEGICO-APARECIDAPREV-2019-2023.pdf"
-                text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2018"
-              />
-              <LinkAzul
-                href="https://aparecidaprev.go.gov.br/wp-content/uploads/2015/07/Planejamento-Estrat%C3%A9gico-do-AparecidaPrev-2015.pdf"
-                text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2015"
-              />
-            </div>
-          </div>
-          <div className="gap-2 pt-2">
-            <p className="font-bold uppercase">plano de ação</p>
-            <div className="flex flex-col pl-5 gap-1 pt-2">
-              <LinkAzul
-                href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/07/Plano-de-Acao-Anual-2023.pdf"
-                text="PLANO DE AÇÃO ANUAL – 2023"
-              />
-              <LinkAzul
-                href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANO-DE-ACAO-ANUAL-2022.pdf"
-                text="PLANO DE AÇÃO ANUAL – 2022"
-              />
-            </div>
-          </div>
+    <Container title="Planejamento estrategico">
+      <div className="gap-2 border-b-[1px] dark:border-zinc-800">
+        <p className="font-bold uppercase">planejamento</p>
+        <div className="flex flex-col pl-5 gap-1 pt-2 pb-2">
+          <LinkAzul
+            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANEJAMENTO-ESTRATEGICO-APARECIDAPREV-2019-2023.pdf"
+            text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2019-2023"
+          />
+          <LinkAzul
+            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANEJAMENTO-ESTRATEGICO-APARECIDAPREV-2019-2023.pdf"
+            text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2018"
+          />
+          <LinkAzul
+            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2015/07/Planejamento-Estrat%C3%A9gico-do-AparecidaPrev-2015.pdf"
+            text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2015"
+          />
         </div>
-      </section>
-    </article>
+      </div>
+      <div className="gap-2 pt-2">
+        <p className="font-bold uppercase">plano de ação</p>
+        <div className="flex flex-col pl-5 gap-1 pt-2">
+          <LinkAzul
+            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/07/Plano-de-Acao-Anual-2023.pdf"
+            text="PLANO DE AÇÃO ANUAL – 2023"
+          />
+          <LinkAzul
+            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANO-DE-ACAO-ANUAL-2022.pdf"
+            text="PLANO DE AÇÃO ANUAL – 2022"
+          />
+        </div>
+      </div>
+    </Container>
   );
 }

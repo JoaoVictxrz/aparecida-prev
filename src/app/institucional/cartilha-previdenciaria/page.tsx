@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import LinkAzul from "../components/links";
-import Title from "@/components/title";
+import Container from "@/components/container";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -10,16 +10,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-2 dark:text-white">
-      <section className="px-2 container">
-        <Title title="Cartilha Previdênciária" />
-        <div className="w-full container gap-5 pb-20">
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/CARTILHA-PREVIDENCIARIA-2023.pdf"
-            text="CARTILHA PREVIDENCIARIA 2023"
-          />
-        </div>
-      </section>
-    </article>
+    <Container title="Cartilha Previdênciária">
+      <LinkAzul
+        href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/CARTILHA-PREVIDENCIARIA-2023.pdf"
+        text="CARTILHA PREVIDENCIARIA 2023"
+      />
+    </Container>
   );
 }
