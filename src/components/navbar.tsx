@@ -62,7 +62,7 @@ export const MobileNavbar = ({
   setIsOpen: any;
 }) => {
   return (
-    <nav className="w-full bg-white dark:bg-slate-950 text-black duration-500 trabsition-all">
+    <nav className="w-full bg-white dark:bg-zinc-900 text-black duration-500 trabsition-all">
       <ul className="lg:hidden text-center flex flex-col items-center justify-center pb-5">
         <Links onClick={() => setIsOpen(!isOpen)} href="/" text="HOME" />
         <Links onClick={() => setIsOpen(!isOpen)} href="/sobre" text="SOBRE" />
@@ -111,7 +111,7 @@ export const MobileNavbar = ({
         <div className="flex flex-col items-center justify-center">
           <Link
             href="/"
-            className="flex hover:bg-zinc-200 hover:rounded-md p-2"
+            className="flex hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 group transition duration-300 ease-in-out"
           >
             <Image
               src="/selo-pro-gestao.png"
@@ -120,11 +120,11 @@ export const MobileNavbar = ({
               height={200}
               className="w-10"
             />
-            <span className="text-xl text-zinc-500 font-light hover:text-zinc-700 p-2">
+            <span className="text-xl text-zinc-500 font-light group-hover:text-zinc-700 dark:group-hover:text-white p-2">
               Pró-Gestão RPPS
             </span>
           </Link>
-          <div className="flex gap-5">
+          <div className="flex gap-5 dark:text-white">
             <Link href="/" className="hover:text-orange-600">
               <FaInstagram size={20} />
             </Link>
@@ -160,7 +160,10 @@ export const DesktopNavbar = () => {
 export const ProGestao = () => {
   return (
     <div className="hidden lg:flex flex-col items-center justify-center">
-      <Link href="/" className="flex hover:bg-zinc-200 hover:rounded-md p-2">
+      <Link
+        href="/"
+        className="flex items-center gap-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 group"
+      >
         <Image
           src="/selo-pro-gestao.png"
           alt="logo"
@@ -168,7 +171,7 @@ export const ProGestao = () => {
           height={200}
           className="w-5"
         />
-        <span className="text-sm text-zinc-500 font-light hover:text-zinc-700 ">
+        <span className="text-sm text-zinc-500 dark:zinc-700 font-light group-hover:text-white ">
           Pró-Gestão RPPS
         </span>
       </Link>
