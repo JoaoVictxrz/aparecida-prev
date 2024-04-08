@@ -10,7 +10,7 @@ export default function AcessoRapido() {
         </h1>
         <div className="grid grid-cols-2 md:flex justify-around">
           <LinksAcessoRapido
-            href="/"
+            href="/acesso-rapido/politica-de-valorizacao-dos-servidores"
             text="Política de Valorização do Servidor"
             className="w-2/3"
           >
@@ -22,7 +22,10 @@ export default function AcessoRapido() {
               className="w-2/3"
             />
           </LinksAcessoRapido>
-          <LinksAcessoRapido href="/" text="Situação Financeira AparecidaPrev">
+          <LinksAcessoRapido
+            href="/acesso-rapido/situacao-financeira-aparecida-prev"
+            text="Situação Financeira AparecidaPrev"
+          >
             <Image
               src="/acesso-rapido/graph.svg"
               alt="user"
@@ -31,7 +34,10 @@ export default function AcessoRapido() {
               className="w-2/3"
             />
           </LinksAcessoRapido>
-          <LinksAcessoRapido href="/" text="Como Fica Minha Aposentadoria ">
+          <LinksAcessoRapido
+            href="/acesso-rapido/como-fica-minha-aposentadoria"
+            text="Como Fica Minha Aposentadoria "
+          >
             <Image
               src="/acesso-rapido/bank.svg"
               alt="user"
@@ -40,7 +46,11 @@ export default function AcessoRapido() {
               className="w-2/3"
             />
           </LinksAcessoRapido>
-          <LinksAcessoRapido href="/" text="Agendamento do Auditório">
+          <LinksAcessoRapido
+            target="_blank"
+            href="https://eagenda.com.br/auditorio"
+            text="Agendamento do Auditório"
+          >
             <Image
               src="/acesso-rapido/agenda.svg"
               alt="user"
@@ -60,6 +70,7 @@ interface props {
   text: string;
   children?: React.ReactNode;
   className?: string;
+  target?: string;
 }
 
 export const LinksAcessoRapido = ({
@@ -67,9 +78,11 @@ export const LinksAcessoRapido = ({
   href,
   text,
   className,
+  target,
 }: props) => {
   return (
     <Link
+      target={target}
       href={href}
       className="flex flex-col text-center justify-center items-center transition ease-in-out duration-300 hover:text-zinc-900 hover:dark:text-zinc-200 hover:bg-zinc-100/95 dark:hover:bg-zinc-800 m-5 p-5 group hover:scale-110"
     >
