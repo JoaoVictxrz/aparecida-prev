@@ -1,44 +1,56 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaRegCalendarAlt, FaYoutube } from "react-icons/fa";
 import { useState } from "react";
+import { MdOutlineYoutubeSearchedFor } from "react-icons/md";
+import ThemeToggle from "./theme-toggle";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
+
+const links = [
+  { href: "/", text: "HOME" },
+  { href: "/sobre", text: "SOBRE" },
+  { href: "/institucional", text: "INSTITUCIONAL" },
+  { href: "/beneficio", text: "BENEFÍCIO" },
+  { href: "/conselho", text: "CONSELHO" },
+  { href: "/financeiro", text: "FINANCEIRO" },
+  { href: "/legislacao", text: "LEGISLAÇÃO" },
+  { href: "/ouvidoria", text: "OUVIDORIA" },
+  { href: "/concurso", text: "CONCURSOS" },
+  { href: "/contato", text: "CONTATO" },
+];
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
+      <Acessibilidade className="hidden lg:flex bg-zinc-100" />
       <header className="w-full bg-white dark:bg-zinc-950 p-2 px-5 flex items-center justify-between">
-        <Image
-          src="/logo-aparecidaprev-1.png"
-          alt="logo"
-          width={200}
-          height={200}
-          className="w-44"
-        />
+        <Link href="/">
+          <Image
+            src="/logo-aparecidaprev-1.png"
+            alt="logo"
+            width={200}
+            height={200}
+            className="w-44"
+          />
+        </Link>
         <ProGestao />
         <div className="lg:hidden">
           {isOpen ? (
-            <button onClick={() => setIsOpen(!isOpen)} className="text-black">
-              <Image
-                src="/menu-close.svg"
-                alt="logo"
-                width={200}
-                height={200}
-                className="w-6 lg:hidden"
-              />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-black dark:text-white"
+            >
+              <IoMdClose size={30} />
             </button>
           ) : (
-            <button onClick={() => setIsOpen(!isOpen)}>
-              <Image
-                src="/menu.svg"
-                alt="logo"
-                width={200}
-                height={200}
-                className="w-6 lg:hidden"
-              />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-black dark:text-white"
+            >
+              <IoMdMenu size={30} />
             </button>
           )}
         </div>
@@ -54,7 +66,7 @@ export default function Home() {
   );
 }
 
-export const MobileNavbar = ({
+const MobileNavbar = ({
   isOpen,
   setIsOpen,
 }: {
@@ -64,54 +76,20 @@ export const MobileNavbar = ({
   return (
     <nav className="w-full bg-white dark:bg-zinc-900 text-black duration-500 trabsition-all">
       <ul className="lg:hidden text-center flex flex-col items-center justify-center pb-5">
-        <Links onClick={() => setIsOpen(!isOpen)} href="/" text="HOME" />
-        <Links onClick={() => setIsOpen(!isOpen)} href="/sobre" text="SOBRE" />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/institucional"
-          text="INSTITUCIONAL"
-        />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/beneficio"
-          text="BENEFÍCIO"
-        />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/conselho"
-          text="CONSELHO"
-        />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/financeiro"
-          text="FINANCEIRO"
-        />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/legislacao"
-          text="LEGISLAÇÃO"
-        />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/ouvidoria"
-          text="OUVIDORIA"
-        />
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/concurso"
-          text="CONCURSO"
-        />
-
-        <Links
-          onClick={() => setIsOpen(!isOpen)}
-          href="/contato"
-          text="CONTATO"
-        />
+        {links.map((link, i) => (
+          <Links
+            key={i}
+            href={link.href}
+            text={link.text}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+        ))}
         {/* Pro-Gestão */}
         <div className="flex flex-col items-center justify-center">
           <Link
-            href="/"
-            className="flex hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 group transition duration-300 ease-in-out"
+            target="_blank"
+            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/Certificado-Pro-Gestao.pdf"
+            className="flex hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-1 group transition duration-300 ease-in-out"
           >
             <Image
               src="/selo-pro-gestao.png"
@@ -120,11 +98,11 @@ export const MobileNavbar = ({
               height={200}
               className="w-10"
             />
-            <span className="text-xl text-zinc-500 font-light group-hover:text-zinc-700 dark:group-hover:text-white p-2">
+            <span className="text-xl text-zinc-500 font-light group-hover:text-zinc-700 dark:text-white group-hover:dark:text-zinc-300 p-2">
               Pró-Gestão RPPS
             </span>
           </Link>
-          <div className="flex gap-5 dark:text-white">
+          <div className="flex gap-5 pt-1 dark:text-white">
             <Link href="/" className="hover:text-orange-600">
               <FaInstagram size={20} />
             </Link>
@@ -132,36 +110,82 @@ export const MobileNavbar = ({
               <FaYoutube size={20} />
             </Link>
           </div>
+          <div className="py-5">
+            <Acessibilidade />
+          </div>
         </div>
       </ul>
     </nav>
   );
 };
 
-export const DesktopNavbar = () => {
+const DesktopNavbar = () => {
+  const [active, setActive] = useState(0);
   return (
     <nav className="hidden w-full lg:flex lg:items-center">
-      <ul className=" bg-white dark:bg-zinc-950 flex w-full justify-end px-5">
-        <Links href="/" text="HOME" />
-        <Links href="/sobre" text="SOBRE" />
-        <Links href="/institucional" text="INSTITUCIONAL" />
-        <Links href="/beneficio" text="BENEFÍCIO" />
-        <Links href="/conselho" text="CONSELHO" />
-        <Links href="/financeiro" text="FINANCEIRO" />
-        <Links href="/legislacao" text="LEGISLAÇÃO" />
-        <Links href="/ouvidoria" text="OUVIDORIA" />
-        <Links href="/concurso" text="CONCURSOS" />
-        <Links href="/contato" text="CONTATO" />
+      <ul className=" bg-white dark:bg-zinc-950 flex w-full justify-end px-5 pb-1 ">
+        {links.map((link, i) => (
+          <Links
+            key={i}
+            href={link.href}
+            text={link.text}
+            onClick={() => setActive(i)}
+            className={`${
+              active === i
+                ? "border-b-2 border-zinc-300 dark:border-zinc-600"
+                : ""
+            }`}
+          />
+        ))}
       </ul>
     </nav>
   );
 };
+const Acessibilidade = ({ className }: { className?: string }) => {
+  return (
+    <div
+      className={`w-full dark:bg-zinc-900 dark:text-zinc-400 px-5 ${className}`}
+    >
+      <div className="w-full grid lg:flex lg:justify-between gap-2 lg:gap-0">
+        <div className="flex gap-2">
+          <span className="flex items-center text-sm">
+            <FaRegCalendarAlt size={15} />
+            AGENDAMENTOS
+          </span>
+          <span className="flex items-center text-sm">
+            <MdOutlineYoutubeSearchedFor size={15} />
+            TRANSPARÊNCIA
+          </span>
+        </div>
+        <div className="grid place-items-center lg:flex gap-2">
+          <span className="font-semibold">Acessibilidade </span>
+          <span className="font-light">Fonte: </span>
+          <span className="flex items-center gap-2">
+            Contraste: <ThemeToggle />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+const Links = ({ href, text, onClick, className }: any) => {
+  return (
+    <Link
+      href={`${href}`}
+      onClick={onClick}
+      className={`text-xl lg:text-sm text-zinc-500 dark:text-white font-light hover:text-zinc-700 hover:dark:text-zinc-500 p-2 pb-1 ${className}`}
+    >
+      {text}
+    </Link>
+  );
+};
 
-export const ProGestao = () => {
+const ProGestao = () => {
   return (
     <div className="hidden lg:flex flex-col items-center justify-center">
       <Link
-        href="/"
+        target="_blank"
+        href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/Certificado-Pro-Gestao.pdf"
         className="flex items-center gap-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 group"
       >
         <Image
@@ -171,7 +195,7 @@ export const ProGestao = () => {
           height={200}
           className="w-5"
         />
-        <span className="text-sm text-zinc-500 dark:zinc-700 font-light group-hover:text-white ">
+        <span className="text-sm text-zinc-500 dark:text-white font-light group-hover:text-white ">
           Pró-Gestão RPPS
         </span>
       </Link>
@@ -184,17 +208,5 @@ export const ProGestao = () => {
         </Link>
       </div>
     </div>
-  );
-};
-
-export const Links = ({ href, text, onClick }: any) => {
-  return (
-    <Link
-      href={`${href}`}
-      onClick={onClick}
-      className="text-xl md:text-sm text-zinc-500 dark:text-white font-light hover:text-zinc-700 hover:dark:text-zinc-500  p-2"
-    >
-      {text}
-    </Link>
   );
 };

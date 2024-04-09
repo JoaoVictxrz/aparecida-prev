@@ -23,7 +23,6 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={inter.className}>
         <header className="w-full sticky top-0 z-50">
-          <ThemeToggle />
           <NavBar />
         </header>
         {children}

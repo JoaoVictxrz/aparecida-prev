@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import { FaMoon } from "react-icons/fa";
+import { MdSunny } from "react-icons/md";
 
 export default function ThemeToggle() {
   const [darkMode, setDarkMode] = useState(true);
@@ -8,7 +10,7 @@ export default function ThemeToggle() {
   useEffect(() => {
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
-      setDarkMode(false);
+      setDarkMode(true);
     }
   }, []);
 
@@ -24,19 +26,18 @@ export default function ThemeToggle() {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
+    setDarkMode(!darkMode);
   };
 
   return (
-    // <div className="w-14 h-14 absolute bg-blue-600 rounded-full right-5 bottom-5 " onClick={handleClick}>
-    //     {isOpen ? <div className="flex items-center justify-center w-full h-full">
-    //         <motion.div>|</motion.div>
-    //     </div> :
-    //         <div className="flex items-center justify-center w-full h-full">
-    //             X
-    //             <motion.div className="w-14 h-14 bg-blue-600 rounded-full absolute bottom-14" initial={{ y: 0 }} animate={{ y: -12 }} exit={{ y: 0 }} ></motion.div>
-    //             <motion.div className="w-14 h-14 bg-blue-600 rounded-full absolute bottom-14" initial={{ y: 0 }} animate={{ y: -76 }} exit={{ y: 0 }}></motion.div>
-    //         </div>}
-    // </div >
-    <></>
+    <div className="">
+      <button
+        className="text-black dark:text-white"
+        onClick={handleClick}
+        aria-label="Toggle dark mode"
+      >
+        {isOpen && darkMode ? <FaMoon size={12} /> : <MdSunny size={12} />}
+      </button>
+    </div>
   );
 }
