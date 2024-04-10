@@ -22,12 +22,13 @@ const links = [
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState(0);
 
   return (
     <>
       <Acessibilidade className="hidden lg:flex bg-zinc-100" />
       <header className="w-full bg-white dark:bg-zinc-950 p-2 px-5 flex items-center justify-between">
-        <Link href="/">
+        <Link href="/" onClick={() => setActive(0)}>
           <Image
             src="/logo-aparecidaprev-1.png"
             alt="logo"
@@ -59,7 +60,7 @@ export default function Home() {
         {isOpen ? (
           <MobileNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
         ) : (
-          <DesktopNavbar />
+          <DesktopNavbar active={active} setActive={setActive} />
         )}
       </nav>
     </>
@@ -119,8 +120,7 @@ const MobileNavbar = ({
   );
 };
 
-const DesktopNavbar = () => {
-  const [active, setActive] = useState(0);
+const DesktopNavbar = ({ active, setActive }: any) => {
   return (
     <nav className="hidden w-full lg:flex lg:items-center">
       <ul className=" bg-white dark:bg-zinc-950 flex w-full justify-end px-5 pb-1 ">
