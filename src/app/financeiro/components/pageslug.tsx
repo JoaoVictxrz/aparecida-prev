@@ -11,7 +11,7 @@ export default function PaginaSlug({ children, className }: Props) {
   const title = searchParams.get("title")?.replace(/"/g, "");
   const postadoEm = searchParams.get("postadoEm")?.replace(/"/g, "");
   return (
-    <Container title="Comparativo da Despesa" className="">
+    <Container title={`${title}`} className="">
       <p className="text-xl md:text-2xl uppercase pt-10 font-semibold">
         {title}
       </p>
