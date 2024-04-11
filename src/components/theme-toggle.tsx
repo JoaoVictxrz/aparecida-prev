@@ -4,7 +4,7 @@ import { FaMoon } from "react-icons/fa";
 import { MdSunny } from "react-icons/md";
 
 export default function ThemeToggle() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
