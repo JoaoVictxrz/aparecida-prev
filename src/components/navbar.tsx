@@ -132,7 +132,7 @@ const DesktopNavbar = ({ active, setActive }: any) => {
             onClick={() => setActive(i)}
             className={`${
               active === i
-                ? "border-b-2 border-zinc-300 dark:border-zinc-600"
+                ? "border-b-2 border-zinc-300/50 dark:border-zinc-600/40"
                 : ""
             }`}
           />
