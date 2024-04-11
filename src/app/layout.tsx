@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import ThemeToggle from "@/components/theme-toggle";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,13 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <header className="w-full sticky top-0 z-50">
-          <NavBar />
-        </header>
-        {children}
-        <Footer />
+        <Suspense fallback={<Loading />}>
+          <header className="w-full sticky top-0 z-50">
+            <NavBar />
+          </header>
+          {children}
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
