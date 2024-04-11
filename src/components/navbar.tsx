@@ -148,14 +148,20 @@ const Acessibilidade = ({ className }: { className?: string }) => {
     >
       <div className="w-full grid lg:flex lg:justify-between gap-2 lg:gap-0">
         <div className="flex gap-2">
-          <span className="flex items-center text-sm">
+          <Link
+            href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
+            className="flex items-center text-sm hover:bg-zinc-700 px-2"
+          >
             <FaRegCalendarAlt size={15} />
             AGENDAMENTOS
-          </span>
-          <span className="flex items-center text-sm">
+          </Link>
+          <Link
+            href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-login.jsf?e="
+            className="flex items-center text-sm hover:bg-zinc-700 px-2"
+          >
             <MdOutlineYoutubeSearchedFor size={15} />
             TRANSPARÊNCIA
-          </span>
+          </Link>
         </div>
         <div className="grid place-items-center lg:flex gap-2">
           <span className="font-semibold">Acessibilidade </span>

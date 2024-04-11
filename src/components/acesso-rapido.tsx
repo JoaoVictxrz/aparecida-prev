@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function AcessoRapido() {
   return (
-    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-zinc-200">
+    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-zinc-200 pb-20">
       <section className="px-2 container">
         <h1 className="font-bold uppercase text-lg md:text-2xl my-8">
           acesso rápido

@@ -55,7 +55,7 @@ export default function Noticias() {
   // }, [])
 
   return (
-    <section className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-5 text-black dark:text-white">
+    <section className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-20 text-black dark:text-white">
       <section className="px-2 container">
         <div className="flex justify-between">
           <h1 className="font-bold uppercase text-lg md:text-2xl my-8 dark:text-zinc-100">
