@@ -142,7 +142,7 @@ export function Footer() {
             <br />
             Horário de Atendimento das 7h30 às 17h30 de Segunda a Sexta-Feira.
             <br />
-            Tel: (62) 3545-5934
+            <p>Tel: (62) 3545-5934</p>
             <br />
           </h2>
         </div>
