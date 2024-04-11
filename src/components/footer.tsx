@@ -11,54 +11,108 @@ export function Footer() {
         <div className="w-full flex flex-col md:flex-row justify-between uppercase py-4">
           <div className="flex flex-col py-2">
             <LinksFooter href="/" text="aparecida prev" />
-            <LinksFooter href="/" text="agendamentos" />
+            <LinksFooter
+              href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
+              text="agendamentos"
+            />
             <LinksFooter href="/" text="adesão ao ipasgo" />
-            <LinksFooter href="/" text="aposentadoria por invalidez" />
-            <LinksFooter href="/" text="atas comitê" />
-            <LinksFooter href="/" text="atas conselho fiscal" />
-            <LinksFooter href="/" text="aposentadoria por idade" />
+            <LinksFooter
+              href="/beneficio/aposentadoria-por-invalidez"
+              text="aposentadoria por invalidez"
+            />
+            <LinksFooter href="/conselho/atas-comite" text="atas comitê" />
+            <LinksFooter
+              href="/conselho/atas-conselho-fiscal"
+              text="atas conselho fiscal"
+            />
+            <LinksFooter
+              href="/beneficio/aposentadoria-por-idade"
+              text="aposentadoria por idade"
+            />
             <LinksFooter href="/" text="aposentadoria por contribuição" />
-            <LinksFooter href="/" text="aposentadoria compulsória" />
-            <LinksFooter href="/" text="atas conselho municipal" />
+            <LinksFooter
+              href="/beneficio/aposentadoria-compulsoria"
+              text="aposentadoria compulsória"
+            />
+            <LinksFooter
+              href="/conselho/atas-do-conselho"
+              text="atas conselho municipal"
+            />
           </div>
           <div className="flex flex-col py-2">
-            <LinksFooter href="/" text="benefícios" />
-            <LinksFooter href="/" text="cartilha previdenciária" />
-            <LinksFooter href="/" text="certificação" />
-            <LinksFooter href="/" text="como fica minha aposentadoria" />
+            <LinksFooter href="/beneficio" text="benefícios" />
             <LinksFooter
-              href="/"
+              href="/institucional/cartilha-previdenciaria"
+              text="cartilha previdenciária"
+            />
+            <LinksFooter
+              href="/institucional/certificacao"
+              text="certificação"
+            />
+            <LinksFooter
+              href="/acesso-rapido/como-fica-minha-aposentadoria"
+              text="como fica minha aposentadoria"
+            />
+            <LinksFooter
+              href="/institucional/codigo-de-etica-e-politica-de-seguranca-da-informacao"
               text="código de ética / política de segurança"
             />
-            <LinksFooter href="/" text="decreto de nomeação" />
-            <LinksFooter href="/" text="editais" />
-            <LinksFooter href="/" text="edital de credenciamento" />
+            <LinksFooter
+              href="/conselho/decreto-de-nomeacao"
+              text="decreto de nomeação"
+            />
+            <LinksFooter href="/editais" text="editais" />
+            <LinksFooter
+              href="/institucional/edital-de-credenciamento"
+              text="edital de credenciamento"
+            />
           </div>
           <div className="flex flex-col py-2">
-            <LinksFooter href="/" text="gestão financeira e administrativa" />
-            <LinksFooter href="/" text="histórico" />
-            <LinksFooter href="/" text="legislação municipal" />
             <LinksFooter
-              href="/"
+              href="/institucional/gestao-financeira-e-administrativa"
+              text="gestão financeira e administrativa"
+            />
+            <LinksFooter href="/sobre/historico" text="histórico" />
+            <LinksFooter
+              href="/legislacao/leis-municipais"
+              text="legislação municipal"
+            />
+            <LinksFooter
+              href="/conselho/reunioes-do-comite-conselho"
               text="local e data das reuniões do comitê/conselho"
             />
-            <LinksFooter href="/" text="lei orgânica do município" />
-            <LinksFooter href="/" text="membros dos conselhos" />
-            <LinksFooter href="/" text="missão" />
-            <LinksFooter href="/" text="ouvidoria" />
+            <LinksFooter
+              href="/legislacao/lei-organica-do-municipio"
+              text="lei orgânica do município"
+            />
+            <LinksFooter
+              href="/conselho/membros-do-conselho"
+              text="membros dos conselhos"
+            />
+            <LinksFooter href="/missao" text="missão" />
+            <LinksFooter href="/ouvidoria" text="ouvidoria" />
           </div>
           <div className="flex flex-col py-2">
             <LinksFooter href="/" text="política de segurança e informação" />
             <LinksFooter
-              href="/"
+              href="/politica-de-valorizacao-dos-servidores"
               text="política de valorização dos servidores"
             />
-            <LinksFooter href="/" text="portaria mps" />
-            <LinksFooter href="/" text="presidência e diretorias executivas" />
+            <LinksFooter href="/legislacao/portaria-mps" text="portaria mps" />
+            <LinksFooter
+              href="/sobre/presidencia-e-diretoria"
+              text="presidência e diretorias executivas"
+            />
             <LinksFooter href="/" text="previdência no brasil" />
-            <LinksFooter href="/" text="situação financeira do aparecidaprev" />
-            <LinksFooter href="/" text="taxa de administração" />
-            <LinksFooter href="/" text="visão" />
+            <LinksFooter
+              href="/acesso-rapido/situacao-financeira-aparecida-prev"
+              text="situação financeira do aparecidaprev"
+            />
+            <LinksFooter
+              href="/institucional/taxa-de-administracao"
+              text="taxa de administração"
+            />
+            <LinksFooter href="/sobre/visao" text="visão" />
           </div>
         </div>
       </div>
