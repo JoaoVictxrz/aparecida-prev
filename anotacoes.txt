@@ -8,3 +8,56 @@ https://aparecidaprev.go.gov.br/certificado-de-regularidade-previdenciaria-crp/ 
 -== https://aparecidaprev.go.gov.br/regimento-interno/ ==-
 2022 Declaração de Interesse  (Inscrição) está com download direto 
 https://aparecidaprev.go.gov.br/wp-content/uploads/2022/06/Declaracao-de-Interesse.docx
+
+-== https://aparecidaprev.go.gov.br/portaria-mps/ ==-
+trocado leis federal por leis federais
+Emenda Constitucional nº 113, de 08 de dezembro de 2021 – Altera Altera a Constituição Federal e o Ato das Disposições Constitucionais Transitórias para estabelecer o novo regime de pagamentos de precatórios, modificar normas relativas ao Novo Regime Fiscal e autorizar o parcelamento de débitos previdenciários dos Municípios https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/EMENDA-CONSTITUCIONAL-No-103-DE-12-DE-NOVEMBRO-DE-2019.pdf
+
+
+-== https://aparecidaprev.go.gov.br/leis-municipais/ ==-
+trocado leis municipal por leis municipais
+
+-== https://aparecidaprev.go.gov.br/financeiro/ ==-
+retirado o Categoria: das paginas para padronizar com as outras
+
+-== https://aparecidaprev.go.gov.br/demonstrativo-das-variacoes-patrimoniais/ 2013 ==-
+Não possui conteudo dentro da pagina
+https://aparecidaprev.go.gov.br/demonst-variacao-patrimonial/dezembro/ coloquei o link direto
+https://aparecidaprev.go.gov.br/demonstrativo-da-variacao-patrimonial-2018/ Só vai ate setembro
+
+-== https://sigp.aparecida.go.gov.br/sig/ ==-
+LINK transparencia sistema de gestão está dando erro 404
+
+-== https://aparecidaprev.go.gov.br/comparativo-da-despesa-2017/ ==-
+DESPESA ORÇAMENTARIA ABRIL 2017 com link de maio
+
+-==https://aparecidaprev.go.gov.br/dipr-2021/==- 
+Colocado os links do dpir direto 
+
+-==https://aparecidaprev.go.gov.br/balanco-financeiro-2019/==-
+colocado os links de novembro e dezembro direto
+
+-==https://aparecidaprev.go.gov.br/balanco-orcamentario-2020/==-
+colocado os links de novembro e dezembro direto
+
+-==https://aparecidaprev.go.gov.br/comparativo-da-receita-2020/==-
+colocado os links de novembro e dezembro direto
+
+-==https://aparecidaprev.go.gov.br/ano-2021-2/==-
+links colocados diretos
+
+-==https://aparecidaprev.go.gov.br/noticias/relatorio-mensal-comp-carteira-fin/==-
+
+{* Footer *}
+
+-==https://aparecidaprev.go.gov.br/o-aparecidaprev/==- 
+leva nada a lugar nenhum
+
+-=https://aparecidaprev.go.gov.br/adesao-ao-ipasgo/=-
+
+https://aparecidaprev.go.gov.br/beneficios/
+
+https://aparecidaprev.go.gov.br/wp-content/uploads/2022/12/POLITICA-DE-SEGUR-INFORMACOES-PARA-GESTAO-DO-APARECIANCA-DEDAPREV.pdf
+não tem o arquivo
+https://aparecidaprev.go.gov.br/previdencia-no-brasil/ 
+vazio

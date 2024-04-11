@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-
+import CardsFinanceiro from "../components/cards";
+import { getQueryParams } from "../components/getQueryParams";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -9,10 +9,47 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <Container title="">
+    <Container title="" className="grid md:grid-cols-2">
+      {links.map((link, i) => (
+        <CardsFinanceiro
+          key={i}
+          title={link.title}
+          postadoEm={link.postadoEm}
+          descrição={link.descrição}
+          href={link.href}
+          path="comparativo-da-despesa"
+          query={getQueryParams(link)}
+        />
+      ))}
     </Container>
   );
 }
+[slug]
+import LinkAzul from "@/app/institucional/components/links";
+import PaginaSlug from "../../components/pageslug";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Comparativo da Despesa",
+  };
+}
+
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+
+export default function Page({ params }: Props) {
+  return <GeneratePage params={params} />;
+}
+
+const GeneratePage = ({ params }: Props) => {
+  switch (params.slug) {
+  }
+}
+
 <div>
   <h1 className="upercase font-bold"></h1>
   <div className="pl-5 flex flex-col md:w-2/4 pt-2 pb-4">
