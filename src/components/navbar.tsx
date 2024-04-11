@@ -75,7 +75,7 @@ const MobileNavbar = ({
   setIsOpen: any;
 }) => {
   return (
-    <nav className="w-full bg-white dark:bg-zinc-900 text-black duration-500 trabsition-all">
+    <nav className="w-full bg-white dark:bg-zinc-900 text-black">
       <ul className="lg:hidden text-center flex flex-col items-center justify-center pb-5">
         {links.map((link, i) => (
           <Links
@@ -150,14 +150,14 @@ const Acessibilidade = ({ className }: { className?: string }) => {
         <div className="flex gap-2">
           <Link
             href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
-            className="flex items-center text-sm hover:bg-zinc-700 px-2"
+            className="flex items-center text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 px-2"
           >
             <FaRegCalendarAlt size={15} />
             AGENDAMENTOS
           </Link>
           <Link
             href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-login.jsf?e="
-            className="flex items-center text-sm hover:bg-zinc-700 px-2"
+            className="flex items-center text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 px-2"
           >
             <MdOutlineYoutubeSearchedFor size={15} />
             TRANSPARÊNCIA
