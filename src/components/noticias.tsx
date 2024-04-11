@@ -63,7 +63,7 @@ export default function Noticias() {
           </h1>
           <Link
             href="/"
-            className="flex items-center hover:bg-zinc-200 hover:rounded-md p-2 my-8"
+            className="flex items-center hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 my-8 gap-1"
           >
             <Image
               src="/mais.svg"
@@ -79,7 +79,7 @@ export default function Noticias() {
           {data.map((post) => (
             <article
               key={post.id}
-              className="max-w-md bg-white dark:bg-zinc-800 shadow-md overflow-hidden md:max-w-2xl flex flex-col h-full justify-between mx-5 my-2 p-2"
+              className="max-w-md bg-white dark:bg-zinc-900 shadow-md overflow-hidden md:max-w-2xl flex flex-col h-full justify-between mx-5 my-2 p-2"
             >
               <div>
                 <Image
