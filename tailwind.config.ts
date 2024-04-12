@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "image-pref": "url('/bg-1.jpg')",
+        "image-pref": "url('/aparecidaprev.jpeg')",
       },
       keyframes: {},
       animation: {
