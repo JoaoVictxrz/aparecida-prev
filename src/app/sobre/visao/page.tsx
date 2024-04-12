@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Visão() {
   return (
     <Container title="Visão">
-      <p className="font-semibold text-xl text-center">
+      <p className="text-center text-xl font-semibold">
         Pretendemos nos tornar um Instituto de previdência referência no país
         pela qualidade dos serviços que prestamos, realizando um trabalho de
         maneira eficaz, seguro e responsável, respeitando os nossos segurados, a

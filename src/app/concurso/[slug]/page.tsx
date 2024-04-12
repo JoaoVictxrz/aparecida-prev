@@ -280,7 +280,7 @@ const GeneratePage = ({ params }: Props) => {
           {editais.map((edital) => (
             <div
               key={edital.posicao}
-              className="border-b-[1px] dark:border-zinc-800 space-y-2 pb-4"
+              className="space-y-2 border-b-[1px] pb-4 dark:border-zinc-800"
             >
               <p>
                 {edital.posicao} EDITAL DE CONVOCAÇÃO – {edital.ano}

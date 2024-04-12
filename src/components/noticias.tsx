@@ -55,15 +55,15 @@ export default function Noticias() {
   // }, [])
 
   return (
-    <section className="w-full flex justify-center bg-white dark:bg-zinc-900 pb-20 text-black dark:text-white">
-      <section className="px-2 container">
+    <section className="flex w-full justify-center bg-white pb-20 text-black dark:bg-zinc-900 dark:text-white">
+      <section className="container px-2">
         <div className="flex justify-between">
-          <h1 className="font-bold uppercase text-lg md:text-2xl my-8 dark:text-zinc-100">
+          <h1 className="my-8 text-lg font-bold uppercase dark:text-zinc-100 md:text-2xl">
             Notícias
           </h1>
           <Link
             href="/"
-            className="flex items-center hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 my-8 gap-1"
+            className="my-8 flex items-center gap-1 p-2 hover:rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800"
           >
             <Image
               src="/mais.svg"
@@ -75,11 +75,11 @@ export default function Noticias() {
             Leia mais
           </Link>
         </div>
-        <div className="w-full grid grid-cols-1 place-items-center md:grid-cols-3">
+        <div className="grid w-full grid-cols-1 place-items-center md:grid-cols-3">
           {data.map((post) => (
             <article
               key={post.id}
-              className="max-w-md bg-white dark:bg-zinc-900 shadow-md overflow-hidden md:max-w-2xl flex flex-col h-full justify-between mx-5 my-2 p-2"
+              className="mx-5 my-2 flex h-full max-w-md flex-col justify-between overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 md:max-w-2xl"
             >
               <div>
                 <Image
@@ -90,18 +90,18 @@ export default function Noticias() {
                   className="w-full"
                 />
               </div>
-              <div className="pt-4 h-full">
-                <h2 className="text-2xl font-bold py-2 dark:text-white">
+              <div className="h-full pt-4">
+                <h2 className="py-2 text-2xl font-bold dark:text-white">
                   {post.title}
                 </h2>
-                <p className="text-gray-600 dark:text-zinc-100 line-clamp-4">
+                <p className="line-clamp-4 text-gray-600 dark:text-zinc-100">
                   {post.body}
                 </p>
               </div>
-              <div className="w-full flex items-center justify-center mb-2">
+              <div className="mb-2 flex w-full items-center justify-center">
                 <Link
                   href={`/${post.id}`}
-                  className="text-blue-500 dark:bg-blue-800 dark:text-white border-2 border-blue-500 dark:border-blue-800 rounded p-2 hover:bg-blue-500 dark:hover:bg-blue-700 hover:text-white"
+                  className="rounded border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-white dark:border-blue-800 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-700"
                 >
                   Leia mais
                 </Link>

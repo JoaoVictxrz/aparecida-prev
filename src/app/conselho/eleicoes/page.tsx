@@ -12,10 +12,10 @@ export default function Home() {
   return (
     <Container title="Eleições">
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">
+        <p className="pb-2 font-bold uppercase">
           ELEIÇÃO 2023 – PLEITO HOMOLOGADO
         </p>
-        <div className="pl-5 flex flex-col pb-3">
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Edital de Convocação n°001/2023 e Publicação Diário Oficial"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/Edital-de-Convocacao-e-Publicacao.pdf"
@@ -60,10 +60,10 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">
+        <p className="pb-2 font-bold uppercase">
           ELEIÇÃO 2022 – PLEITO HOMOLOGADO
         </p>
-        <div className="pl-5 flex flex-col pb-3">
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Edital de Convocação n. 001-2022"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/06/Edital-de-Convocacao-n.-001-2022.pdf"

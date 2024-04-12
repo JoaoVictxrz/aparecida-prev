@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 export default function Transparencia() {
   return (
-    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 dark:text-zinc-200 pb-20">
-      <section className="px-2 container">
-        <h1 className="font-bold uppercase text-lg md:text-2xl my-8">
+    <article className="flex w-full justify-center bg-white pb-20 dark:bg-zinc-900 dark:text-zinc-200">
+      <section className="container px-2">
+        <h1 className="my-8 text-lg font-bold uppercase md:text-2xl">
           Transparencia
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4">
@@ -140,10 +140,10 @@ export const LinksTransparencia = ({
     <Link
       target="_blank"
       href={href}
-      className="flex flex-col text-center items-center transition ease-in-out duration-300 hover:text-zinc-900 hover:bg-zinc-100/95 dark:hover:bg-zinc-800 m-5 p-5 group hover:scale-110"
+      className="group m-5 flex flex-col items-center p-5 text-center transition duration-300 ease-in-out hover:scale-110 hover:bg-zinc-100/95 hover:text-zinc-900 dark:hover:bg-zinc-800"
     >
       {children}
-      <p className="font-semibold text-sm uppercase sm:text-lg text-zinc-500 dark:text-zinc-100 group-hover:text-zinc-900 group-hover:dark:text-zinc-300">
+      <p className="text-sm font-semibold uppercase text-zinc-500 group-hover:text-zinc-900 dark:text-zinc-100 group-hover:dark:text-zinc-300 sm:text-lg">
         {text}
       </p>
       <p className="text-sm text-zinc-500 dark:text-zinc-100">{description}</p>

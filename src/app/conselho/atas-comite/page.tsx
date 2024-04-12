@@ -11,18 +11,18 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Atas comitê">
-      <div className="flex flex-col w-3/4 md:w-2/4">
-        <p className="font-bold uppercase pb-2">REGIMENTO DO COMITÊ</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-2/4">
+        <p className="pb-2 font-bold uppercase">REGIMENTO DO COMITÊ</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="REGIMENTO DO COMITÊ "
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/Regimeto-do-Comite.pdf"
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-2/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2024</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-2/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2024</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="ATA REUNIÃO 08/02/2024 (DADOS FINANCEIROS DE DEZEMBRO DE 2023)"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/Ata-Comite-08-02-2024.pdf"
@@ -37,9 +37,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2023</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2023</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO - 2023"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/07/Ata-01-2023.pdf"
@@ -94,18 +94,18 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ALM 2022</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ALM 2022</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="ALM  – Asset Liability Management"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/2022.10.28-ALM-Ap-de-Goiania-1.pdf"
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2022</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2022</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="CARTA DE RENÚNCIA"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/Carta-de-Renuncia.pdf"
@@ -128,9 +128,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2021</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2021</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="ABRIL - 2021"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2021/05/ATA-Comite-280421.pdf"
@@ -153,9 +153,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2020</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2020</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="FEVEREIRO - 2020"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2020/09/Image110920100108.pdf"
@@ -170,9 +170,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2019</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2019</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="MARÇO - 2019"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2020/09/Image110920100007.pdf"
@@ -183,9 +183,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2018</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2018</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="FEVEREIRO - 2018"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2018/06/02-2018.pdf"
@@ -204,9 +204,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2017</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2017</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="MARÇO - 2017"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/01/03-2017.pdf"
@@ -217,9 +217,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2016</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2016</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO - 2016"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/01/01-2016.pdf"
@@ -230,9 +230,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2015</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2015</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO - 2015"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2015/02/01-20151.pdf"
@@ -279,9 +279,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">ATAS COMITÊ 2014</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">ATAS COMITÊ 2014</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO - 2014"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/06/JAN.pdf"

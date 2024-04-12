@@ -12,13 +12,13 @@ export default function PaginaSlug({ children, className }: Props) {
   const postadoEm = searchParams.get("postadoEm")?.replace(/"/g, "");
   return (
     <Container title={`${title}`} className="">
-      <p className="text-xl md:text-2xl uppercase pt-10 font-semibold">
+      <p className="pt-10 text-xl font-semibold uppercase md:text-2xl">
         {title}
       </p>
-      <p className="text-lg md:text-base font-extralight">
+      <p className="text-lg font-extralight md:text-base">
         Postado em: {postadoEm}
       </p>
-      <div className={`pt-4 p-2 flex flex-col gap-1 w-3/4 ${className}`}>
+      <div className={`flex w-3/4 flex-col gap-1 p-2 pt-4 ${className}`}>
         {children}
       </div>
     </Container>

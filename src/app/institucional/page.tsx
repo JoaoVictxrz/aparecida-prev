@@ -84,7 +84,7 @@ export const LinksInstitucional = ({ href, text }: any) => {
   return (
     <Link
       href={href}
-      className="flex items-center justify-center shadow-md p-5 group hover:bg-zinc-100 hover:scale-105 transition-transform ease-in-out duration-300"
+      className="group flex items-center justify-center p-5 shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-zinc-100"
     >
       <p
         className={`text-2xl font-light text-zinc-500 group-hover:text-zinc-700`}

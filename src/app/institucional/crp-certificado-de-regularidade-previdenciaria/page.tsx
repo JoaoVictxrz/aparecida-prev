@@ -25,7 +25,7 @@ export default function Home() {
         em “<span className="font-semibold">pesquisar</span>“, confirmando o
         Ente na linha de retorno da pesquisa para exibição dos certificados.
       </p>
-      <div className="pl-5 flex flex-col md:w-2/4 pt-4 pb-4 uppercase font-bold">
+      <div className="flex flex-col pb-4 pl-5 pt-4 font-bold uppercase md:w-2/4">
         <LinkAzul
           href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/07/CRP.pdf"
           text="CRP VENC 05 01 2024"

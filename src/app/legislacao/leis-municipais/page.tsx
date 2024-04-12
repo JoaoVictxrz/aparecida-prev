@@ -199,7 +199,7 @@ const leisComplementares = [
 export default function Home() {
   return (
     <Container title="Leis municipais">
-      <div className="w-full container gap-5 pb-20">
+      <div className="container w-full gap-5 pb-20">
         <div className="flex flex-col gap-2">
           <strong className="font-bold uppercase">LEIS MUNICIPAIS</strong>
           <div className="flex flex-col font-light">
@@ -217,10 +217,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full container gap-5 pb-20">
+      <div className="container w-full gap-5 pb-20">
         <div className="flex flex-col gap-2">
           <strong className="font-bold uppercase">LEIS COMPLEMENTARES</strong>
-          <div className="flex flex-col font-light pl-5">
+          <div className="flex flex-col pl-5 font-light">
             {leisComplementares.map((lei, i) => (
               <p key={i} className={lei.revogada ? "text-red-500" : ""}>
                 <LinkAzul

@@ -75,15 +75,15 @@ export default function Home() {
 export const LinkBancos = ({ nome, postadoEm, href }: any) => {
   return (
     <div className="flex flex-col">
-      <p className="text-xl md:text-2xl uppercase pt-10 font-semibold">
+      <p className="pt-10 text-xl font-semibold uppercase md:text-2xl">
         {nome}
       </p>
-      <p className="text-lg md:text-base font-extralight">
+      <p className="text-lg font-extralight md:text-base">
         Postado em: {postadoEm}
       </p>
       <Link
         href={`/institucional/instituicoes-financeiras/${href}`}
-        className=" bg-zinc-700 w-3/4 uppercase text-sm text-center text-white font-bold py-2 px-4 rounded mt-5 hover hover:bg-zinc-800/50 transition-all duration-300 ease-out"
+        className=" hover mt-5 w-3/4 rounded bg-zinc-700 px-4 py-2 text-center text-sm font-bold uppercase text-white transition-all duration-300 ease-out hover:bg-zinc-800/50"
       >
         Leia mais
       </Link>

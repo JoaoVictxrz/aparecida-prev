@@ -13,7 +13,7 @@ export default function Home() {
     <Container title="Código de etica/politica de segurança da informação">
       <div>
         <h1 className="upercase font-bold">Código de ética</h1>
-        <div className="pl-5 flex flex-col md:w-2/4 pt-2 pb-4">
+        <div className="flex flex-col pb-4 pl-5 pt-2 md:w-2/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/Codigo-de-Etica-Aparecida-Prev.pdf"
             text="Código de Ética AparecidaPrev"
@@ -32,7 +32,7 @@ export default function Home() {
         <h1 className="upercase font-bold">
           Política de segurança da informação
         </h1>
-        <div className="pl-5 flex flex-col md:w-2/4 pt-2 pb-4">
+        <div className="flex flex-col pb-4 pl-5 pt-2 md:w-2/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/12/Politica-de-Seguranca-da-Informacao-com-anexos.pdf"
             text="Política de Segurança da Informação"

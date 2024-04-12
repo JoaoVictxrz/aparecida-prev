@@ -12,10 +12,10 @@ export default function Home() {
   return (
     <Container title="Taxa de Administração">
       <div className="flex flex-col">
-        <p className="uppercase font-semibold">
+        <p className="font-semibold uppercase">
           PORTARIA INSTITUI A TAXA ADMINISTRATIVA
         </p>
-        <div className="flex flex-col gap-1 pt-2 pl-5">
+        <div className="flex flex-col gap-1 pl-5 pt-2">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/Portaria-n%C2%B0-045_merged.pdf"
             text="Portaria 045/2024"

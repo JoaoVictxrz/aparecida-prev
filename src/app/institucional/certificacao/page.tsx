@@ -15,7 +15,7 @@ export default function Home() {
         <h1 className="upercase font-bold">
           CONSELHO MUNICIPAL DE PREVIDÊNCIA
         </h1>
-        <div className="pl-5 flex flex-col w-3/ md:w-1/4 pt-2 pb-4">
+        <div className="w-3/ flex flex-col pb-4 pl-5 pt-2 md:w-1/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/Certificado-CGRPPS-Delson.pdf"
             text="Certificado CGRPPS Delson"
@@ -36,7 +36,7 @@ export default function Home() {
       </div>
       <div>
         <h1 className="upercase font-bold">DIRETORIA ADMINISTRATIVA</h1>
-        <div className="pl-5 flex flex-col w-3/ md:w-1/4 pt-2 pb-4">
+        <div className="w-3/ flex flex-col pb-4 pl-5 pt-2 md:w-1/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/Certificado-CGRRPS-Cristiano.pdf"
             text="Certificado CGRRPS Cristiano"
@@ -53,7 +53,7 @@ export default function Home() {
       </div>
       <div>
         <h1 className="upercase font-bold">DIRETORIA DE BENEFÍCIOS</h1>
-        <div className="pl-5 flex flex-col w-3/ md:w-1/4 pt-2 pb-4">
+        <div className="w-3/ flex flex-col pb-4 pl-5 pt-2 md:w-1/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/Certificado-CGRPPS-Anderson.pdf"
             text="Certificado CGRPPS Anderson"
@@ -70,7 +70,7 @@ export default function Home() {
       </div>
       <div>
         <h1 className="upercase font-bold">DIRETORIA FINANCEIRA</h1>
-        <div className="pl-5 flex flex-col w-3/ md:w-1/4 pt-2 pb-4">
+        <div className="w-3/ flex flex-col pb-4 pl-5 pt-2 md:w-1/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/Certificado-CGRPPS-Gesinopolis.pdf"
             text="Certificado CGRPPS Gesinopolis"
@@ -95,7 +95,7 @@ export default function Home() {
       </div>
       <div>
         <h1 className="upercase font-bold">DIRETORIA JURÍDICA</h1>
-        <div className="pl-5 flex flex-col w-3/ md:w-1/4 pt-2 pb-4">
+        <div className="w-3/ flex flex-col pb-4 pl-5 pt-2 md:w-1/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/CPA-10-VAL-27-07-2023.pdf"
             text="CPA 10 Amanda 27 07 2023"
@@ -116,7 +116,7 @@ export default function Home() {
       </div>
       <div>
         <h1 className="upercase font-bold">GABINETE DA PRESIDÊNCIA</h1>
-        <div className="pl-5 flex flex-col w-3/ md:w-1/4 pt-2 pb-4">
+        <div className="w-3/ flex flex-col pb-4 pl-5 pt-2 md:w-1/4">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/Certificado-CGRPPS-Einstein.pdf"
             text="Certificado CGRPPS Einstein"

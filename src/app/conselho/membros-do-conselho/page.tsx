@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <Container title="Membros dos conselhos">
       <div className="flex flex-col gap-2">
-        <strong className="font-bold underline uppercase">
+        <strong className="font-bold uppercase underline">
           CONSELHO MUNICIPAL DE PREVIDÊNCIA
         </strong>
         <h2 className="font-bold dark:text-zinc-200">TITULARES</h2>
@@ -31,7 +31,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-2 pt-4">
-        <strong className="font-bold underline uppercase">
+        <strong className="font-bold uppercase underline">
           CONSELHO FISCAL
         </strong>
         <h2 className="font-bold dark:text-zinc-200">TITULARES</h2>
@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-2 pt-4">
-        <strong className="font-bold underline uppercase">
+        <strong className="font-bold uppercase underline">
           COMITÊ DE INVESTIMENTOS
         </strong>
         <div className="flex flex-col">

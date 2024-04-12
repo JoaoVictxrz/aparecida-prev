@@ -161,15 +161,15 @@ interface props {
 
 export const PaginaSlug = ({ nome, postadoEm, children }: props) => {
   return (
-    <div className="w-full flex justify-center gap-5 pb-20 bg-white dark:bg-zinc-800 dark:text-zinc-100">
+    <div className="flex w-full justify-center gap-5 bg-white pb-20 dark:bg-zinc-800 dark:text-zinc-100">
       <div className="container flex-col">
-        <p className="text-xl md:text-2xl uppercase pt-10 font-semibold">
+        <p className="pt-10 text-xl font-semibold uppercase md:text-2xl">
           {nome}
         </p>
-        <p className="text-lg md:text-base font-extralight">
+        <p className="text-lg font-extralight md:text-base">
           Postado em: {postadoEm}
         </p>
-        <div className="pt-4 p-2">{children}</div>
+        <div className="p-2 pt-4">{children}</div>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={inter.className}>
         <Suspense fallback={<Loading />}>
-          <header className="w-full sticky top-0 z-50">
+          <header className="sticky top-0 z-50 w-full">
             <NavBar />
           </header>
           {children}

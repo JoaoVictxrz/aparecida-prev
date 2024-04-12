@@ -12,14 +12,14 @@ export default function Home() {
   return (
     <Container title="Lei orgânica do município">
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">Legislação Municipal</p>
-        <div className="pl-5 flex flex-col pb-3 w-3/4 md:w-1/4">
+        <p className="pb-2 font-bold uppercase">Legislação Municipal</p>
+        <div className="flex w-3/4 flex-col pb-3 pl-5 md:w-1/4">
           <LinkAzul text="Emendas à Lei Orgânica" href="" />
         </div>
       </div>
       <div className="= flex flex-col pb-3">
-        <p className="font-bold uppercase pb-2">Emendas à Lei Orgânica</p>
-        <div className="pl-5 flex flex-col md:w-2/4 gap-1">
+        <p className="pb-2 font-bold uppercase">Emendas à Lei Orgânica</p>
+        <div className="flex flex-col gap-1 pl-5 md:w-2/4">
           <LinkAzul
             text="Emenda à Lei Orgânica N°006/2019 – Revoga o artigo 13 da Lei Orgânica do município"
             href=""

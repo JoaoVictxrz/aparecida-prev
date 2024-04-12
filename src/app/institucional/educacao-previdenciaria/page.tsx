@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Educação previdênciária">
-      <div className="w-3/4 md:w-2/4 flex flex-col gap-2 pl-5">
+      <div className="flex w-3/4 flex-col gap-2 pl-5 md:w-2/4">
         <LinkAzul
           href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANO-DE-ACAO-E-CAPACITACAO-PARA-SERVIDORES-DO-RPPS.pdf"
           text="PLANO DE AÇÃO E CAPACITAÇÃO PARA SERVIDORES DO RPPS – 2022"

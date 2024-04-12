@@ -26,8 +26,8 @@ export default function Home() {
 
   return (
     <>
-      <Acessibilidade className="hidden lg:flex bg-zinc-100" />
-      <header className="w-full bg-white dark:bg-zinc-950 p-2 px-5 flex items-center justify-between">
+      <Acessibilidade className="hidden bg-zinc-100 lg:flex" />
+      <header className="flex w-full items-center justify-between bg-white p-2 px-5 dark:bg-zinc-950">
         <Link href="/" onClick={() => setActive(0)}>
           <Image
             src="/logo-aparecidaprev-1.png"
@@ -56,7 +56,7 @@ export default function Home() {
           )}
         </div>
       </header>
-      <nav className="duration-500 trabsition-all">
+      <nav className="trabsition-all duration-500">
         {isOpen ? (
           <MobileNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
         ) : (
@@ -75,8 +75,8 @@ const MobileNavbar = ({
   setIsOpen: any;
 }) => {
   return (
-    <nav className="w-full bg-white dark:bg-zinc-900 text-black">
-      <ul className="lg:hidden text-center flex flex-col items-center justify-center pb-5">
+    <nav className="w-full bg-white text-black dark:bg-zinc-900">
+      <ul className="flex flex-col items-center justify-center pb-5 text-center lg:hidden">
         {links.map((link, i) => (
           <Links
             key={i}
@@ -90,7 +90,7 @@ const MobileNavbar = ({
           <Link
             target="_blank"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/Certificado-Pro-Gestao.pdf"
-            className="flex hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-1 group transition duration-300 ease-in-out"
+            className="group flex p-1 transition duration-300 ease-in-out hover:rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800"
           >
             <Image
               src="/selo-pro-gestao.png"
@@ -99,7 +99,7 @@ const MobileNavbar = ({
               height={200}
               className="w-10"
             />
-            <span className="text-xl text-zinc-500 font-light group-hover:text-zinc-700 dark:text-white group-hover:dark:text-zinc-300 p-2">
+            <span className="p-2 text-xl font-light text-zinc-500 group-hover:text-zinc-700 dark:text-white group-hover:dark:text-zinc-300">
               Pró-Gestão RPPS
             </span>
           </Link>
@@ -123,7 +123,7 @@ const MobileNavbar = ({
 const DesktopNavbar = ({ active, setActive }: any) => {
   return (
     <nav className="hidden w-full lg:flex lg:items-center">
-      <ul className=" bg-white dark:bg-zinc-950 flex w-full justify-end px-5 pb-1 ">
+      <ul className=" flex w-full justify-end bg-white px-5 pb-1 dark:bg-zinc-950 ">
         {links.map((link, i) => (
           <Links
             key={i}
@@ -144,26 +144,26 @@ const DesktopNavbar = ({ active, setActive }: any) => {
 const Acessibilidade = ({ className }: { className?: string }) => {
   return (
     <div
-      className={`w-full dark:bg-zinc-900 dark:text-zinc-400 px-5 ${className}`}
+      className={`w-full px-5 dark:bg-zinc-900 dark:text-zinc-400 ${className}`}
     >
-      <div className="w-full grid lg:flex lg:justify-between gap-2 lg:gap-0">
+      <div className="grid w-full gap-2 lg:flex lg:justify-between lg:gap-0">
         <div className="flex gap-2">
           <Link
             href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
-            className="flex items-center text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 px-2"
+            className="flex items-center px-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700"
           >
             <FaRegCalendarAlt size={15} />
             AGENDAMENTOS
           </Link>
           <Link
             href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-login.jsf?e="
-            className="flex items-center text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 px-2"
+            className="flex items-center px-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700"
           >
             <MdOutlineYoutubeSearchedFor size={15} />
             TRANSPARÊNCIA
           </Link>
         </div>
-        <div className="grid place-items-center lg:flex gap-2">
+        <div className="grid place-items-center gap-2 lg:flex">
           <span className="font-semibold">Acessibilidade </span>
           <span className="font-light">Fonte: </span>
           <span className="flex items-center gap-2">
@@ -179,7 +179,7 @@ const Links = ({ href, text, onClick, className }: any) => {
     <Link
       href={`${href}`}
       onClick={onClick}
-      className={`text-xl lg:text-sm text-zinc-500 dark:text-white font-light hover:text-zinc-700 hover:dark:text-zinc-500 p-2 pb-1 ${className}`}
+      className={`p-2 pb-1 text-xl font-light text-zinc-500 hover:text-zinc-700 dark:text-white hover:dark:text-zinc-500 lg:text-sm ${className}`}
     >
       {text}
     </Link>
@@ -188,11 +188,11 @@ const Links = ({ href, text, onClick, className }: any) => {
 
 const ProGestao = () => {
   return (
-    <div className="hidden lg:flex flex-col items-center justify-center">
+    <div className="hidden flex-col items-center justify-center lg:flex">
       <Link
         target="_blank"
         href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/Certificado-Pro-Gestao.pdf"
-        className="flex items-center gap-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:rounded-md p-2 group"
+        className="group flex items-center gap-2 p-2 hover:rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800"
       >
         <Image
           src="/selo-pro-gestao.png"
@@ -201,7 +201,7 @@ const ProGestao = () => {
           height={200}
           className="w-5"
         />
-        <span className="text-sm text-zinc-500 dark:text-white font-light group-hover:text-white ">
+        <span className="text-sm font-light text-zinc-500 group-hover:text-white dark:text-white ">
           Pró-Gestão RPPS
         </span>
       </Link>

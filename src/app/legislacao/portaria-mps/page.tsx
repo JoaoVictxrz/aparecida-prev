@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Container title="Portaria MPS" className="font-light">
       <strong className="font-bold uppercase">portarias</strong>
-      <div className="font-light pl-5 pt-2">
+      <div className="pl-5 pt-2 font-light">
         <p>
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/PORTARIA-MTP-No-2.868-DE-13-DE-SETEMBRO-DE-2022.pdf"
@@ -29,10 +29,10 @@ export default function Home() {
           funcionamento dos regimes próprios de previdência social
         </p>
       </div>
-      <strong className="font-bold uppercase pt-2">
+      <strong className="pt-2 font-bold uppercase">
         emendas constitucionais
       </strong>
-      <div className="font-light pl-5 pt-2">
+      <div className="pl-5 pt-2 font-light">
         <p>
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/EMENDA-CONSTITUCIONAL-No-103-DE-12-DE-NOVEMBRO-DE-2019.pdf"
@@ -57,8 +57,8 @@ export default function Home() {
           funcionamento dos regimes próprios de previdência social
         </p>
       </div>
-      <strong className="font-bold uppercase pt-2">Leis federais</strong>
-      <div className="font-light pl-5 pt-2">
+      <strong className="pt-2 font-bold uppercase">Leis federais</strong>
+      <div className="pl-5 pt-2 font-light">
         <p>
           <LinkAzul
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/07/Lei-n.-9717_98-Lei-Basica-do-RPPS.pdf"
@@ -85,8 +85,8 @@ export default function Home() {
           Federal
         </p>
       </div>
-      <strong className="font-bold uppercase pt-2">Resoluções</strong>
-      <div className="font-light pl-5 pt-2 flex flex-col w-3/4 md:w-1/4">
+      <strong className="pt-2 font-bold uppercase">Resoluções</strong>
+      <div className="flex w-3/4 flex-col pl-5 pt-2 font-light md:w-1/4">
         <LinkAzul
           href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/07/RESOLUCAO-3922-APLICACAO-RECURSOS.pdf"
           text="RESOLUCAO 3922 APLICACAO RECURSOS"

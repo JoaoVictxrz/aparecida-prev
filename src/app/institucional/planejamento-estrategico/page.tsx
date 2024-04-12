@@ -13,7 +13,7 @@ export default function Home() {
     <Container title="Planejamento estrategico">
       <div className="gap-2 border-b-[1px] dark:border-zinc-800">
         <p className="font-bold uppercase">planejamento</p>
-        <div className="flex flex-col pl-5 gap-1 pt-2 pb-2">
+        <div className="flex flex-col gap-1 pb-2 pl-5 pt-2">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANEJAMENTO-ESTRATEGICO-APARECIDAPREV-2019-2023.pdf"
             text="PLANEJAMENTO ESTRATÉGICO APARECIDAPREV – 2019-2023"
@@ -30,7 +30,7 @@ export default function Home() {
       </div>
       <div className="gap-2 pt-2">
         <p className="font-bold uppercase">plano de ação</p>
-        <div className="flex flex-col pl-5 gap-1 pt-2">
+        <div className="flex flex-col gap-1 pl-5 pt-2">
           <LinkAzul
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/07/Plano-de-Acao-Anual-2023.pdf"
             text="PLANO DE AÇÃO ANUAL – 2023"

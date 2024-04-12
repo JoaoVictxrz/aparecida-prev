@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <Container title="Regimento Interno">
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">CONSELHO FISCAL</p>
-        <div className="pl-5 flex pb-3 flex-col md:flex-row ">
+        <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
+        <div className="flex flex-col pb-3 pl-5 md:flex-row ">
           <LinkAzul
             text="Regimento do Conselho Fiscal"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/Regimento-do-Conselho-Fiscal.pdf"
@@ -25,8 +25,8 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">CONSELHO DE PREVIDÊNCIA</p>
-        <div className="pl-5 flex flex-col pb-3">
+        <p className="pb-2 font-bold uppercase">CONSELHO DE PREVIDÊNCIA</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Resolução CMP Nº 001-2010 Diárias"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2021/05/Resolucao-CMP-No-001-2010-Diarias.pdf"
@@ -39,11 +39,11 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">
+        <p className="pb-2 font-bold uppercase">
           REGIMENTO PARA ELEIÇÃO CONSELHEIROS
         </p>
-        <p className="font-bold uppercase pb-2">2023</p>
-        <div className="pl-5 flex flex-col pb-3">
+        <p className="pb-2 font-bold uppercase">2023</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Regimento Assembleia Eleição dos Conselhos e Publicação"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/Regimento-e-Publicacao.pdf"
@@ -56,11 +56,11 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col">
-        <p className="font-bold uppercase pb-2">
+        <p className="pb-2 font-bold uppercase">
           REGIMENTO PARA ELEIÇÃO CONSELHEIROS
         </p>
-        <p className="font-bold uppercase pb-2">2022</p>
-        <div className="pl-5 flex flex-col pb-3">
+        <p className="pb-2 font-bold uppercase">2022</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Regimento Assembleia Eleição Conselho – específico para Conselho Fiscal e Previdenciário (representante inativos)"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/Regimento-Assembleia-Eleicao-Conselho.pdf"

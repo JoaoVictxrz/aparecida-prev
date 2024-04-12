@@ -27,10 +27,10 @@ export default function CardsFinanceiro({
         {title}
       </Link>
       <p className="font-extralight ">Postado em: {postadoEm}</p>
-      <p className="font-light line-clamp-1 mb-5">{descrição}</p>
+      <p className="mb-5 line-clamp-1 font-light">{descrição}</p>
       <Link
         href={{ pathname: `/financeiro/${path}/${href}`, query: `${query} ` }}
-        className="uppercase bg-zinc-700 text-white hover:bg-zinc-500 rounded-md p-3"
+        className="rounded-md bg-zinc-700 p-3 uppercase text-white hover:bg-zinc-500"
       >
         Leia mais
       </Link>

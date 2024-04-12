@@ -12,9 +12,9 @@ export default function Equipe() {
   return (
     <Container
       title="Presidência e diretoria executivas"
-      className="flex items-center justify-center flex-col"
+      className="flex flex-col items-center justify-center"
     >
-      <h1 className="font-bold text-xl">Gestão 2021 - 2024</h1>
+      <h1 className="text-xl font-bold">Gestão 2021 - 2024</h1>
       <Image
         src="/sobre/FOTO-SECRETARIO-APARECIDAPREV-FOTOS-MICHEL-ABDALLAH.jpg"
         alt="Gestão 2021 - 2024"

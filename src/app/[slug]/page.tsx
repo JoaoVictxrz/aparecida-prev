@@ -25,7 +25,7 @@ const GeneratePage = ({ params }: Props) => {
       return (
         <Container title="Editais">
           <p className="font-bold">2023</p>
-          <div className="pl-5 flex flex-col">
+          <div className="flex flex-col pl-5">
             <LinkAzul
               href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/Edital-de-Convocacao-e-Publicacao.pdf"
               text="Edital de Convocação para Eleição de Conselheiro N°001/2023"

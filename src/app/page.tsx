@@ -6,12 +6,12 @@ import Carrosel from "@/components/carrosel";
 
 export default function Home() {
   return (
-    <main className="w-full text-black min-h-screen flex flex-col items-center">
-      <div className="w-full bg-image-pref bg-cover bg-center bg-no-repeat fixed h-full -z-50"></div>
-      <div className="w-full bg-black/70 fixed h-screen -z-40"></div>
-      <div className=" md:w-2/3 min-h-screen  container flex flex-col justify-center text-white space-y-10 pb-20 text-center md:text-start">
-        <h1 className="text-5xl md:text-6xl font-light">Bem-vindo!</h1>
-        <h2 className="font-extralight text-xl">
+    <main className="flex min-h-screen w-full flex-col items-center text-black">
+      <div className="fixed -z-50 h-full w-full bg-image-pref bg-cover bg-center bg-no-repeat"></div>
+      <div className="fixed -z-40 h-screen w-full bg-black/70"></div>
+      <div className=" container flex  min-h-screen flex-col justify-center space-y-10 pb-20 text-center text-white md:w-2/3 md:text-start">
+        <h1 className="text-5xl font-light md:text-6xl">Bem-vindo!</h1>
+        <h2 className="text-xl font-extralight">
           O Fundo de Previdência dos Servidores do Município de Aparecida de
           Goiânia – APARECIDAPREV, autarquia municipal, com personalidade
           jurídica de direito público interno, criada em 20 de junho de 2005,

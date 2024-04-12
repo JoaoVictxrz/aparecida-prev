@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Acórdãos do tribunal de contas" className="flex flex-col">
-      <p className="font-semibold text-xl text-center">
+      <p className="text-center text-xl font-semibold">
         Aparecida Prev - Acórdãos do tribunal de contas
       </p>
       <LinkAzul

@@ -9,19 +9,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <article className="w-full flex justify-center bg-white dark:bg-zinc-900 text-white pb-2">
-      <section className="px-2 container flex flex-col items-center pt-10 pb-20">
+    <article className="flex w-full justify-center bg-white pb-2 text-white dark:bg-zinc-900">
+      <section className="container flex flex-col items-center px-2 pb-20 pt-10">
         <Image
           src="/audiencia-publica/images.png"
           alt="Imagem"
           width={274}
           height={184}
         />
-        <div className="lg:w-[800px] lg:h-[800px">
-          <h1 className="text-xl font-bold pt-4">
+        <div className="lg:h-[800px lg:w-[800px]">
+          <h1 className="pt-4 text-xl font-bold">
             Audiência Pública de Prestação de Contas 2022 é realizada
           </h1>
-          <h2 className="font-light text-sm pb-2">
+          <h2 className="pb-2 text-sm font-light">
             Postado em: 25 de julho de 20233
           </h2>
           <p className="py-2">
@@ -74,7 +74,7 @@ export default function Home() {
             Keila Miriam Martins, Juliana Mendanha, respectivamente e os
             servidores do instituto.
           </p>
-          <div className="grid md:grid-cols-2 place-items-center gap-2">
+          <div className="grid place-items-center gap-2 md:grid-cols-2">
             <Image
               src="/audiencia-publica/imagem-1.jpeg"
               alt=""

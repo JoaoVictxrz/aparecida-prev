@@ -129,14 +129,14 @@ export default function Home() {
       </Card>
       <Card title="ano de 2023">
         {meses2023Invertido.map((mes) => (
-          <div key={mes.mês} className="flex fle-col pb-1">
+          <div key={mes.mês} className="fle-col flex pb-1">
             <LinkAzul href={mes.link} text={mes.mês} />
           </div>
         ))}
       </Card>
       <Card title="anos anteriores">
         {anosFinanceiros.map((ano) => (
-          <div key={ano.ano} className="flex fle-col pb-1">
+          <div key={ano.ano} className="fle-col flex pb-1">
             <LinkAzul href={ano.link} text={ano.ano} />
           </div>
         ))}
@@ -155,7 +155,7 @@ const Card = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className={`${className} py-3 border-b-[1px] dark:border-zinc-800`}>
+    <div className={`${className} border-b-[1px] py-3 dark:border-zinc-800`}>
       <p className="text-lg font-semibold uppercase">{title}</p>
       <div>{children}</div>
     </div>

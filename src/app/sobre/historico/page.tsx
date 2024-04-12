@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Historico() {
   return (
     <Container title="Histórico" className="flex flex-col gap-5 font-light">
-      <span className="font-semibold text-xl uppercase">APRESENTAÇÃO</span>
+      <span className="text-xl font-semibold uppercase">APRESENTAÇÃO</span>
       <p>
         O Fundo de Previdência dos Servidores do Município de Aparecida de
         Goiânia - APARECIDAPREV, autarquia municipal, com personalidade jurídica
@@ -46,7 +46,7 @@ export default function Historico() {
         expostos a seguir, que comprovam a eficácia na prestação do serviço
         ancorado na Lei.
       </p>
-      <span className="font-semibold text-xl uppercase">DOS PRINCÍPIOS</span>
+      <span className="text-xl font-semibold uppercase">DOS PRINCÍPIOS</span>
       <p>
         Os princípios e objetivos que nortearão o sistema de previdência são: -
         Cobertura exclusiva de servidores titulares de cargos efetivos; -
@@ -55,7 +55,7 @@ export default function Historico() {
         unidade gestora no âmbito do Município de Aparecida de Goiânia; e
         Administração democrática e descentralizada.
       </p>
-      <span className="font-semibold text-xl">O Futuro </span>
+      <span className="text-xl font-semibold">O Futuro </span>
       <p>
         Para nosso futuro, pretendemos nos tornar um Instituto de Previdência
         referencia no País pela qualidade dos serviços que prestamos, realizando

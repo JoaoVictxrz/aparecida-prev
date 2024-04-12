@@ -25,9 +25,9 @@ export default function Carrosel() {
   };
 
   return (
-    <div className="bg-white dark:bg-zinc-900 w-full">
-      <div className="m-auto p-8 md:p-16 relative group">
-        <div className="duration-500 flex item justify-center">
+    <div className="w-full bg-white dark:bg-zinc-900">
+      <div className="group relative m-auto p-8 md:p-16">
+        <div className="item flex justify-center duration-500">
           <Image
             src="/banner-calendario.jpg"
             alt="banner"

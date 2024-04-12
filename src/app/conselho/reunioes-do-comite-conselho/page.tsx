@@ -11,9 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Local e data das reuniões do comitê/conselho">
-      <div className="flex flex-col w-2/4">
-        <p className="font-bold uppercase pb-2">CONSELHO PREVIDENCIÁRIO</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-2/4 flex-col">
+        <p className="pb-2 font-bold uppercase">CONSELHO PREVIDENCIÁRIO</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="LOCAL E DATA REUNIÕES DO CONSELHO PREVIDENCIÁRIO ANO 2024"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-PREVIDENCIARIO-ANO-2024.pdf"
@@ -33,9 +33,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-2/4">
-        <p className="font-bold uppercase pb-2">COMITÊ DE INVESTIMENTOS</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-2/4 flex-col">
+        <p className="pb-2 font-bold uppercase">COMITÊ DE INVESTIMENTOS</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="LOCAL E DATA DAS REUNIÕES DO COMITÊ DE INVESTIMENTOS ANO 2024"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/LOCAL-E-DATA-DAS-REUNIOES-DO-COMITE-DE-INVESTIMENTOS-ANO-2024.pdf"
@@ -47,9 +47,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-2/4">
-        <p className="font-bold uppercase pb-2">CONSELHO FISCAL</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-2/4 flex-col">
+        <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="LOCAL E DATA DAS REUNIÕES DO CONSELHO FISCAL ANO 2024"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-FISCAL-ANO-2024.pdf"

@@ -11,9 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Atas do conselho">
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2024</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2024</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2024"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/ATA-24-01-CONSELHO-DELIBERATIVO.pdf"
@@ -29,9 +29,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-2/4">
-        <p className="font-bold uppercase pb-2">2023</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-2/4">
+        <p className="pb-2 font-bold uppercase">2023</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2023"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/02/Ata-de-janeiro.pdf"
@@ -91,9 +91,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2022</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2022</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2022"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/04/01-2022.pdf"
@@ -132,9 +132,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2021</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2021</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2021"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2021/05/ATA-CMP-01-2021.pdf"
@@ -178,9 +178,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2020</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2020</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2020"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2020/09/Image110920094741.pdf"
@@ -216,9 +216,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2019</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2019</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2019"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2019/04/01-2019.pdf"
@@ -266,9 +266,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2018</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2018</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2018"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2018/06/01-2018.pdf"
@@ -308,9 +308,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2017</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2017</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2017 Aprovação"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/06/01-2017-Apova%C3%A7%C3%A3o.pdf"
@@ -362,9 +362,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2016</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2016</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2016"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/06/01-2016.pdf"
@@ -420,9 +420,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2015</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2015</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2015"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2015/02/01-2015.pdf"
@@ -470,9 +470,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">2014</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">2014</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="JANEIRO/2014"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2014/07/Ata-31-01-2014.pdf"

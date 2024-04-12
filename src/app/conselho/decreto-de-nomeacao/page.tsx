@@ -11,9 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Decreto de nomeação">
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">COMITÊ DE INVESTIMENTOS</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">COMITÊ DE INVESTIMENTOS</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Decreto 112-2015"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2015/07/Decreto-112-2015.pdf"
@@ -41,9 +41,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">CONSELHO DELIBERATIVO</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">CONSELHO DELIBERATIVO</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Decreto 55 -2015"
             href="https://aparecidaprev.go.gov.br//wp-content/uploads/2015/07/Decreto-CMP.pdf"
@@ -87,9 +87,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-3/4 md:w-1/4">
-        <p className="font-bold uppercase pb-2">CONSELHO FISCAL</p>
-        <div className="pl-5 flex flex-col pb-3">
+      <div className="flex w-3/4 flex-col md:w-1/4">
+        <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
+        <div className="flex flex-col pb-3 pl-5">
           <LinkAzul
             text="Decreto 109 – 2017"
             href="https://aparecidaprev.go.gov.br/wp-content/uploads/2018/06/Decreto-109-C.-Fiscal.pdf"

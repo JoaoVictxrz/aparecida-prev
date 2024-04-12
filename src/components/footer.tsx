@@ -3,12 +3,12 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-zinc-200 dark:bg-zinc-950 flex flex-col items-center justify-center text-black dark:text-white text-sm ">
-      <div className="px-2 container">
-        <div className="border-b-[1px] border-zinc-300 dark:border-zinc-800 w-full py-4">
+    <footer className="flex w-full flex-col items-center justify-center bg-zinc-200 text-sm text-black dark:bg-zinc-950 dark:text-white ">
+      <div className="container px-2">
+        <div className="w-full border-b-[1px] border-zinc-300 py-4 dark:border-zinc-800">
           <h1 className="text-2xl font-bold">Links</h1>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between uppercase py-4">
+        <div className="flex w-full flex-col justify-between py-4 uppercase md:flex-row">
           <div className="flex flex-col py-2">
             <LinksFooter href="/" text="aparecida prev" />
             <LinksFooter
@@ -116,15 +116,15 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="container grid place-items-center space-y-4 md:flex items-center justify-around border-t-[1px] border-zinc-300 dark:border-zinc-800 py-4">
+      <div className="container grid place-items-center items-center justify-around space-y-4 border-t-[1px] border-zinc-300 py-4 dark:border-zinc-800 md:flex">
         <Image
           src="/logo-aparecidaprev.png"
           alt="logo"
           width={500}
           height={500}
-          className="w-60 h-50 lg:w-96 "
+          className="h-50 w-60 lg:w-96 "
         />
-        <div className="flex flex-col md:flex-row items-center space-y-4">
+        <div className="flex flex-col items-center space-y-4 md:flex-row">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d954.7527800923991!2d-49.27290833037008!3d-16.825804415306827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935efbfe58f7619b%3A0xb8ebd3f220e15f46!2sINSS%20Aparecida%20de%20Goi%C3%A2nia!5e0!3m2!1spt-BR!2sbr!4v1711390343206!5m2!1spt-BR!2sbr"
             width="200"
@@ -132,7 +132,7 @@ export function Footer() {
             loading="lazy"
           />
 
-          <h2 className="text-zinc-900 dark:text-white text-center ">
+          <h2 className="text-center text-zinc-900 dark:text-white ">
             <span className="font-bold">Aparecidaprev</span>
             <br />
             Edifício Sebastião Ramoncito Nunes Av. Santana Quadra 1, Lotes 4 e
@@ -147,7 +147,7 @@ export function Footer() {
           </h2>
         </div>
       </div>
-      <div className="w-full bg-zinc-300 dark:bg-zinc-950  flex items-center justify-center p-2 text-sm md:text-base">
+      <div className="flex w-full items-center  justify-center bg-zinc-300 p-2 text-sm dark:bg-zinc-950 md:text-base">
         <span className="text-black dark:text-white">
           © 2024 Aparecidaprev. Todos os direitos reservados.
         </span>
@@ -160,7 +160,7 @@ export const LinksFooter = ({ href, text }: any) => {
   return (
     <Link
       href={`${href}`}
-      className="upercase text-zinc-900 dark:text-white hover:text-zinc-700 hover:dark:text-zinc-500 p-2"
+      className="upercase p-2 text-zinc-900 hover:text-zinc-700 dark:text-white hover:dark:text-zinc-500"
     >
       {text}
     </Link>

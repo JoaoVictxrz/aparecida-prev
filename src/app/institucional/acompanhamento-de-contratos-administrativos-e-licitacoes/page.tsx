@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Container title="Acompanhamento de contratos administrativos e licitações">
-      <div className="flex flex-col gap-2 pb-2 border-b-[1px] dark:border-zinc-800">
+      <div className="flex flex-col gap-2 border-b-[1px] pb-2 dark:border-zinc-800">
         <p>
           Acesso aos contratos pertinentes ao AparecidaPrev clique no link
           abaixo, na sequência inserir o código 7 no campo
@@ -25,7 +25,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-2 py-2 border-b-[1px] dark:border-zinc-800">
+      <div className="flex flex-col gap-2 border-b-[1px] py-2 dark:border-zinc-800">
         <p>
           Acesso as licitações do município e do AparecidaPrev, clique no link
           abaixo:

@@ -30,7 +30,7 @@ export default function Home() {
         N°001/2017.
       </p>
       <br />
-      <section className="flex flex-col font-semibold pl-5">
+      <section className="flex flex-col pl-5 font-semibold">
         <LinkConcurso text="Anexos" href="/concurso/anexos" />
         <LinkConcurso text="Edital" href="/concurso/edital" />
         <LinkConcurso
@@ -43,7 +43,7 @@ export default function Home() {
       <br />
       <p>Documentos de acesso rápido:</p>
       <br />
-      <section className="flex flex-col font-semibold pl-5">
+      <section className="flex flex-col pl-5 font-semibold">
         <LinkAzul
           text="059 – 2021 – PRORROGAÇÃO DO CONCURSO"
           href="https://aparecidaprev.go.gov.br/wp-content/uploads/2021/03/059-2021-PRORROGACAO-DO-CONCURSO.pdf"
