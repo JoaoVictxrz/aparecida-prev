@@ -9,9 +9,11 @@ import Loading from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  icons:
+    "https://aparecidaprev.go.gov.br/wp-content/uploads/2018/01/favicon.png",
   title: {
     default: " Home | Aparecidaprev",
-    template: "%s | Aparecidaprev", //%s will be replaced with title on page whe have metadata title
+    template: "%s | Aparecidaprev",
   },
 };
 
