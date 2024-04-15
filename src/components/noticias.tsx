@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { CiCirclePlus } from "react-icons/ci";
 const imageTest = "https://static.pingendo.com/cover-moon.svg";
 
 interface posts {
@@ -65,13 +66,7 @@ export default function Noticias() {
             href="/"
             className="my-8 flex items-center gap-1 p-2 hover:rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800"
           >
-            <Image
-              src="/mais.svg"
-              alt="logo"
-              width={20}
-              height={20}
-              className=""
-            />
+            <CiCirclePlus size={20} />
             Leia mais
           </Link>
         </div>

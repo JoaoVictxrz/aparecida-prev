@@ -1,6 +1,16 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { FaRegCopyright } from "react-icons/fa";
+import { IoMailSharp } from "react-icons/io5";
+import {
+  MdAssignmentInd,
+  MdOutlineMonetizationOn,
+  MdOutlineSearch,
+  MdOutlineToday,
+  MdPlaylistAddCheck,
+  MdWork,
+} from "react-icons/md";
 
 export const metadata: Metadata = {
   title: "Transparencia",
@@ -18,104 +28,56 @@ export default function Transparencia() {
             text="Folha de pagamento"
             description="Aqui você consulta e indentificar os servidores públicos dos nosso Município e suas remunerações."
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <MdPlaylistAddCheck size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-transparency.jsf?e="
             text="Consultar Matrícula"
             description="Consulte matrículas através do CPF."
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <MdOutlineSearch size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-login.jsf?e="
             text="Contracheque"
             description="Veja os contracheques online."
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <MdOutlineMonetizationOn size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-login.jsf?e="
             text="Cédula C "
             description="Veja os comprovantes de rendimentos."
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <FaRegCopyright size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="http://gestaopublica.previdencia.aparecida.bsit-br.com.br/portal/employee-register.jsf?e="
             text="Primeiro Acesso"
             description="Cadastre-se para o primeiro acesso ao portal"
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <MdAssignmentInd size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
             text="Agendamentos"
             description="Agendamento de péricia por secretaria"
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <MdOutlineToday size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="https://mail.aparecida.go.gov.br"
             text="Webmail"
             description="Acesse o webmail de AparecidaPrev"
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <IoMailSharp size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
             href="https://sigp.aparecida.go.gov.br/sig/"
             text="Sistema de Gestão Prodata"
             description="PRO DATA"
           >
-            <Image
-              src="/mais.svg"
-              alt="mais"
-              width={150}
-              height={150}
-              className="w-3/4 sm:w-2/4"
-            />
+            <MdWork size={150} className="w-full" />
           </LinksTransparencia>
         </div>
       </section>
@@ -140,13 +102,15 @@ export const LinksTransparencia = ({
     <Link
       target="_blank"
       href={href}
-      className="group m-5 flex flex-col items-center p-5 text-center transition duration-300 ease-in-out hover:scale-110 hover:bg-zinc-100/95 hover:text-zinc-900 dark:hover:bg-zinc-800"
+      className="group m-5 flex flex-col items-center p-5 text-center transition duration-300 ease-in-out hover:scale-110 hover:bg-zinc-100/95 hover:text-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-white"
     >
       {children}
       <p className="text-sm font-semibold uppercase text-zinc-500 group-hover:text-zinc-900 dark:text-zinc-100 group-hover:dark:text-zinc-300 sm:text-lg">
         {text}
       </p>
-      <p className="text-sm text-zinc-500 dark:text-zinc-100">{description}</p>
+      <p className="line-clamp-3 text-sm text-zinc-500 dark:text-zinc-100 md:line-clamp-none">
+        {description}
+      </p>
     </Link>
   );
 };

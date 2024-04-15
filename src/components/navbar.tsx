@@ -30,7 +30,7 @@ export default function Home() {
       <header className="flex w-full items-center justify-between bg-white p-2 px-5 dark:bg-zinc-950">
         <Link href="/" onClick={() => setActive(0)}>
           <Image
-            src="/logo-aparecidaprev-1.png"
+            src="/logo-aparecidaprev.png"
             alt="logo"
             width={200}
             height={200}

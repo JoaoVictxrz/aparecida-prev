@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaChartBar, FaRegCalendarCheck, FaUser } from "react-icons/fa";
+import { RiBankFill } from "react-icons/ri";
 
 export default function AcessoRapido() {
   return (
@@ -12,52 +14,27 @@ export default function AcessoRapido() {
           <LinksAcessoRapido
             href="/acesso-rapido/politica-de-valorizacao-dos-servidores"
             text="Política de Valorização do Servidor"
-            className="w-2/3"
           >
-            <Image
-              src="/acesso-rapido/user.svg"
-              alt="user"
-              width={150}
-              height={150}
-              className="w-2/3"
-            />
+            <FaUser size={150} className="w-2/3" />
           </LinksAcessoRapido>
           <LinksAcessoRapido
             href="/acesso-rapido/situacao-financeira-aparecida-prev"
             text="Situação Financeira AparecidaPrev"
           >
-            <Image
-              src="/acesso-rapido/graph.svg"
-              alt="user"
-              width={150}
-              height={150}
-              className="w-2/3"
-            />
+            <FaChartBar size={150} className="w-2/3" />
           </LinksAcessoRapido>
           <LinksAcessoRapido
             href="/acesso-rapido/como-fica-minha-aposentadoria"
             text="Como Fica Minha Aposentadoria "
           >
-            <Image
-              src="/acesso-rapido/bank.svg"
-              alt="user"
-              width={150}
-              height={150}
-              className="w-2/3"
-            />
+            <RiBankFill size={150} className="w-2/3" />
           </LinksAcessoRapido>
           <LinksAcessoRapido
             target="_blank"
             href="https://eagenda.com.br/auditorio"
             text="Agendamento do Auditório"
           >
-            <Image
-              src="/acesso-rapido/agenda.svg"
-              alt="user"
-              width={150}
-              height={150}
-              className="w-2/3"
-            />
+            <FaRegCalendarCheck size={150} className="w-2/3" />
           </LinksAcessoRapido>
         </div>
       </section>
@@ -84,7 +61,7 @@ export const LinksAcessoRapido = ({
     <Link
       target={target}
       href={href}
-      className="group m-5 flex flex-col items-center justify-center p-5 text-center transition duration-300 ease-in-out hover:scale-110 hover:bg-zinc-100/95 hover:text-zinc-900 dark:hover:bg-zinc-800 hover:dark:text-zinc-200"
+      className="group m-5 flex flex-col items-center justify-center gap-5 p-5 text-center transition duration-300 ease-in-out hover:scale-110 hover:bg-zinc-100/95 hover:text-zinc-900 dark:hover:bg-zinc-800 hover:dark:text-zinc-200"
     >
       {children}
       <p className="text-sm font-semibold text-zinc-500 group-hover:text-zinc-900 dark:text-zinc-100 group-hover:dark:text-zinc-200 sm:text-lg">
