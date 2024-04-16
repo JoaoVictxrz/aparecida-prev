@@ -12,11 +12,6 @@ const config: Config = {
       backgroundImage: {
         "image-pref": "url('/aparecidaprev.jpeg')",
       },
-      keyframes: {},
-      animation: {
-        "animate-appear": "animate-appear 0.8s ease-in",
-        "animate-disappear": "animate-appear 0.8s ease-out",
-      },
     },
   },
   plugins: [],
