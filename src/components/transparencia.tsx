@@ -59,7 +59,7 @@ export default function Transparencia() {
             <MdAssignmentInd size={150} className="w-full" />
           </LinksTransparencia>
           <LinksTransparencia
-            href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
+            href="https://aparecidaprev.go.gov.br/agendamento/admin/"
             text="Agendamentos"
             description="Agendamento de péricia por secretaria"
           >
