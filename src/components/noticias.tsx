@@ -1,59 +1,71 @@
-// import { AxiosInstance } from '@/app/api/axios'
-import Image from "next/image";
+"use client";
+import { AxiosInstance } from "@/services/axios";
+import { extractTextFromHtml } from "@/services/noticias-services";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
-const imageTest = "https://static.pingendo.com/cover-moon.svg";
+import Image from "next/image";
+import Loading from "@/app/loading";
 
-interface posts {
-  userId: number;
+interface noticiasProps {
   id: number;
-  title: string;
-  body: string;
-  Image: string;
+  title: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
+  guid: {
+    rendered: string;
+  };
+  slug: string;
+  featured_media: number;
+}
+
+interface mediaProps {
+  id: number;
+  post: number;
+  guid: {
+    rendered: string;
+  };
+  media_details: {
+    width: number;
+    height: number;
+  };
+  link: string;
 }
 
 export default function Noticias() {
-  // const [data, setData] = useState<posts[]>([])
+  const [noticias, setNoticias] = useState<noticiasProps[] | null>(null);
+  const [media, setMedia] = useState<mediaProps[] | null>(null);
 
-  const initialData: posts[] = [
-    {
-      userId: 1,
-      id: 1,
-      title: "Noticia 1",
-      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      Image: imageTest,
-    },
-    {
-      userId: 2,
-      id: 2,
-      title: "Noticia 2",
-      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      Image: imageTest,
-    },
-    {
-      userId: 3,
-      id: 3,
-      title: "Noticia 3",
-      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      Image: imageTest,
-    },
-  ];
-  const [data, setData] = useState<posts[]>(initialData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const noticiasResponse = await AxiosInstance.get<noticiasProps[]>(
+          "/posts?categories=2",
+        );
+        setNoticias(noticiasResponse.data);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const params = 3
-  //       const data = await AxiosInstance.get(`posts?_start=0&_limit=${params}`)
-  //       setData(data.data)
-  //       console.log(data.data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchData()
-  // }, [])
+        const mediaIds = noticiasResponse.data.map(
+          (noticia) => noticia.featured_media,
+        );
+
+        const mediaResponses = [];
+
+        for (const mediaId of mediaIds) {
+          const response = await AxiosInstance.get<mediaProps[]>(
+            `/media?include=${mediaId}`,
+          );
+          mediaResponses.push(response.data);
+        }
+        setMedia(mediaResponses.map((response) => response[0]));
+      } catch (error) {
+        console.error("Erro ao buscar os dados:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <section className="flex w-full justify-center bg-white pb-20 text-black dark:bg-zinc-900 dark:text-white">
@@ -71,38 +83,48 @@ export default function Noticias() {
           </Link>
         </div>
         <div className="grid w-full grid-cols-1 place-items-center md:grid-cols-3">
-          {data.map((post) => (
-            <article
-              key={post.id}
-              className="mx-5 my-2 flex h-full max-w-md flex-col justify-between overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 md:max-w-2xl"
-            >
-              <div>
-                <Image
-                  src={post.Image}
-                  alt="logo"
-                  width={200}
-                  height={200}
-                  className="w-full"
-                />
-              </div>
-              <div className="h-full pt-4">
-                <h2 className="py-2 text-2xl font-bold dark:text-white">
-                  {post.title}
-                </h2>
-                <p className="line-clamp-4 text-gray-600 dark:text-zinc-100">
-                  {post.body}
-                </p>
-              </div>
-              <div className="mb-2 flex w-full items-center justify-center">
-                <Link
-                  href={`/${post.id}`}
-                  className="rounded border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-white dark:border-blue-800 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-700"
+          {noticias?.map(
+            (dados, i) =>
+              i < 3 && (
+                <article
+                  key={i}
+                  className="mx-5 my-2 flex h-full max-w-md flex-col justify-between  overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 md:max-w-2xl"
                 >
-                  Leia mais
-                </Link>
-              </div>
-            </article>
-          ))}
+                  {media && media[i] ? (
+                    <div className="h-1/2">
+                      <Image
+                        src={media[i].guid.rendered}
+                        alt={media[i].link}
+                        width={media[i].media_details.width}
+                        height={200}
+                        className="h-[200px] w-full"
+                      />
+                    </div>
+                  ) : (
+                    <div className="bg-white">
+                      <Loading />
+                    </div>
+                  )}
+
+                  <div className="flex h-1/2 flex-col justify-between py-2">
+                    <h2 className="text-xl font-semibold uppercase dark:text-white">
+                      {dados.title.rendered}
+                    </h2>
+                    <p className="line-clamp-4 text-gray-600 dark:text-zinc-100">
+                      {extractTextFromHtml(dados.excerpt.rendered)}
+                    </p>
+                    <div className="flex w-full justify-center">
+                      <Link
+                        href={`/noticias/${dados.slug}`}
+                        className="mt-2 rounded border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-white dark:border-blue-800 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-700"
+                      >
+                        Leia mais
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ),
+          )}
         </div>
       </section>
     </section>
