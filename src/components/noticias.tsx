@@ -75,7 +75,7 @@ export default function Noticias() {
             Notícias
           </h1>
           <Link
-            href="/"
+            href="/noticias"
             className="my-8 flex items-center gap-1 p-2 hover:rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800"
           >
             <CiCirclePlus size={20} />
