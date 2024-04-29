@@ -1,6 +1,6 @@
 "use client";
-import { extractTextFromHtml, formatarData } from "@/services/services";
-import { PostsProps, mediaProps } from "@/services/interfaces";
+import { extractTextFromHtml, formatarData } from "@/utils/functions";
+import { PostsProps, mediaProps } from "@/interfaces/interfaces";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
 import Container from "@/components/container";

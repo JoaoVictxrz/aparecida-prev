@@ -1,48 +1,21 @@
 "use client";
-import { AxiosInstance } from "@/services/axios";
-import { extractTextFromHtml } from "@/services/noticias-services";
-import Link from "next/link";
+import { PostsProps, mediaProps } from "@/interfaces/interfaces";
 import { useEffect, useState } from "react";
+import { extractTextFromHtml } from "@/utils/functions";
+import { AxiosInstance } from "@/services/axios";
 import { CiCirclePlus } from "react-icons/ci";
-import Image from "next/image";
 import Loading from "@/app/loading";
-
-interface noticiasProps {
-  id: number;
-  title: {
-    rendered: string;
-  };
-  excerpt: {
-    rendered: string;
-  };
-  guid: {
-    rendered: string;
-  };
-  slug: string;
-  featured_media: number;
-}
-
-interface mediaProps {
-  id: number;
-  post: number;
-  guid: {
-    rendered: string;
-  };
-  media_details: {
-    width: number;
-    height: number;
-  };
-  link: string;
-}
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Noticias() {
-  const [noticias, setNoticias] = useState<noticiasProps[] | null>(null);
+  const [noticias, setNoticias] = useState<PostsProps[] | null>(null);
   const [media, setMedia] = useState<mediaProps[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const noticiasResponse = await AxiosInstance.get<noticiasProps[]>(
+        const noticiasResponse = await AxiosInstance.get<PostsProps[]>(
           "/posts?categories=2",
         );
         setNoticias(noticiasResponse.data);
@@ -94,7 +67,7 @@ export default function Noticias() {
                     <div className="h-1/2">
                       <Image
                         src={media[i].guid.rendered}
-                        alt={media[i].link}
+                        alt={media[i].source_url}
                         width={media[i].media_details.width}
                         height={200}
                         className="h-[200px] w-full"

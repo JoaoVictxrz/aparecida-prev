@@ -1,36 +1,11 @@
 "use client";
+import { PostsProps, mediaProps } from "@/interfaces/interfaces";
 import { useEffect, useState } from "react";
-import Container from "@/components/container";
-import { formatarData } from "@/services/noticias-services";
-import Link from "next/link";
-import axios from "axios";
 import { AxiosInstance } from "@/services/axios";
+import { formatarData } from "@/utils/functions";
+import Container from "@/components/container";
 import Image from "next/image";
-
-interface PostsProps {
-  id: number;
-  date: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
-  featured_media: number;
-}
-
-interface mediaProps {
-  id: number;
-  post: number;
-  guid: {
-    rendered: string;
-  };
-  media_details: {
-    width: number;
-    height: number;
-  };
-  source_url: string;
-}
+import Link from "next/link";
 
 interface Props {
   params: {
@@ -69,8 +44,6 @@ export default function Home({ params }: Props) {
     };
     fetchData();
   }, [params.slug]);
-
-  console.log("posts : ", posts, "media : ", media);
 
   if (!posts) {
     return (
