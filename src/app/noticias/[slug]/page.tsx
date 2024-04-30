@@ -77,7 +77,15 @@ export default function Home({ params }: Props) {
             <div
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
               className="grid grid-cols-1 gap-4 p-4"
-            ></div>
+            />
+            <div className="flex w-full items-center justify-center">
+              <Link
+                href="/noticias"
+                className="p-2 px-5 text-blue-500 underline hover:text-blue-400"
+              >
+                Voltar
+              </Link>
+            </div>
           </div>
         ))}
       </div>
