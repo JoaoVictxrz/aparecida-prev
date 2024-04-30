@@ -61,7 +61,7 @@ export default function Noticias() {
               i < 3 && (
                 <article
                   key={i}
-                  className="mx-5 my-2 flex h-full max-w-md flex-col justify-between  overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 md:max-w-2xl"
+                  className="mx-5 my-2 flex h-full max-w-md flex-col justify-between overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 sm:mx-0 md:max-w-2xl xl:mx-10"
                 >
                   {media && media[i] ? (
                     <div className="h-1/2">
@@ -80,7 +80,7 @@ export default function Noticias() {
                   )}
 
                   <div className="flex h-1/2 flex-col justify-between py-2">
-                    <h2 className="text-xl font-semibold uppercase dark:text-white">
+                    <h2 className="text-base font-semibold uppercase dark:text-white xl:text-xl">
                       {dados.title.rendered}
                     </h2>
                     <p className="line-clamp-4 text-gray-600 dark:text-zinc-100">
