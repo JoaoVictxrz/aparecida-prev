@@ -67,8 +67,15 @@ export default function Home() {
                   dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                 />
                 <p className="pb-4">Postado em: {formatarData(post.date)}</p>
-                <p>{extractTextFromHtml(post.excerpt.rendered)}</p>
-                <Link href={`/noticias/${post.slug}`}>Leia mais</Link>
+                <p className="pb-4">
+                  {extractTextFromHtml(post.excerpt.rendered)}
+                </p>
+                <Link
+                  href={`/noticias/${post.slug}`}
+                  className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 hover:underline"
+                >
+                  Leia mais
+                </Link>
               </div>
             ) : (
               <div className="bg-white">
