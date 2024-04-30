@@ -1,8 +1,12 @@
 export const extractTextFromHtml = (html: string) => {
   const div = document.createElement("div");
   div.innerHTML = html;
-  const ReadMore = html.replace(/<a[^>]*>Read more &raquo;<\/a>/g, "");
-  return div.innerText || div.textContent || ReadMore || "";
+  div.querySelectorAll("a").forEach((link) => {
+    if (link.textContent === "Read more »") {
+      link.remove();
+    }
+  });
+  return div.innerText || div.textContent || "";
 };
 
 export function formatarData(dataString: any) {
