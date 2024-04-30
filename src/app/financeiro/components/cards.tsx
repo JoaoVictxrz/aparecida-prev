@@ -1,13 +1,13 @@
 "use client";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { extractTextFromHtml, formatarData } from "@/utils/functions";
 
 interface props {
   title: string;
   href: string;
   path: string;
   postadoEm: string;
-  descrição?: string;
+  descrição?: any;
   query?: any;
 }
 export default function CardsFinanceiro({
@@ -24,12 +24,14 @@ export default function CardsFinanceiro({
         href={`/financeiro/${path}/${href}`}
         className="text-xl font-semibold"
       >
-        {title}
+        {extractTextFromHtml(title)}
       </Link>
-      <p className="font-extralight ">Postado em: {postadoEm}</p>
-      <p className="mb-5 line-clamp-1 font-light">{descrição}</p>
+      <p className="font-extralight ">Postado em: {formatarData(postadoEm)}</p>
+      <p className="mb-5 line-clamp-1 font-light">
+        {extractTextFromHtml(descrição)}
+      </p>
       <Link
-        href={{ pathname: `/financeiro/${path}/${href}`, query: `${query} ` }}
+        href={{ pathname: `/financeiro/${path}/${href}` }}
         className="rounded-md bg-zinc-700 p-3 uppercase text-white hover:bg-zinc-500"
       >
         Leia mais
