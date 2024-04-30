@@ -32,8 +32,8 @@ export default function Home() {
           <Image
             src="/logo-aparecidaprev.png"
             alt="logo"
-            width={200}
-            height={200}
+            width={400}
+            height={400}
             className="w-44"
           />
         </Link>
@@ -167,9 +167,11 @@ const Acessibilidade = ({ className }: { className?: string }) => {
         </div>
         <div className="grid place-items-center gap-2 lg:flex">
           <span className="font-semibold">Acessibilidade </span>
-          <span className="font-light">Fonte: </span>
-          <button>A+</button>
-          <button>A-</button>
+          <div className="space-x-2">
+            <span className="font-light">Fonte: </span>
+            <button>A+</button>
+            <button>A-</button>
+          </div>
           <span className="flex items-center gap-2">
             Contraste: <ThemeToggle />
           </span>
