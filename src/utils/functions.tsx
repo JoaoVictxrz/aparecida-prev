@@ -32,3 +32,17 @@ export function formatarData(dataString: any) {
 
   return `${dia} de ${mes} de ${ano}`;
 }
+
+export const extrairLinksDoHtml = (html: string) => {
+  const regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>(.*?)<\/a>/g;
+  const links = [];
+  let match;
+
+  while ((match = regex.exec(html)) !== null) {
+    const url = match[1];
+    const text = match[2];
+    links.push({ url, text });
+  }
+
+  return links;
+};
