@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <Container
-      title="DIPR – Demostrativo de Informações Prev. e Repasse"
+      title="Instituições Financeiras Credenciadas"
       className="grid md:grid-cols-2"
     >
       {postsDpir?.map((post, i) => (
