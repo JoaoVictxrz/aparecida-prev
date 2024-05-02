@@ -8,17 +8,17 @@ import Loading from "@/app/loading";
 import Cards from "@/components/card";
 
 export default function Home() {
-  const [postsDpir, setPostsDpir] = useState<PostsProps[]>([]);
+  const [posts, setPosts] = useState<PostsProps[]>([]);
 
   useEffect(() => {
     try {
       const fetchData = async () => {
         const response = await AxiosInstance.get("/posts?categories=15");
-        setPostsDpir(response.data);
+        setPosts(response.data);
         const responsePage2 = await AxiosInstance.get(
           "/posts?categories=15&page=2",
         );
-        setPostsDpir((prevPosts) => [...prevPosts, ...responsePage2.data]);
+        setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
       };
       fetchData();
     } catch (error) {
@@ -26,15 +26,15 @@ export default function Home() {
     }
   }, []);
 
-  if (!postsDpir) return <Loading />;
-  if (postsDpir.length === 0) return <PaginaNaoEncontrada />;
+  if (!posts) return <Loading />;
+  if (posts.length === 0) return <PaginaNaoEncontrada />;
 
   return (
     <Container
       title="Instituições Financeiras Credenciadas"
       className="grid md:grid-cols-2"
     >
-      {postsDpir?.map((post, i) => (
+      {posts?.map((post, i) => (
         <Cards
           key={i}
           title={post.title.rendered}
