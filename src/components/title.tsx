@@ -1,7 +1,16 @@
-export default function Title({ title }: { title: string }) {
+export default function Title({
+  title,
+  postadoEm,
+}: {
+  title: string;
+  postadoEm?: string;
+}) {
   return (
-    <h1 className="my-8 border-b-[1px] pb-2 text-lg font-semibold uppercase dark:border-zinc-700 dark:text-zinc-100 md:text-2xl">
-      {title}
-    </h1>
+    <div className="my-8 border-b-[1px] pb-2 dark:border-zinc-700 dark:text-zinc-100">
+      <h1 className="text-lg font-semibold uppercase  md:text-2xl">{title}</h1>
+      {postadoEm && (
+        <p className="text-base font-extralight">Postado em: {postadoEm}</p>
+      )}
+    </div>
   );
 }
