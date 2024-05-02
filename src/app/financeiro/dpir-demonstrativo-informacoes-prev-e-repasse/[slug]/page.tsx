@@ -3,8 +3,10 @@ import { extractTextFromHtml, extrairLinksDoHtml } from "@/utils/functions";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
 import LinkAzul from "@/app/institucional/components/links";
+import Loading from "@/app/loading";
 
 interface Props {
   params: {
@@ -23,12 +25,15 @@ export default function Page({ params }: Props) {
       };
       fetchData();
     } catch (error) {
-      console.log(error);
+      console.log("Erro ao buscar dados da página:", error);
     }
   }, [params.slug]);
 
-  const links = extrairLinksDoHtml(posts?.[0].content.rendered || "");
-  console.log(links);
+  if (posts?.length === 0) return <PaginaNaoEncontrada />;
+  if (!posts) return <Loading />;
+  if (!posts[0]?.content.rendered) return;
+
+  const links = extrairLinksDoHtml(posts[0].content.rendered);
 
   return (
     <div>
