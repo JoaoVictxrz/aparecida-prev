@@ -6,7 +6,10 @@ import { PostsProps } from "@/interfaces/interfaces";
 import Container from "@/components/container";
 import Loading from "@/app/loading";
 import LinkAzul from "@/app/institucional/components/links";
+<<<<<<< HEAD
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+=======
+>>>>>>> refs/remotes/origin/main
 
 interface Props {
   params: {
