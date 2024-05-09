@@ -1,4 +1,15 @@
 export const extractTextFromHtml = (html: string) => {
+  // Verificar se document está definido (para garantir que estamos em um ambiente de navegador)
+  if (typeof document === "undefined") {
+    return html; // Retornar o HTML sem processamento se não estivermos em um navegador
+  }
+  // Processar HTML válido
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+  // Verificar se o elemento foi criado com sucesso e se possui pelo menos um filho
+  if (tempDiv.childNodes.length === 0 || tempDiv.innerHTML.trim() === "") {
+    return html; // Se o HTML não for válido, retornar o próprio texto
+  }
   const div = document.createElement("div");
   div.innerHTML = html;
   div.querySelectorAll("a").forEach((link) => {
