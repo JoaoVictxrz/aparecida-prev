@@ -62,7 +62,7 @@ export default function Home() {
                   alt={media[i].source_url}
                   width={media[i].media_details.width}
                   height={media[i].media_details.height}
-                  className="h-[500px] w-full object-contain"
+                  className="h-96 w-auto"
                 />
               )}
               <div
@@ -96,13 +96,19 @@ export default function Home() {
         </Button>
         <Button
           className={`${antNumero < 1 && "hidden"}`}
-          onClick={() => setCurrentPage(currentPage - 1)}
+          onClick={() => (
+            setCurrentPage(currentPage - 1),
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          )}
         >
           <MdKeyboardArrowLeft />
         </Button>
         <Button
           className={`${antNumero < 1 && "hidden"}`}
-          onClick={() => setCurrentPage(antNumero)}
+          onClick={() => (
+            setCurrentPage(antNumero),
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          )}
         >
           {antNumero}
         </Button>
@@ -118,7 +124,10 @@ export default function Home() {
         </Button>
         <Button
           className={`${proxNumero > 13 && "hidden"}`}
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() => (
+            setCurrentPage(currentPage + 1),
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          )}
         >
           <MdKeyboardArrowRight />
         </Button>
