@@ -73,14 +73,13 @@ export default function Home() {
               <p className="pb-4">
                 {extractTextFromHtml(post.excerpt.rendered)}
               </p>
-              <div className="flex w-full justify-center">
-                <Link
-                  href={`/noticias/${post.slug}`}
-                  className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 hover:underline"
-                >
-                  Leia mais
-                </Link>
-              </div>
+
+              <Link
+                href={`/noticias/${post.slug}`}
+                className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 hover:underline"
+              >
+                Leia mais
+              </Link>
             </div>
           </div>
         ))}
