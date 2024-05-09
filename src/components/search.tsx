@@ -1,4 +1,4 @@
-import { AxiosInstance } from "@/app/services/axios";
+import { AxiosInstance } from "@/services/axios";
 import Image from "next/image";
 interface props {
   api: String;

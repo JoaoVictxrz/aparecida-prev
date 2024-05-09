@@ -56,3 +56,18 @@ const GeneratePage = ({ params }: Props) => {
     <LinkAzul href="" text="" />
   </div>
 </div>;
+
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "",
+  };
+}
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return <div>{children}</div>;
+}
