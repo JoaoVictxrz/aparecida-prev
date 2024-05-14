@@ -1,30 +1,35 @@
-import { Metadata } from "next";
+"use client";
+import { useEffect, useState } from "react";
 import LinkAzul from "../components/links";
 import Container from "@/components/container";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Educação previdênciária",
-  };
-}
+import { PostsProps } from "@/interfaces/interfaces";
+import { AxiosInstance } from "@/services/axios";
+import { extrairLinksDoHtml } from "@/utils/functions";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get("/pages/6029");
+      setData(response.data);
+    } catch (error) {
+      console.log("Erro ao buscar dados: " + error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const links = extrairLinksDoHtml(data?.content.rendered!);
+
   return (
-    <Container title="Educação previdênciária">
-      <div className="flex w-3/4 flex-col gap-2 pl-5 md:w-2/4">
-        <LinkAzul
-          href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PLANO-DE-ACAO-E-CAPACITACAO-PARA-SERVIDORES-DO-RPPS.pdf"
-          text="PLANO DE AÇÃO E CAPACITAÇÃO PARA SERVIDORES DO RPPS – 2022"
-        />
-        <LinkAzul
-          href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/PROGRAMA-DE-ATIVIDADES-DE-EDUCACAO-PREVIDENCIARIA-2022-2.pdf"
-          text="PROGRAMA DE ATIVIDADES DE EDUCAÇÃO PREVIDENCIÁRIA – 2022"
-        />
-        <LinkAzul
-          href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/PLANO-DE-CAPACTACAO-2023-_-APARECIDAPREV.pdf"
-          text="PLANO DE CAPACITAÇÃO 2023 "
-        />
-      </div>
+    <Container title={data?.title.rendered!} className="space-y-2">
+      {links.map((link, i) => (
+        <div key={i}>
+          <LinkAzul href={link.url} text={link.text} />
+        </div>
+      ))}
     </Container>
   );
 }
