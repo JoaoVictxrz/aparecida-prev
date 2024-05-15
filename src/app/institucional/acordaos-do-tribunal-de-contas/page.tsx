@@ -1,31 +1,35 @@
-import { Metadata } from "next";
-import LinkAzul from "../components/links";
+"use client";
 import Container from "@/components/container";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Acórdãos do tribunal de contas",
-  };
-}
+import LinkAzul from "../components/links";
+import { useEffect, useState } from "react";
+import { PostsProps } from "@/interfaces/interfaces";
+import { AxiosInstance } from "@/services/axios";
+import { extrairLinksDoHtml } from "@/utils/functions";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get<PostsProps>("/pages/5982");
+      setData(response.data);
+    } catch (error) {
+      console.log("erro ao buscar dados: " + error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const links = extrairLinksDoHtml(data?.content.rendered!);
   return (
-    <Container title="Acórdãos do tribunal de contas" className="flex flex-col">
-      <p className="text-center text-xl font-semibold">
-        Aparecida Prev - Acórdãos do tribunal de contas
-      </p>
-      <LinkAzul
-        text="ACORDÃO Nº 07973 – 2023-2022"
-        href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/11/PROCESSO-2023-2022-2.pdf"
-      />
-      <LinkAzul
-        href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/ACORDAO-No-00007-2022-2021.pdf"
-        text="ACORDÃO Nº 00007 – 2022-2021"
-      />
-      <LinkAzul
-        text="ACORDÃO Nº 03568 – 2021-2020"
-        href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/ACORDAO-No-03568-2021-2020.pdf"
-      />
+    <Container title={data?.title.rendered!} className="flex flex-col">
+      {links.map((link, i) => {
+        return (
+          <LinkAzul href={link.url} text={link.text} key={i} className="pl-5" />
+        );
+      })}
     </Container>
   );
 }
