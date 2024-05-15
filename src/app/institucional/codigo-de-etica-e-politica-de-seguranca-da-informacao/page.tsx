@@ -1,47 +1,49 @@
-import { Metadata } from "next";
-import LinkAzul from "../components/links";
+"use client";
+import { useEffect, useState } from "react";
+import { extrairLinksDoHtml } from "@/utils/functions";
+import { AxiosInstance } from "@/services/axios";
+import { PostsProps } from "@/interfaces/interfaces";
 import Container from "@/components/container";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Código de etica/politica de segurança da informação",
-  };
-}
+import LinkAzul from "../components/links";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get("/pages/5186");
+      setData(response.data);
+    } catch (error) {
+      console.log("erro ao buscar dados: " + error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const links = extrairLinksDoHtml(data?.content.rendered!);
   return (
-    <Container title="Código de etica/politica de segurança da informação">
+    <Container title={data?.title.rendered!} className="space-y-3">
       <div>
         <h1 className="upercase font-bold">Código de ética</h1>
-        <div className="flex flex-col pb-4 pl-5 pt-2 md:w-2/4">
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/Codigo-de-Etica-Aparecida-Prev.pdf"
-            text="Código de Ética AparecidaPrev"
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/ilovepdf_merged3.pdf"
-            text="Portaria n°136 Código de Ética "
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/09/nomeacao-comissao-de-etica.pdf"
-            text="Portaria n° 325, 31 de agosto de 2023 (Nomeação da Comissão)"
-          />
-        </div>
+        {links.map((link, i) => (
+          <div className="flex flex-col pb-1 pl-5 md:w-2/4" key={i}>
+            {(link.text.includes("Ética") ||
+              link.text.includes("Nomeação")) && (
+              <LinkAzul href={link.url} text={link.text} />
+            )}
+          </div>
+        ))}
       </div>
       <div>
         <h1 className="upercase font-bold">
           Política de segurança da informação
         </h1>
-        <div className="flex flex-col pb-4 pl-5 pt-2 md:w-2/4">
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/12/Politica-de-Seguranca-da-Informacao-com-anexos.pdf"
-            text="Política de Segurança da Informação"
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/12/1866.pdf"
-            text="Portaria n°137 Política da Segurança da Informação"
-          />
-        </div>
+        {links.map((link, i) => (
+          <div key={i} className="flex flex-col pb-1 pl-5 md:w-2/4">
+            {link.text.includes("Segurança") && (
+              <LinkAzul key={i} href={link.url} text={link.text} />
+            )}
+          </div>
+        ))}
       </div>
     </Container>
   );
