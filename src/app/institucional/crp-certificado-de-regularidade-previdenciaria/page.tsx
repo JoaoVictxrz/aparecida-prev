@@ -35,7 +35,7 @@ export default function Home() {
         em “<span className="font-semibold">pesquisar</span>“, confirmando o
         Ente na linha de retorno da pesquisa para exibição dos certificados.
       </p>
-      {links.map((link, i) => (
+      {links.reverse().map((link, i) => (
         <div className="flex flex-col pl-5 md:w-2/4" key={i}>
           <LinkAzul key={i} href={link.url} text={link.text} />
         </div>
