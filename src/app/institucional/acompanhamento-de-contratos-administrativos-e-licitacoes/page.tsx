@@ -1,16 +1,30 @@
-import { Metadata } from "next";
+"use client";
+import { useEffect, useState } from "react";
 import LinkAzul from "../components/links";
 import Container from "@/components/container";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Acompanhamento de contratos administrativos e licitações",
-  };
-}
+import { PostsProps } from "@/interfaces/interfaces";
+import { AxiosInstance } from "@/services/axios";
+import { extrairLinksDoHtml } from "@/utils/functions";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get<PostsProps>("/pages/5964");
+      setData(response.data);
+    } catch (error) {
+      console.log("erro ao buscar dados: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const links = extrairLinksDoHtml(data?.content.rendered!);
+
   return (
-    <Container title="Acompanhamento de contratos administrativos e licitações">
+    <Container title={data?.title.rendered!}>
       <div className="flex flex-col gap-2 border-b-[1px] pb-2 dark:border-zinc-800">
         <p>
           Acesso aos contratos pertinentes ao AparecidaPrev clique no link
@@ -19,10 +33,13 @@ export default function Home() {
           <span className="font-semibold">&nbsp;Pesquisar:</span>
         </p>
         <div className="pl-5">
-          <LinkAzul
-            text="Portal da Transparência – Relação de Contratos"
-            href="https://sigp.aparecida.go.gov.br/sig/app.html#/transparencia/contratos/"
-          />
+          {links.map((link, i) => (
+            <div key={i}>
+              {link.text.includes("Contratos") && (
+                <LinkAzul text={link.text} href={link.url} />
+              )}
+            </div>
+          ))}
         </div>
       </div>
       <div className="flex flex-col gap-2 border-b-[1px] py-2 dark:border-zinc-800">
@@ -31,10 +48,13 @@ export default function Home() {
           abaixo:
         </p>
         <div className="pl-5">
-          <LinkAzul
-            text="Portal da Transparência – Licitações"
-            href="https://transparencia.aparecida.go.gov.br/licitacoes"
-          />
+          {links.map((link, i) => (
+            <div key={i}>
+              {link.text.includes("Licitações") && (
+                <LinkAzul text={link.text} href={link.url} />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </Container>
