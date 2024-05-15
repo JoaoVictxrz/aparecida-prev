@@ -1,50 +1,43 @@
-import { Metadata } from "next";
+"use client";
+import { useEffect, useState } from "react";
 import LinkAzul from "../components/links";
 import Container from "@/components/container";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Controle Interno",
-  };
-}
+import { PostsProps } from "@/interfaces/interfaces";
+import { AxiosInstance } from "@/services/axios";
+import { extrairLinksDoHtml } from "@/utils/functions";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get("/pages/5975");
+      setData(response.data);
+    } catch (error) {
+      console.log("Erro ao buscar dados: " + error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const links = extrairLinksDoHtml(data?.content.rendered!);
   return (
-    <Container title="Controle Interno">
-      <div>
-        <h1 className="upercase font-bold">2023</h1>
-        <div className="flex flex-col pb-4 pl-5 pt-2 md:w-2/4">
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/09/Relatorio-de-Controle-Interno-2o-Trimestre-2023-Assinado.pdf"
-            text="RELATÓRIO CONTROLE INTERNO – 2° TRIMESTRE DE 2023"
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/07/Relatorio-1o-Trimestre-2023-Assinado.pdf"
-            text="RELATÓRIO CONTROLE INTERNO – 1º TRIMESTRE DE 2023"
-          />
+    <Container title={data?.title.rendered!}>
+      <h1 className="font-bold">2023</h1>
+      {links.map((link, i) => (
+        <div key={i} className="pl-5 pt-1">
+          {link.text.includes("2023") && (
+            <LinkAzul href={link.url} text={link.text} />
+          )}
         </div>
-      </div>
-      <div>
-        <h1 className="upercase font-bold">2022</h1>
-        <div className="flex flex-col pb-4 pl-5 pt-2 md:w-2/4">
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/RELATORIO-CONTROLE-INTERNO-4o-TRIMESTRE-DE-2022.pdf"
-            text="RELATÓRIO CONTROLE INTERNO – 4º TRIMESTRE DE 2022"
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/RELATORIO-CONTROLE-INTERNO-3o-TRIMESTRE-2022.pdf"
-            text="RELATÓRIO CONTROLE INTERNO – 3º TRIMESTRE DE 2022"
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/RELATORIO-CONTROLE-INTERNO-2o-TRIMESTRE-DE-2022.pdf"
-            text="RELATÓRIO CONTROLE INTERNO – 2º TRIMESTRE DE 2022"
-          />
-          <LinkAzul
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/05/RELATORIO-CONTROLE-INTERNO-1o-TRIMESTRE-DE-2022.pdf"
-            text="RELATÓRIO CONTROLE INTERNO – 1º TRIMESTRE DE 2022"
-          />
+      ))}
+      <h2 className="font-bold">2022</h2>
+      {links.map((link, i) => (
+        <div key={i} className="pl-5 pt-1">
+          {link.text.includes("2022") && (
+            <LinkAzul href={link.url} text={link.text} />
+          )}
         </div>
-      </div>
+      ))}
     </Container>
   );
 }
