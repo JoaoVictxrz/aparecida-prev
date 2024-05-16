@@ -1,23 +1,40 @@
+"use client";
 import LinkAzul from "@/app/institucional/components/links";
 import Container from "@/components/container";
-import { Metadata } from "next";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Regimento Interno",
-  };
-}
+import { PostsProps } from "@/interfaces/interfaces";
+import { AxiosInstance } from "@/services/axios";
+import { extrairLinksDoHtml } from "@/utils/functions";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get("/pages/3326");
+      setData(response.data);
+    } catch (error) {
+      console.log("erro ao buscar dados: " + error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const links = extrairLinksDoHtml(data?.content.rendered!);
+
   return (
-    <Container title="Regimento Interno">
+    <Container title={data?.title.rendered!}>
       <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
         <div className="flex flex-col pb-3 pl-5 md:flex-row ">
-          <LinkAzul
-            text="Regimento do Conselho Fiscal"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/Regimento-do-Conselho-Fiscal.pdf"
-          />
+          {links.map((link, i) => (
+            <div key={i}>
+              {link.text.includes("Regimento do Conselho Fiscal") && (
+                <LinkAzul href={link.url} text={link.text} />
+              )}
+            </div>
+          ))}
           <span>
             &nbsp;– Remete-se as atribuições da Lei 010/2005, art. 88 §1.
           </span>
@@ -27,14 +44,16 @@ export default function Home() {
       <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">CONSELHO DE PREVIDÊNCIA</p>
         <div className="flex flex-col pb-3 pl-5">
-          <LinkAzul
-            text="Resolução CMP Nº 001-2010 Diárias"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2021/05/Resolucao-CMP-No-001-2010-Diarias.pdf"
-          />
-          <LinkAzul
-            text="Regimento Interno Conselho de Previdência"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2018/09/Regimento-Interno-Conselho-de-Previdencia.pdf"
-          />
+          {links.map((link, i) => (
+            <div key={i}>
+              {link.text.includes("Resolução") && (
+                <LinkAzul href={link.url} text={link.text} />
+              )}
+              {link.text.includes(
+                "Regimento Interno Conselho de Previdência",
+              ) && <LinkAzul href={link.url} text={link.text} />}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -44,14 +63,13 @@ export default function Home() {
         </p>
         <p className="pb-2 font-bold uppercase">2023</p>
         <div className="flex flex-col pb-3 pl-5">
-          <LinkAzul
-            text="Regimento Assembleia Eleição dos Conselhos e Publicação"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/Regimento-e-Publicacao.pdf"
-          />
-          <LinkAzul
-            text="Declaração de interesse"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/04/Declaracao-de-interesse.pdf"
-          />
+          {links.map((link, i) => (
+            <div key={i}>
+              {link.url.includes("04") && (
+                <LinkAzul href={link.url} text={link.text} />
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -61,14 +79,16 @@ export default function Home() {
         </p>
         <p className="pb-2 font-bold uppercase">2022</p>
         <div className="flex flex-col pb-3 pl-5">
-          <LinkAzul
-            text="Regimento Assembleia Eleição Conselho – específico para Conselho Fiscal e Previdenciário (representante inativos)"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/05/Regimento-Assembleia-Eleicao-Conselho.pdf"
-          />
-          <LinkAzul
-            text="Declaração de Interesse (Inscrição)"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/06/Declaracao-de-Interesse.docx"
-          />
+          {links.map((link, i) => (
+            <div key={i}>
+              {link.text.includes("(representante inativos)") && (
+                <LinkAzul href={link.url} text={link.text} />
+              )}
+              {link.text.includes("(Inscrição)") && (
+                <LinkAzul href={link.url} text={link.text} />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </Container>
