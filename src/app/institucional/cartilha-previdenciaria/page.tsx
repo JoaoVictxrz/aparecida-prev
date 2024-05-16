@@ -1,20 +1,32 @@
-import { Metadata } from "next";
+"use client";
+import { PostsProps } from "@/interfaces/interfaces";
 import LinkAzul from "../components/links";
 import Container from "@/components/container";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Cartilha Previdênciária",
-  };
-}
+import { useEffect, useState } from "react";
+import { AxiosInstance } from "@/services/axios";
+import { extrairLinksDoHtml } from "@/utils/functions";
 
 export default function Home() {
+  const [data, setData] = useState<PostsProps>();
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get<PostsProps>("/pages/1828");
+      setData(response.data);
+    } catch (error) {
+      console.log("erro ao buscar dados: ", error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const links = extrairLinksDoHtml(data?.content.rendered!);
+
   return (
-    <Container title="Cartilha Previdênciária">
-      <LinkAzul
-        href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/08/CARTILHA-PREVIDENCIARIA-2023.pdf"
-        text="CARTILHA PREVIDENCIARIA 2023"
-      />
+    <Container title={data?.title.rendered!} className="flex flex-col">
+      {links.map((link, i) => (
+        <LinkAzul href={link.url} text={link.text} key={i} className="pl-5" />
+      ))}
     </Container>
   );
 }
