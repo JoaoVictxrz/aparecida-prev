@@ -1,26 +1,36 @@
 "use client";
 import { useEffect, useState } from "react";
-import LinkAzul from "../components/links";
-import Container from "@/components/container";
-import { PostsProps } from "@/interfaces/interfaces";
-import { AxiosInstance } from "@/services/axios";
 import { extrairLinksDoHtml } from "@/utils/functions";
-import { text } from "stream/consumers";
+import { AxiosInstance } from "@/services/axios";
+import { PostsProps } from "@/interfaces/interfaces";
+import Container from "@/components/container";
+import LinkAzul from "../components/links";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import Loading from "@/app/loading";
 
 export default function Home() {
   const [data, setData] = useState<PostsProps>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const fetchData = async () => {
-    const response = await AxiosInstance.get("/pages/6515");
-    setData(response.data);
+    try {
+      const response = await AxiosInstance.get("/pages/6515");
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Erro ao buscar dados da página:", error);
+      setLoading(false);
+      setError(true);
+    }
   };
 
   useEffect(() => {
-    try {
-      fetchData();
-    } catch (error) {
-      console.log("Erro ao buscar dados da página:", error);
-    }
+    fetchData();
   }, []);
+
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
 
   const links = extrairLinksDoHtml(data?.content.rendered!);
 

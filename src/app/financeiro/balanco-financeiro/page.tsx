@@ -9,36 +9,49 @@ import Cards from "@/components/card";
 
 export default function Home() {
   const [posts, setPosts] = useState<PostsProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    try {
-      const fetchData = async () => {
+    const fetchData = async () => {
+      try {
         const response = await AxiosInstance.get("/posts?categories=16");
         setPosts(response.data);
         const responsePage2 = await AxiosInstance.get(
           "/posts?categories=16&page=2",
         );
         setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
-      };
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+        setError(true);
+      }
+    };
+    fetchData();
   }, []);
 
-  if (posts.length === 0) return <Loading />;
-
   return (
-    <Container title="Balanço Orcamentário" className="grid md:grid-cols-2">
-      {posts?.map((post, i) => (
-        <Cards
-          key={i}
-          title={post.title.rendered}
-          postadoEm={post.date}
-          descrição={post.excerpt.rendered}
-          href={`/financeiro/balanco-financeiro/${post.slug}`}
-        />
-      ))}
-    </Container>
+    <>
+      {error && <PaginaNaoEncontrada />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <Container
+          title={posts[0].title.rendered}
+          className="grid md:grid-cols-2"
+        >
+          {posts?.map((post, i) => (
+            <Cards
+              key={i}
+              title={post.title.rendered}
+              postadoEm={post.date}
+              descrição={post.excerpt.rendered}
+              href={`/financeiro/balanco-financeiro/${post.slug}`}
+            />
+          ))}
+        </Container>
+      )}
+    </>
   );
 }

@@ -6,6 +6,8 @@ import { formatarData } from "@/utils/functions";
 import Container from "@/components/container";
 import Image from "next/image";
 import Link from "next/link";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import Loading from "@/app/loading";
 
 interface Props {
   params: {
@@ -15,7 +17,9 @@ interface Props {
 
 export default function Home({ params }: Props) {
   const [posts, setPosts] = useState<PostsProps[] | null>(null);
+  const [loading, setLoading] = useState(true);
   const [media, setMedia] = useState<mediaProps[] | null>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,23 +42,18 @@ export default function Home({ params }: Props) {
           mediaResponses.push(response.data);
         }
         setMedia(mediaResponses.map((response) => response[0]));
+        setLoading(false);
       } catch (error) {
         console.error("Erro ao buscar posts:", error);
+        setLoading(false);
+        setError(true);
       }
     };
     fetchData();
   }, [params.slug]);
 
-  if (!posts) {
-    return (
-      <Container title="Ops!">
-        <h2>Pagina não encontrada</h2>
-        <Link href={"/"} className="text-blue-500">
-          Voltar a pagina inicial
-        </Link>
-      </Container>
-    );
-  }
+  if (error || !posts) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
 
   return (
     <Container title="Noticias" className="flex items-center justify-center">

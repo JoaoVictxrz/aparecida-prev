@@ -12,11 +12,15 @@ import {
   MdKeyboardDoubleArrowLeft,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
+import Loading from "../loading";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 
 export default function Home() {
-  const [posts, setPosts] = useState<PostsProps[]>([]);
-  const [media, setMedia] = useState<mediaProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<PostsProps[]>([]);
+  const [error, setError] = useState(false);
+  const [media, setMedia] = useState<mediaProps[]>([]);
   const itensPorPagina = 10;
   const numeroMeio = currentPage;
   const proxNumero = numeroMeio + 1;
@@ -41,14 +45,20 @@ export default function Home() {
         mediaResponses.push(response.data);
       }
       setMedia(mediaResponses.map((response) => response[0]));
+      setLoading(false);
     } catch (error) {
       console.error("Erro ao buscar posts:", error);
+      setLoading(false);
+      setError(true);
     }
   };
 
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
+
+  if (loading) return <Loading />;
+  if (error) return <PaginaNaoEncontrada />;
 
   return (
     <Container title="Notícias" className="flex flex-col items-center">

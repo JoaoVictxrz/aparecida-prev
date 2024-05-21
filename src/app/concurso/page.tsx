@@ -1,13 +1,17 @@
 "use client";
+import { extractTextFromHtml } from "@/utils/functions";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
+import Loading from "../loading";
 import Link from "next/link";
-import { extractTextFromHtml } from "@/utils/functions";
 
 export default function Home() {
   const [data, setData] = useState<PostsProps>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   function extractTextAndLinkFromHtml(html: string): {
     textWithoutHtml: string;
@@ -28,8 +32,11 @@ export default function Home() {
     try {
       const response = await AxiosInstance.get("/pages/6791");
       setData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log("Erro ao buscar dados da página:", error);
+      setError(true);
+      setLoading(false);
     }
   };
 
@@ -38,20 +45,31 @@ export default function Home() {
   }, []);
 
   return (
-    <Container title="Concurso público" className="font-light">
-      {data && (
-        <div className="gap-2">
-          <div className="mb-5">
-            {extractTextFromHtml(data.content.rendered)}
-          </div>
-          <LinkConcurso
-            href="/concurso/concurso-publico"
-            text={extractTextAndLinkFromHtml(data.content.rendered).linkText}
-            className="pl-5"
-          />
-        </div>
-      )}
-    </Container>
+    <>
+      {error && <PaginaNaoEncontrada />}
+      <Container title="Concurso público" className="font-light">
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            {data && (
+              <div className="gap-2">
+                <div className="mb-5">
+                  {extractTextFromHtml(data.content.rendered)}
+                </div>
+                <LinkConcurso
+                  href="/concurso/concurso-publico"
+                  text={
+                    extractTextAndLinkFromHtml(data.content.rendered).linkText
+                  }
+                  className="pl-5"
+                />
+              </div>
+            )}
+          </>
+        )}
+      </Container>
+    </>
   );
 }
 

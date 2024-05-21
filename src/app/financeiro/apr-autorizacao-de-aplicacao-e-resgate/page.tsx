@@ -9,6 +9,8 @@ import Cards from "@/components/card";
 
 export default function Home() {
   const [posts, setPosts] = useState<PostsProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     try {
@@ -19,29 +21,37 @@ export default function Home() {
           "/posts?categories=22&page=2",
         );
         setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
+        setLoading(false);
       };
       fetchData();
     } catch (error) {
       console.log(error);
+      setError(true);
+      setLoading(false);
     }
   }, []);
 
-  if (posts.length === 0) return <Loading />;
-
   return (
-    <Container
-      title="APR – Autorização de Aplicação e Resgate"
-      className="grid md:grid-cols-2"
-    >
-      {posts?.map((post, i) => (
-        <Cards
-          key={i}
-          title={post.title.rendered}
-          postadoEm={post.date}
-          descrição={post.excerpt.rendered}
-          href={`/financeiro/apr-autorizacao-de-aplicacao-e-resgate/${post.slug}`}
-        />
-      ))}
-    </Container>
+    <>
+      {error && <PaginaNaoEncontrada />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <Container
+          title="APR – Autorização de Aplicação e Resgate"
+          className="grid md:grid-cols-2"
+        >
+          {posts?.map((post, i) => (
+            <Cards
+              key={i}
+              title={post.title.rendered}
+              postadoEm={post.date}
+              descrição={post.excerpt.rendered}
+              href={`/financeiro/apr-autorizacao-de-aplicacao-e-resgate/${post.slug}`}
+            />
+          ))}
+        </Container>
+      )}
+    </>
   );
 }

@@ -9,25 +9,30 @@ import Loading from "@/app/loading";
 
 export default function Home() {
   const [postsDpir, setPostsDpir] = useState<PostsProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    try {
-      const fetchData = async () => {
+    const fetchData = async () => {
+      try {
         const response = await AxiosInstance.get("/posts?categories=27");
         setPostsDpir(response.data);
         const responsePage2 = await AxiosInstance.get(
           "/posts?categories=27&page=2",
         );
         setPostsDpir((prevPosts) => [...prevPosts, ...responsePage2.data]);
-      };
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+        setError(true);
+      }
+    };
+    fetchData();
   }, []);
 
-  if (!postsDpir) return <Loading />;
-  if (postsDpir.length === 0) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (error) return <PaginaNaoEncontrada />;
 
   return (
     <Container

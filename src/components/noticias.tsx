@@ -7,10 +7,13 @@ import { CiCirclePlus } from "react-icons/ci";
 import Loading from "@/app/loading";
 import Image from "next/image";
 import Link from "next/link";
+import PaginaNaoEncontrada from "./pagina-nao-encontrada";
 
 export default function Noticias() {
   const [noticias, setNoticias] = useState<PostsProps[] | null>(null);
+  const [loading, setLoading] = useState(true);
   const [media, setMedia] = useState<mediaProps[] | null>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,12 +36,17 @@ export default function Noticias() {
           mediaResponses.push(response.data);
         }
         setMedia(mediaResponses.map((response) => response[0]));
+        setLoading(false);
       } catch (error) {
         console.error("Erro ao buscar os dados:", error);
+        setLoading(false);
+        setError(true);
       }
     };
     fetchData();
   }, []);
+
+  if (error) return <PaginaNaoEncontrada />;
 
   return (
     <section className="flex w-full justify-center bg-white pb-20 text-black dark:bg-zinc-900 dark:text-white">
