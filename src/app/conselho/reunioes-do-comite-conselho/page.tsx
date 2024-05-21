@@ -1,67 +1,73 @@
-import LinkAzul from "@/app/institucional/components/links";
+"use client";
+import { useEffect, useState } from "react";
+import { extrairLinksDoHtml } from "@/utils/functions";
+import { AxiosInstance } from "@/services/axios";
+import { PostsProps } from "@/interfaces/interfaces";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import { Metadata } from "next";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Local e data das reuniões do comitê/conselho",
-  };
-}
+import LinkAzul from "@/app/institucional/components/links";
+import Loading from "@/app/loading";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState<PostsProps>();
+
+  const fetchData = async () => {
+    try {
+      const response = await AxiosInstance.get("/pages/551");
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Erro ao buscar dados: " + error);
+      setLoading(false);
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+
+  const links = extrairLinksDoHtml(data?.content.rendered!);
+
+  const previdenciarioLinks = links.filter((link) =>
+    link.text.includes("PREVIDENCIÁRIO"),
+  );
+  const investimentosLinks = links.filter((link) =>
+    link.text.includes("INVESTIMENTOS"),
+  );
+  const fiscalLinks = links.filter((link) => link.text.includes("FISCAL"));
+
   return (
     <Container title="Local e data das reuniões do comitê/conselho">
-      <div className="flex w-2/4 flex-col">
+      <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">CONSELHO PREVIDENCIÁRIO</p>
         <div className="flex flex-col pb-3 pl-5">
-          <LinkAzul
-            text="LOCAL E DATA REUNIÕES DO CONSELHO PREVIDENCIÁRIO ANO 2024"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-PREVIDENCIARIO-ANO-2024.pdf"
-          />
-          <LinkAzul
-            text="LOCAL E DATA REUNIÕES DO CONSELHO PREVIDENCIÁRIO ANO 2023"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/02/Data-e-Local-Reuniao-Conselho-2023.pdf"
-          />
-          <LinkAzul
-            text="LOCAL E DATA REUNIÕES DO CONSELHO PREVIDENCIÁRIO ANO 2022"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2022/01/LOCAL-E-DATA-REUNIOES-DO-CONELHO-ANO-2022.pdf"
-          />
-          <LinkAzul
-            text="LOCAL E DATA REUNIÕES DO CONSELHO PREVIDENCIÁRIO ANO 2021"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2021/02/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-PREVIDENCIARIO-ANO-2021.pdf"
-          />
+          {previdenciarioLinks.map((link, i) => (
+            <LinkAzul key={i} href={link.url} text={link.text} />
+          ))}
         </div>
       </div>
 
-      <div className="flex w-2/4 flex-col">
+      <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">COMITÊ DE INVESTIMENTOS</p>
         <div className="flex flex-col pb-3 pl-5">
-          <LinkAzul
-            text="LOCAL E DATA DAS REUNIÕES DO COMITÊ DE INVESTIMENTOS ANO 2024"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/LOCAL-E-DATA-DAS-REUNIOES-DO-COMITE-DE-INVESTIMENTOS-ANO-2024.pdf"
-          />
-          <LinkAzul
-            text="LOCAL E DATA DAS REUNIÕES DO COMITÊ DE INVESTIMENTOS ANO 2023"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/06/LOCAL-E-DATA-DAS-REUNIOES-DO-COMITE-DE-INVESTIMENTOS-ANO-2023.pdf"
-          />
+          {investimentosLinks.map((link, i) => (
+            <LinkAzul key={i} href={link.url} text={link.text} />
+          ))}
         </div>
       </div>
 
-      <div className="flex w-2/4 flex-col">
+      <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
         <div className="flex flex-col pb-3 pl-5">
-          <LinkAzul
-            text="LOCAL E DATA DAS REUNIÕES DO CONSELHO FISCAL ANO 2024"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2024/02/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-FISCAL-ANO-2024.pdf"
-          />
-          <LinkAzul
-            text="LOCAL E DATA DAS REUNIÕES DO CONSELHO FISCAL ANO 2023"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/06/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-FISCAL-ANO-2023.pdf"
-          />
-          <LinkAzul
-            text="LOCAL E DATA DAS REUNIÕES DO CONSELHO FISCAL ANO 2022"
-            href="https://aparecidaprev.go.gov.br/wp-content/uploads/2023/06/LOCAL-E-DATA-DAS-REUNIOES-DO-CONSELHO-FISCAL-ANO-2022.pdf"
-          />
+          {fiscalLinks.map((link, i) => (
+            <LinkAzul key={i} href={link.url} text={link.text} />
+          ))}
         </div>
       </div>
     </Container>
