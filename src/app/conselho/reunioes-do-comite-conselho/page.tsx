@@ -34,7 +34,6 @@ export default function Home() {
 
   const links = extrairLinksDoHtml(data?.content.rendered!);
 
-<<<<<<< HEAD
   const previdenciarioLinks = links.filter((link) =>
     link.text.includes("PREVIDENCIÁRIO"),
   );
@@ -43,24 +42,13 @@ export default function Home() {
   );
   const fiscalLinks = links.filter((link) => link.text.includes("FISCAL"));
 
-=======
->>>>>>> f6bce107e180edc49a81c49e5f6a217b4ca2a379
   return (
     <Container title="Local e data das reuniões do comitê/conselho">
       <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">CONSELHO PREVIDENCIÁRIO</p>
         <div className="flex flex-col pb-3 pl-5">
-<<<<<<< HEAD
           {previdenciarioLinks.map((link, i) => (
             <LinkAzul key={i} href={link.url} text={link.text} />
-=======
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("PREVIDENCIÁRIO") && (
-                <LinkAzul href={link.url} text={link.text} />
-              )}
-            </div>
->>>>>>> f6bce107e180edc49a81c49e5f6a217b4ca2a379
           ))}
         </div>
       </div>
@@ -68,17 +56,8 @@ export default function Home() {
       <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">COMITÊ DE INVESTIMENTOS</p>
         <div className="flex flex-col pb-3 pl-5">
-<<<<<<< HEAD
           {investimentosLinks.map((link, i) => (
             <LinkAzul key={i} href={link.url} text={link.text} />
-=======
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("INVESTIMENTOS") && (
-                <LinkAzul href={link.url} text={link.text} />
-              )}
-            </div>
->>>>>>> f6bce107e180edc49a81c49e5f6a217b4ca2a379
           ))}
         </div>
       </div>
@@ -86,17 +65,8 @@ export default function Home() {
       <div className="flex flex-col">
         <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
         <div className="flex flex-col pb-3 pl-5">
-<<<<<<< HEAD
           {fiscalLinks.map((link, i) => (
             <LinkAzul key={i} href={link.url} text={link.text} />
-=======
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("FISCAL") && (
-                <LinkAzul href={link.url} text={link.text} />
-              )}
-            </div>
->>>>>>> f6bce107e180edc49a81c49e5f6a217b4ca2a379
           ))}
         </div>
       </div>
