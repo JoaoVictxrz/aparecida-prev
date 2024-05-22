@@ -1,12 +1,6 @@
-import { Metadata } from "next";
+"use client";
 import Container from "@/components/container";
 import Image from "next/image";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Como fica minha aposentadoria",
-  };
-}
 
 export default function Home() {
   return (
