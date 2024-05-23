@@ -1,13 +1,6 @@
 import LinkAzul from "@/app/institucional/components/links";
-import { Metadata } from "next";
 import Container from "@/components/container";
 import Link from "next/link";
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Comparativo da Despesa",
-  };
-}
 
 interface Props {
   params: {

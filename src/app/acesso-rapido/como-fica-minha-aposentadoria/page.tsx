@@ -12,20 +12,24 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const data: PostsProps = await getData("/pages/127");
+  try {
+    const data: PostsProps = await getData("/pages/127");
 
-  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
 
-  const $: CheerioAPI = cheerio.load(data.content.rendered);
+    const $: CheerioAPI = cheerio.load(data.content.rendered);
 
-  const updatedHTML = $.html();
+    const updatedHTML = $.html();
 
-  return (
-    <Container title={data.title.rendered}>
-      <div
-        dangerouslySetInnerHTML={{ __html: updatedHTML }}
-        className="space-y-2"
-      />
-    </Container>
-  );
+    return (
+      <Container title={data.title.rendered}>
+        <div
+          dangerouslySetInnerHTML={{ __html: updatedHTML }}
+          className="space-y-2"
+        />
+      </Container>
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }
