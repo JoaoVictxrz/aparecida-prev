@@ -3,6 +3,13 @@ import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import { PostsProps } from "@/interfaces/interfaces";
 import { getData } from "@/services/fetch";
 import cheerio, { CheerioAPI } from "cheerio";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Leis municipais",
+  };
+}
 
 export default async function Home() {
   try {
@@ -12,7 +19,8 @@ export default async function Home() {
 
     //estilizar o html
     const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("span").addClass("font-light");
+    $("span").addClass("font-light text-black dark:text-white");
+    $("span").removeAttr("style");
     $("a").addClass("text-blue-500 font-light");
     $("p").addClass("font-base");
     const updatedHTML = $.html();
