@@ -1,4 +1,7 @@
 import Container from "@/components/container";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import { PostsProps } from "@/interfaces/interfaces";
+import { getData } from "@/services/fetch";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -7,15 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Visão() {
-  return (
-    <Container title="Visão">
-      <p className="text-center text-xl font-semibold">
-        Pretendemos nos tornar um Instituto de previdência referência no país
-        pela qualidade dos serviços que prestamos, realizando um trabalho de
-        maneira eficaz, seguro e responsável, respeitando os nossos segurados, a
-        nossa equipe e o interesse público.
-      </p>
-    </Container>
-  );
+export default async function Visão() {
+  try {
+    const data: PostsProps = await getData("/pages/2778");
+
+    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+
+    return (
+      <Container title={data.title.rendered} className="max-w-4xl text-xl">
+        <div dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
+      </Container>
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }

@@ -1,5 +1,8 @@
-import Container from "@/components/container";
 import { Metadata } from "next";
+import { getData } from "@/services/fetch";
+import cheerio, { CheerioAPI } from "cheerio";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import Container from "@/components/container";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -7,25 +10,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Valores() {
-  return (
-    <Container title="Valores">
-      <p className="font-light md:text-xl">
-        <span className="font-bold">Respeito Pelo Indivíduo</span> – Respeitamos
-        a dignidade de cada pessoa dentro e fora da organização.
-      </p>
-      <p className="font-light md:text-xl">
-        <span className="font-bold">Transparência</span> – Valorizamos a
-        transparência na gestão administrativa e financeira do Aparecidaprev.
-      </p>
-      <p className="font-light md:text-xl">
-        <span className="font-bold">Criatividade</span> – Apoiamos a
-        criatividade de nossa equipe na resolução de nossos principais desafios.
-      </p>
-      <p className="font-light md:text-xl">
-        <span className="font-bold">Solidariedade</span> – Valorizamos a relação
-        solidária entre os integrantes da equipe.
-      </p>
-    </Container>
-  );
+export default async function Valores() {
+  try {
+    const data = await getData("/pages/2776");
+    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+
+    const $: CheerioAPI = cheerio.load(data.content.rendered);
+    $("ul").addClass("space-y-2");
+    const updatedHTML = $.html();
+
+    return (
+      <Container title="Valores">
+        <div dangerouslySetInnerHTML={{ __html: updatedHTML }} />
+      </Container>
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }

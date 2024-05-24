@@ -1,6 +1,9 @@
 import Container from "@/components/container";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import { PostsProps } from "@/interfaces/interfaces";
+import { getData } from "@/services/fetch";
+import cheerio, { CheerioAPI } from "cheerio";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -8,45 +11,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Equipe() {
+export default async function Equipe() {
+  const data: PostsProps = await getData("/pages/2779");
+  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+
+  const $: CheerioAPI = cheerio.load(data.content.rendered);
+  $("pre").addClass("flex items-center flex-col");
+  $("img").removeAttr("class");
+  const updatedHTML = $.html();
+
   return (
-    <Container
-      title="Presidência e diretoria executivas"
-      className="flex flex-col items-center justify-center"
-    >
-      <h1 className="text-xl font-bold">Gestão 2021 - 2024</h1>
-      <Image
-        src="/sobre/FOTO-SECRETARIO-APARECIDAPREV-FOTOS-MICHEL-ABDALLAH.jpg"
-        alt="Gestão 2021 - 2024"
-        width={188}
-        height={250}
-      />
-      <TextEquipe nome="Robes Venancio e Silva" cargo="Presidente" />
-      <TextEquipe
-        nome="Hellen Cássia Macêdo Silva"
-        cargo="Diretora Administrativa"
-      />
-      <TextEquipe
-        nome="Jorge Luiz Marreiros Saldanha"
-        cargo="Diretor de Benefícios"
-      />
-      <TextEquipe
-        nome="Khayo Eduardo Pires de Oliveira"
-        cargo="Diretor Financeiro"
-      />
-      <TextEquipe
-        nome="Keila Mirian Afonso Martins Pereira"
-        cargo="Diretora Jurídica"
+    <Container title="Presidência e diretoria executivas">
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="text-cemter flex flex-col items-center"
       />
     </Container>
   );
 }
-
-export const TextEquipe = ({ nome, cargo }: any) => {
-  return (
-    <div className="flex flex-col text-center">
-      <h2 className="text-xl font-semibold">{nome}</h2>
-      <p className="text-lg font-light">{cargo}</p>
-    </div>
-  );
-};
