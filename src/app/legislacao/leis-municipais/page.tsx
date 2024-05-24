@@ -17,11 +17,12 @@ export default async function Home() {
 
     if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
 
-    //estilizar o html
     const $: CheerioAPI = cheerio.load(data.content.rendered);
     $("span").addClass("font-light text-black dark:text-white");
     $("span").removeAttr("style");
     $("a").addClass("text-blue-500 font-light");
+    $("a del").removeClass("text-blue-500").addClass("text-red-500");
+    $("del a").removeClass("text-blue-500").addClass("text-red-500");
     $("p").addClass("font-base");
     const updatedHTML = $.html();
 
