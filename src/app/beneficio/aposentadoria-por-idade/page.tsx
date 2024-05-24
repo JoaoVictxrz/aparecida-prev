@@ -31,7 +31,10 @@ export default function Home() {
 
   return (
     <Container title="Aposentadoria por idade" className="space-y-4">
-      <div dangerouslySetInnerHTML={{ __html: data?.content.rendered! }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
+        className="flex flex-col space-y-2"
+      />
     </Container>
   );
 }
