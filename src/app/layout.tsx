@@ -5,6 +5,7 @@ import NavBar from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Suspense } from "react";
 import Loading from "./loading";
+import Modal from "@/components/modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +26,9 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className="!scroll-smooth">
       <body className={inter.className}>
+        <Modal />
         <Suspense fallback={<Loading />}>
-          <header className="sticky top-0 z-50 w-full">
+          <header className="sticky top-0 z-40 w-full">
             <NavBar />
           </header>
           {children}
