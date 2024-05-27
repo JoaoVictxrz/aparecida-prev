@@ -73,6 +73,17 @@ const MobileNavbar = ({
   isOpen: boolean;
   setIsOpen: any;
 }) => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    function handleResize() {
+      setIsOpen(window.innerWidth > 1024 ? false : true);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setIsOpen]);
+
   return (
     <nav className="flex flex-col items-center bg-white pb-5 text-black dark:bg-zinc-950">
       {links.map((link, i) => (
