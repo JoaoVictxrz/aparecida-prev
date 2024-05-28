@@ -12,6 +12,7 @@ export interface PostsProps {
     rendered: string;
   };
   featured_media: number;
+  jetpack_featured_media_url: string;
 }
 
 export interface mediaProps {
