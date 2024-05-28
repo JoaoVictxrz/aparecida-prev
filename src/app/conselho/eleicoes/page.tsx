@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import LinkAzul from "@/app/institucional/components/links";
 import Loading from "@/app/loading";
+import cheerio, { CheerioAPI } from "cheerio";
 
 interface Link {
   url: string;
@@ -15,7 +14,6 @@ interface Link {
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [links, setLinks] = useState<Link[]>([]);
   const [error, setError] = useState(false);
   const [data, setData] = useState<PostsProps>();
 
@@ -35,44 +33,21 @@ export default function Home() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (data) {
-      const extractedLinks = extrairLinksDoHtml(data.content.rendered);
-      const filteredLinks = extractedLinks.filter((link, i) => i !== 15);
-      const updatedLinks = filteredLinks.map((link, i) => {
-        if (i === 15) {
-          return { ...link, text: "Parecer Jurídico n°167/2022" };
-        }
-        return link;
-      });
+  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
 
-      setLinks(updatedLinks);
-    }
-  }, [data]);
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
+  $("li").addClass("pl-5");
+  $("span").removeAttr("style");
+  const updateHtml = $.html();
 
   return (
-    <>
-      {error && <PaginaNaoEncontrada />}
-      <Container title={data?.title.rendered!}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div className="space-y-2">
-            <h1 className="font-bold">ELEIÇÃO 2023 – PLEITO HOMOLOGADO</h1>
-            <div className="flex flex-col pl-5">
-              {links.slice(0, 9).map((link, i) => (
-                <LinkAzul href={link.url} text={link.text} key={i} />
-              ))}
-            </div>
-            <h2 className="font-bold">ELEIÇÃO 2022 – PLEITO HOMOLOGADO</h2>
-            <div className="flex flex-col pl-5">
-              {links.slice(9).map((link, i) => (
-                <LinkAzul href={link.url} text={link.text} key={i + 9} />
-              ))}
-            </div>
-          </div>
-        )}
-      </Container>
-    </>
+    <Container title={data?.title.rendered!}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="space-y-4"
+      />
+    </Container>
   );
 }

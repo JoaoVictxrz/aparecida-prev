@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
+import cheerio, { CheerioAPI } from "cheerio";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import LinkAzul from "@/app/institucional/components/links";
 import Loading from "@/app/loading";
 
 export default function Home() {
@@ -28,54 +27,26 @@ export default function Home() {
   useEffect(() => {
     fetchData();
   }, []);
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("span").removeAttr("style");
+  $("strong").removeAttr("style");
+  $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
+  $("p").each(function () {
+    if ($(this).html()?.trim() === "&nbsp;") {
+      $(this).remove();
+    }
+  });
+  const updateHtml = $.html();
+
   return (
-    <>
-      {error && <PaginaNaoEncontrada />}
-      <Container title={data?.title.rendered!}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Div title="ATAS 2024" ano="2024" links={links}></Div>
-            <Div title="ATAS 2023" ano="2023" links={links}></Div>
-            <Div title="ATAS 2022" ano="2022" links={links}></Div>
-            <Div title="ATAS 2021" ano="2021" links={links}></Div>
-            <Div title="ATAS 2020" ano="2020" links={links}></Div>
-            <Div title="ATAS 2019" ano="2019" links={links}></Div>
-            <Div title="ATAS 2018" ano="2018" links={links}></Div>
-            <Div title="ATAS 2017" ano="2017" links={links}></Div>
-            <Div title="ATAS 2016" ano="2016" links={links}></Div>
-            <Div title="ATAS 2015" ano="2015" links={links}></Div>
-            <Div title="ATAS 2014" ano="2014" links={links}></Div>
-          </div>
-        )}
-      </Container>
-    </>
+    <Container title={data?.title.rendered!}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="flex flex-col space-y-4"
+      />
+    </Container>
   );
 }
-
-interface Link {
-  text: string;
-  url: string;
-}
-
-const Div: React.FC<{
-  title: string;
-  links: Link[];
-  ano: string;
-}> = ({ title, links, ano }) => (
-  <div className="flex w-3/4 flex-col md:w-1/4">
-    <p className="pb-2 font-bold uppercase">{title}</p>
-    <div className="flex flex-col pb-3 pl-5">
-      {links.map((link, i) => (
-        <div key={i}>
-          {link.text.includes(`${ano}`) && (
-            <LinkAzul text={link.text} href={link.url} />
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-);

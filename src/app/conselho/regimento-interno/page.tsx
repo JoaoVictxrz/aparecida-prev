@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
+import cheerio, { CheerioAPI } from "cheerio";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import LinkAzul from "@/app/institucional/components/links";
 import Loading from "@/app/loading";
 
 export default function Home() {
@@ -29,84 +28,20 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const links = extrairLinksDoHtml(data?.content.rendered || "");
+  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("span").removeAttr("style");
+  $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
+  const updateHtml = $.html();
 
   return (
-    <>
-      {error && <PaginaNaoEncontrada />}
-      <Container title={data?.title.rendered || "Título não encontrado"}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            <div className="flex flex-col">
-              <p className="pb-2 font-bold uppercase">CONSELHO FISCAL</p>
-              <div className="flex flex-col pb-3 pl-5 md:flex-row ">
-                {links.map((link, i) => (
-                  <div key={i}>
-                    {link.text.includes("Regimento do Conselho Fiscal") && (
-                      <LinkAzul href={link.url} text={link.text} />
-                    )}
-                  </div>
-                ))}
-                <span>
-                  &nbsp;– Remete-se as atribuições da Lei 010/2005, art. 88 §1.
-                </span>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <p className="pb-2 font-bold uppercase">
-                CONSELHO DE PREVIDÊNCIA
-              </p>
-              <div className="flex flex-col pb-3 pl-5">
-                {links.map((link, i) => (
-                  <div key={i}>
-                    {link.text.includes("Resolução") && (
-                      <LinkAzul href={link.url} text={link.text} />
-                    )}
-                    {link.text.includes(
-                      "Regimento Interno Conselho de Previdência",
-                    ) && <LinkAzul href={link.url} text={link.text} />}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <p className="pb-2 font-bold uppercase">
-                REGIMENTO PARA ELEIÇÃO CONSELHEIROS
-              </p>
-              <p className="pb-2 font-bold uppercase">2023</p>
-              <div className="flex flex-col pb-3 pl-5">
-                {links.map((link, i) => (
-                  <div key={i}>
-                    {link.url.includes("04") && (
-                      <LinkAzul href={link.url} text={link.text} />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <p className="pb-2 font-bold uppercase">
-                REGIMENTO PARA ELEIÇÃO CONSELHEIROS
-              </p>
-              <p className="pb-2 font-bold uppercase">2022</p>
-              <div className="flex flex-col pb-3 pl-5">
-                {links.map((link, i) => (
-                  <div key={i}>
-                    {link.text.includes("(representante inativos)") && (
-                      <LinkAzul href={link.url} text={link.text} />
-                    )}
-                    {link.text.includes("(Inscrição)") && (
-                      <LinkAzul href={link.url} text={link.text} />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </Container>
-    </>
+    <Container title={data?.title.rendered!}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="flex flex-col space-y-4"
+      />
+    </Container>
   );
 }

@@ -4,6 +4,7 @@ import Container from "@/components/container";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import { PostsProps } from "@/interfaces/interfaces";
 import { AxiosInstance } from "@/services/axios";
+import cheerio, { CheerioAPI } from "cheerio";
 import { useEffect, useState } from "react";
 export default function Home() {
   const [data, setData] = useState<PostsProps>();
@@ -28,11 +29,15 @@ export default function Home() {
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("span").removeAttr("style");
+  const updateHtml = $.html();
+
   return (
     <Container title="Membros dos conselhos">
       <div
-        dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
-        className="flex flex-col space-y-2"
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="flex flex-col space-y-4"
       />
     </Container>
   );
