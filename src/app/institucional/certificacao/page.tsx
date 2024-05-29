@@ -18,14 +18,14 @@ export default async function Home() {
     if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
 
     const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("a").addClass("pl-5 text-blue-500 hover:underline");
+    $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
     const updatedHTML = $.html();
 
     return (
       <Container title={data.title.rendered}>
         <div
           dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="flex flex-col space-y-2"
+          className="space-y-2"
         />
       </Container>
     );

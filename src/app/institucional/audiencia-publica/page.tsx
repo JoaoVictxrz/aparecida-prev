@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
+import cheerio, { CheerioAPI } from "cheerio";
 import Container from "@/components/container";
-import LinkAzul from "../components/links";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Loading from "@/app/loading";
 
@@ -29,31 +28,33 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (error) return <PaginaNaoEncontrada />;
+  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
+  $("a").attr("target", "_blank");
+  const selector = {
+    1: 'a[href="https://aparecidaprev.go.gov.br/audiencia-publica-de-prestacao-de-contas-2022-e-realizada/"]',
+    2: 'a[href="https://aparecidaprev.go.gov.br/audiencia-publica-2023/"]',
+  };
+  const newHref = {
+    1: "/institucional/audiencia-publica/audiencia-publica-de-prestacao-de-contas-2022-e-realizada",
+    2: "/institucional/audiencia-publica/audiencia-publica-2023",
+  };
+
+  $(selector[1]).attr("href", newHref[1]);
+  $(selector[2]).attr("href", newHref[2]);
+  $("strong").contents().unwrap();
+  $("p").addClass("font-bold");
+  const updateHtml = $.html();
 
   return (
-    <Container title="Audiência publica">
-      <div className="flex flex-col items-start gap-2 border-b-[1px] pb-5 dark:border-zinc-800">
-        <p className="font-semibold uppercase">Audiencia pública n°002/2023</p>
-        <div className="flex flex-col items-start gap-1 pl-5">
-          {links.map(
-            (link, i) =>
-              i < 4 && <LinkAzul key={i} href={link.url} text={link.text} />,
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col items-start gap-2 border-b-[1px] py-5 dark:border-zinc-800">
-        <p className="font-semibold uppercase">Audiencia pública n°001/2023</p>
-        <div className="flex flex-col items-start gap-1 pl-5">
-          {links.map(
-            (link, i) =>
-              i >= 4 && <LinkAzul key={i} href={link.url} text={link.text} />,
-          )}
-        </div>
-      </div>
+    <Container title={data?.title.rendered}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="space-y-4"
+      />
     </Container>
   );
 }

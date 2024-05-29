@@ -7,6 +7,7 @@ import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
 import LinkAzul from "../components/links";
 import Loading from "@/app/loading";
+import cheerio, { CheerioAPI } from "cheerio";
 
 export default function Home() {
   const [data, setData] = useState<PostsProps>();
@@ -32,26 +33,18 @@ export default function Home() {
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
+  $("p").addClass("font-bold");
+  $("strong").contents().unwrap();
+  const updateHtml = $.html();
 
   return (
     <Container title={data?.title.rendered!}>
-      <h1 className="font-bold">2023</h1>
-      {links.map((link, i) => (
-        <div key={i} className="pl-5 pt-1">
-          {link.text.includes("2023") && (
-            <LinkAzul href={link.url} text={link.text} />
-          )}
-        </div>
-      ))}
-      <h2 className="font-bold">2022</h2>
-      {links.map((link, i) => (
-        <div key={i} className="pl-5 pt-1">
-          {link.text.includes("2022") && (
-            <LinkAzul href={link.url} text={link.text} />
-          )}
-        </div>
-      ))}
+      <div
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="space-y-4"
+      />
     </Container>
   );
 }

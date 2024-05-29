@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import LinkAzul from "../components/links";
 import Loading from "@/app/loading";
+import cheerio, { CheerioAPI } from "cheerio";
 
 export default function Home() {
   const [data, setData] = useState<PostsProps>();
@@ -32,42 +31,17 @@ export default function Home() {
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
+  const $ = cheerio.load(data?.content.rendered!);
+  $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
+  $("strong").contents().unwrap();
+  const updateHtml = $.html();
 
   return (
     <Container title={data?.title.rendered!}>
-      <div className="flex flex-col gap-2 border-b-[1px] pb-2 dark:border-zinc-800">
-        <p>
-          Acesso aos contratos pertinentes ao AparecidaPrev clique no link
-          abaixo, na sequência inserir o código 7 no campo
-          <span className="font-semibold">&nbsp;Gestão&nbsp;</span>e depois
-          <span className="font-semibold">&nbsp;Pesquisar:</span>
-        </p>
-        <div className="pl-5">
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("Contratos") && (
-                <LinkAzul text={link.text} href={link.url} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 border-b-[1px] py-2 dark:border-zinc-800">
-        <p>
-          Acesso as licitações do município e do AparecidaPrev, clique no link
-          abaixo:
-        </p>
-        <div className="pl-5">
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("Licitações") && (
-                <LinkAzul text={link.text} href={link.url} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      <div
+        dangerouslySetInnerHTML={{ __html: updateHtml }}
+        className="space-y-4"
+      />
     </Container>
   );
 }

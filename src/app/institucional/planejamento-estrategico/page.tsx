@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import LinkAzul from "../components/links";
 import Loading from "@/app/loading";
+import cheerio, { CheerioAPI } from "cheerio";
 
 export default function Home() {
   const [data, setData] = useState<PostsProps>();
@@ -29,37 +28,22 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
-
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
+  $("a").attr("target", "_blank");
+  $("p").addClass("font-bold");
+  $("strong").contents().unwrap();
+  const updatedHTML = $.html();
+
   return (
     <Container title="Planejamento estrategico">
-      <div className="gap-2 border-b-[1px] dark:border-zinc-800">
-        <p className="font-bold uppercase">planejamento</p>
-        <div className="flex flex-col gap-1 pb-2 pl-5 pt-2">
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("PLANEJAMENTO") && (
-                <LinkAzul text={link.text} href={link.url} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="gap-2 pt-2">
-        <p className="font-bold uppercase">plano de ação</p>
-        <div className="flex flex-col gap-1 pl-5 pt-2">
-          {links.map((link, i) => (
-            <div key={i}>
-              {link.text.includes("PLANO") && (
-                <LinkAzul text={link.text} href={link.url} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="space-y-4"
+      />
     </Container>
   );
 }
