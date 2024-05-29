@@ -31,27 +31,20 @@ export default function Home() {
     fetchData();
   }, []);
 
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+
   return (
-    <>
-      {error && <PaginaNaoEncontrada />}
-      {loading ? (
-        <Loading />
-      ) : (
-        <Container
-          title={posts[0].title.rendered}
-          className="grid md:grid-cols-2"
-        >
-          {posts?.map((post, i) => (
-            <Cards
-              key={i}
-              title={post.title.rendered}
-              postadoEm={post.date}
-              descrição={post.excerpt.rendered}
-              href={`/financeiro/balanco-financeiro/${post.slug}`}
-            />
-          ))}
-        </Container>
-      )}
-    </>
+    <Container title="Balanço Financeiro" className="grid md:grid-cols-2">
+      {posts?.map((post, i) => (
+        <Cards
+          key={i}
+          title={post.title.rendered}
+          postadoEm={post.date}
+          descrição={post.excerpt.rendered}
+          href={`/financeiro/balanco-financeiro/${post.slug}`}
+        />
+      ))}
+    </Container>
   );
 }

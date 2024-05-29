@@ -15,10 +15,10 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await AxiosInstance.get("/posts?categories=22");
+        const response = await AxiosInstance.get("/posts?categories=18");
         setPosts(response.data);
         const responsePage2 = await AxiosInstance.get(
-          "/posts?categories=22&page=2",
+          "/posts?categories=18&page=2",
         );
         setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
         setLoading(false);

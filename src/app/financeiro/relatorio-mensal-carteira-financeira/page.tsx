@@ -15,10 +15,10 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await AxiosInstance.get("/posts?categories=17");
+        const response = await AxiosInstance.get("/posts?categories=26");
         setPosts(response.data);
         const responsePage2 = await AxiosInstance.get(
-          "/posts?categories=17&page=2",
+          "/posts?categories=26&page=2",
         );
         setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
         setLoading(false);
@@ -35,7 +35,10 @@ export default function Home() {
   if (loading) return <Loading />;
 
   return (
-    <Container title="Balanço Orcamentário" className="grid md:grid-cols-2">
+    <Container
+      title="Relatório Mensal Carteira Financeira"
+      className="grid md:grid-cols-2"
+    >
       {posts?.map((post, i) => (
         <Cards
           key={i}

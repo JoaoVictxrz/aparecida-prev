@@ -35,7 +35,7 @@ export default function Home() {
   if (loading) return <Loading />;
 
   return (
-    <Container title={posts[0]?.title.rendered} className="grid md:grid-cols-2">
+    <Container title="Balanço Orcamentário" className="grid md:grid-cols-2">
       {posts?.map((post, i) => (
         <Cards
           key={i}
