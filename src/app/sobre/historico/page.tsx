@@ -12,17 +12,25 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Historico() {
-  const data: PostsProps = await getData("/pages/2775");
-  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
-  const $: CheerioAPI = cheerio.load(data.content.rendered);
-  $("b").addClass("font-semibold");
-  const updatedHTML = $.html();
-  return (
-    <Container title="Histórico" className="flex flex-col gap-5 font-light">
-      <div
-        dangerouslySetInnerHTML={{ __html: updatedHTML }}
-        className="flex flex-col space-y-2"
-      />
-    </Container>
-  );
+  try {
+    const data: PostsProps = await getData("/pages/2775");
+
+    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+
+    const $: CheerioAPI = cheerio.load(data.content.rendered);
+    $("b").addClass("font-semibold");
+    $("span").removeAttr("style");
+    const updatedHTML = $.html();
+
+    return (
+      <Container title="Histórico" className="flex flex-col gap-5 font-light">
+        <div
+          dangerouslySetInnerHTML={{ __html: updatedHTML }}
+          className="flex flex-col space-y-2"
+        />
+      </Container>
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }
