@@ -33,12 +33,13 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
+  if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
   const $: CheerioAPI = cheerio.load(data?.content.rendered!);
   $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
   $("li").addClass("pl-5");
+  $("strong").contents().unwrap();
   $("span").removeAttr("style");
   const updateHtml = $.html();
 

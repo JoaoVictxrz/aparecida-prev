@@ -28,7 +28,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
+  if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
   const $: CheerioAPI = cheerio.load(data?.content.rendered!);
@@ -40,7 +40,7 @@ export default function Home() {
     <Container title={data?.title.rendered!}>
       <div
         dangerouslySetInnerHTML={{ __html: updateHtml }}
-        className="flex flex-col space-y-4"
+        className="space-y-4"
       />
     </Container>
   );
