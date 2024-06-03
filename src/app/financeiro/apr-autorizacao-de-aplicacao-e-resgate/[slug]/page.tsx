@@ -1,12 +1,12 @@
 "use client";
-import { extractTextFromHtml, extrairLinksDoHtml } from "@/utils/functions";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
+import cheerio, { CheerioAPI } from "cheerio";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
 import Loading from "@/app/loading";
-import LinkAzul from "@/app/institucional/components/links";
+import { extractTextFromHtml } from "@/utils/functions";
 
 interface Props {
   params: {
@@ -37,26 +37,17 @@ export default function Page({ params }: Props) {
   if (loading) return <Loading />;
   if (error) return <PaginaNaoEncontrada />;
 
+  const $: CheerioAPI = cheerio.load(posts[0]?.content.rendered);
+  $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
+  $("a").attr("target", "_blank");
+  const updatedHTML = $.html();
+
   return (
-    <>
-      {posts.length === 0 ? (
-        <PaginaNaoEncontrada />
-      ) : (
-        posts.map((post) => {
-          const links = extrairLinksDoHtml(post.content.rendered || "");
-          return (
-            <Container
-              title={extractTextFromHtml(post.title.rendered)}
-              key={post.id}
-              className="grid max-w-xl"
-            >
-              {links.map((link, i) => (
-                <LinkAzul key={i} href={link.url} text={link.text} />
-              ))}
-            </Container>
-          );
-        })
-      )}
-    </>
+    <Container title={extractTextFromHtml(posts[0]?.title.rendered)}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="space-y-2"
+      />
+    </Container>
   );
 }
