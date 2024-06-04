@@ -7,7 +7,76 @@ import { MdOutlineYoutubeSearchedFor, MdSunny } from "react-icons/md";
 type Theme = "light" | "dark" | null;
 
 export default function Acessibilidade({ className }: { className?: string }) {
+  const [font, setFont] = useState<number>(16);
   const [theme, setTheme] = useState<Theme>(null);
+
+  const aumentarFonte = () => {
+    const novaFontBase = font + 1;
+    if (novaFontBase >= 25) return;
+    document.documentElement.style.setProperty(
+      "--font-size-xs",
+      `${novaFontBase * 0.75}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-sm",
+      `${novaFontBase * 0.75}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-base",
+      `${novaFontBase}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-lg",
+      `${novaFontBase * 1.125}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-xl",
+      `${novaFontBase * 1.25}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-2xl",
+      `${novaFontBase * 1.5}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-3xl",
+      `${novaFontBase * 1.875}px`,
+    );
+    setFont(novaFontBase);
+  };
+
+  const diminuirFonte = () => {
+    const novaFontBase = font - 1;
+    if (novaFontBase <= 16) return;
+    document.documentElement.style.setProperty(
+      "--font-size-xs",
+      `${novaFontBase * 0.75}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-sm",
+      `${novaFontBase * 0.75}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-base",
+      `${novaFontBase}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-lg",
+      `${novaFontBase * 1.125}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-xl",
+      `${novaFontBase * 1.25}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-2xl",
+      `${novaFontBase * 1.5}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--font-size-3xl",
+      `${novaFontBase * 1.875}px`,
+    );
+    setFont(novaFontBase);
+  };
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -57,8 +126,8 @@ export default function Acessibilidade({ className }: { className?: string }) {
           <span className="font-semibold">Acessibilidade </span>
           <div className="space-x-2">
             <span className="font-light">Fonte: </span>
-            <button>A+</button>
-            <button>A-</button>
+            <button onClick={aumentarFonte}>A+</button>
+            <button onClick={diminuirFonte}>A-</button>
           </div>
           <span className="flex items-center gap-2">
             Contraste: <ThemeToggle handleClick={handleClick} theme={theme} />
