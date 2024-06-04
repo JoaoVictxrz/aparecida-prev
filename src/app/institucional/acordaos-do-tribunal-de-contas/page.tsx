@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
+import { extractTextFromHtml, extrairLinksDoHtml } from "@/utils/functions";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
@@ -34,7 +34,10 @@ export default function Home() {
 
   const links = extrairLinksDoHtml(data?.content.rendered!);
   return (
-    <Container title={data?.title.rendered!} className="flex flex-col">
+    <Container
+      title={extractTextFromHtml(data?.title.rendered!)}
+      className="flex flex-col"
+    >
       {links.map((link, i) => {
         return (
           <LinkAzul href={link.url} text={link.text} key={i} className="pl-5" />
