@@ -18,7 +18,8 @@ export default async function Home() {
     if (!data) return <PaginaNaoEncontrada />;
 
     const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
+    $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
+    $("li").addClass("pl-5");
     $("h2").addClass("font-bold");
 
     $("p").each((_, element) => {
