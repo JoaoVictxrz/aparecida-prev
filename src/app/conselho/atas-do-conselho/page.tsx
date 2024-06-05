@@ -28,11 +28,10 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
-  const $: CheerioAPI = cheerio.load(data.content.rendered);
+  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
   $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
   $("strong").removeAttr("style");
   $("span").removeAttr("style");
