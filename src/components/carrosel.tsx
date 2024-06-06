@@ -27,34 +27,34 @@ export default function Carrosel() {
   return (
     <div className="w-full bg-white dark:bg-zinc-900">
       <div className="group relative m-auto p-8 md:p-16">
-        <div className="item flex justify-center duration-500">
+        <div className="flex items-center justify-center duration-500">
           <Image
             src="/banner-calendario.jpg"
             alt="banner"
             width={500}
             height={500}
-            className=" md:w-9/12 xl:w-3/4"
+            className="w-full max-w-7xl"
           />
         </div>
-        {/* Left Arrow
-        <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+        {/* Left Arrow */}
+        {/* <div className="absolute left-5 top-[50%] hidden -translate-x-0 translate-y-[-50%] cursor-pointer rounded-full bg-black/20 p-2 text-2xl text-white group-hover:block">
           <BsChevronCompactLeft onClick={prevSlide} size={30} />
-        </div>
+        </div> */}
         {/* Right Arrow */}
-        {/* <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+        {/* <div className="absolute right-5 top-[50%] hidden -translate-x-0 translate-y-[-50%] cursor-pointer rounded-full bg-black/20 p-2 text-2xl text-white group-hover:block">
           <BsChevronCompactRight onClick={nextSlide} size={30} />
         </div> */}
-        {/* <div className="flex top-4 justify-center py-2">
+        {/* <div className="top-4 flex justify-center py-2">
           {slides.map((slide, slideIndex) => (
             <div
               key={slideIndex}
               onClick={() => goToSlide(slideIndex)}
-              className="text-2xl cursor-pointer"
+              className="cursor-pointer text-2xl"
             >
               <RxDotFilled />
             </div>
-          ))} */}
-        {/* </div> */}
+          ))}
+        </div> */}
       </div>
     </div>
   );
