@@ -22,7 +22,7 @@ export default function Transparencia() {
         <h1 className="my-8 text-lg font-bold uppercase md:text-2xl">
           Transparencia
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4">
           <LinksTransparencia
             href="http://previdenciadeaparecidadegoiania.sigepnet.com.br/transparencia/folha.php"
             text="Folha de pagamento"

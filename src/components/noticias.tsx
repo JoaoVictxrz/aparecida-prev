@@ -63,13 +63,13 @@ export default function Noticias() {
             Leia mais
           </Link>
         </div>
-        <div className="grid w-full grid-cols-1 place-items-center md:grid-cols-3">
+        <div className="grid w-full grid-cols-1 place-items-center sm:grid-cols-2 xl:grid-cols-3">
           {noticias?.map(
             (dados, i) =>
               i < 3 && (
                 <article
                   key={i}
-                  className="mx-5 my-2 flex h-full max-w-md flex-col justify-between overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 sm:mx-0 md:max-w-2xl xl:mx-10"
+                  className="mx-5 my-2 flex h-full max-w-sm flex-col justify-between overflow-hidden bg-white p-2 shadow-md dark:bg-zinc-900 sm:mx-0 xl:mx-10"
                 >
                   {media && media[i] ? (
                     <div className="h-1/2">

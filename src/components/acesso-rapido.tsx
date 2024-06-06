@@ -10,7 +10,7 @@ export default function AcessoRapido() {
         <h1 className="my-8 text-lg font-bold uppercase md:text-2xl">
           acesso rápido
         </h1>
-        <div className="grid grid-cols-2 justify-around md:flex">
+        <div className="grid justify-around sm:grid-cols-2 xl:flex">
           <LinksAcessoRapido
             href="/acesso-rapido/politica-de-valorizacao-dos-servidores"
             text="Política de Valorização do Servidor"
