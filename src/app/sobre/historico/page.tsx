@@ -13,9 +13,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Historico() {
   try {
-    const data: PostsProps = await getData("/pages/2775");
+    const data = await getData("/pages/2775");
 
-    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+    if (!data) return <PaginaNaoEncontrada />;
 
     const $: CheerioAPI = cheerio.load(data.content.rendered);
     $("b").addClass("font-semibold");

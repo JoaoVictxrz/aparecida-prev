@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Valores() {
   try {
     const data = await getData("/pages/2776");
-    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+    if (!data) return <PaginaNaoEncontrada />;
 
     const $: CheerioAPI = cheerio.load(data.content.rendered);
     $("ul").addClass("space-y-2");

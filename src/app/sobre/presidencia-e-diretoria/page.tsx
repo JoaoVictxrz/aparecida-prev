@@ -12,20 +12,24 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Equipe() {
-  const data: PostsProps = await getData("/pages/2779");
-  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+  try {
+    const data = await getData("/pages/2779");
+    if (!data) return <PaginaNaoEncontrada />;
 
-  const $: CheerioAPI = cheerio.load(data.content.rendered);
-  $("pre").addClass("flex items-center flex-col");
-  $("img").removeAttr("class");
-  const updatedHTML = $.html();
+    const $: CheerioAPI = cheerio.load(data.content.rendered);
+    $("pre").addClass("flex items-center flex-col");
+    $("img").removeAttr("class");
+    const updatedHTML = $.html();
 
-  return (
-    <Container title="Presidência e diretoria executivas">
-      <div
-        dangerouslySetInnerHTML={{ __html: updatedHTML }}
-        className="text-cemter flex flex-col items-center"
-      />
-    </Container>
-  );
+    return (
+      <Container title="Presidência e diretoria executivas">
+        <div
+          dangerouslySetInnerHTML={{ __html: updatedHTML }}
+          className="text-cemter flex flex-col items-center"
+        />
+      </Container>
+    );
+  } catch (error) {
+    <PaginaNaoEncontrada />;
+  }
 }
