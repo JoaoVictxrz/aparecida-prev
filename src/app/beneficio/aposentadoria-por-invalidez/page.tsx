@@ -1,40 +1,27 @@
-"use client";
-import { useEffect, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
-import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import Loading from "@/app/loading";
+import { getData } from "@/services/fetch";
+import { Metadata } from "next";
 
-export default function Home() {
-  const [data, setData] = useState<PostsProps>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get("/pages/2782");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      setError(true);
-    }
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Aposentadoria por invalidez",
   };
+}
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+export default async function Home() {
+  try {
+    const data = await getData("/pages/2782");
 
-  if (error) return <PaginaNaoEncontrada />;
-  if (loading) return <Loading />;
-
-  return (
-    <Container title="Aposentadoria por invalidez" className="space-y-4">
-      <div
-        dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
-        className="flex flex-col space-y-2"
-      />
-    </Container>
-  );
+    return (
+      <Container title="Aposentadoria por invalidez" className="space-y-4">
+        <div
+          dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
+          className="flex flex-col space-y-2"
+        />
+      </Container>
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }
