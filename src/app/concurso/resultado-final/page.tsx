@@ -1,52 +1,33 @@
-"use client";
-import { useEffect, useState } from "react";
-import { extrairLinksDoHtml } from "@/utils/functions";
-import { AxiosInstance } from "@/services/axios";
-import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import LinkAzul from "@/app/institucional/components/links";
-import Loading from "@/app/loading";
+import { Metadata } from "next";
+import { getData } from "@/services/fetch";
+import cheerio, { CheerioAPI } from "cheerio";
 
-export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState<PostsProps>();
+export const metadata: Metadata = {
+  title: "Resultado Final",
+};
 
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get("/pages/6831");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Erro ao buscar dados: " + error);
-      setLoading(false);
-      setError(true);
-    }
-  };
+export default async function Home() {
+  try {
+    const data = await getData("/pages/6831");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+    $("a").addClass(
+      "text-blue-500 hover:text-blue-700 hover:underline pl-5 break-words",
+    );
+    $("a").attr("target", "_blank");
+    const updatedHTML = $.html();
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
-
-  return (
-    <>
-      {error && <PaginaNaoEncontrada />}
-      <Container title={data?.title.rendered!} className="space-y-2">
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            {links.map((link, i) => (
-              <div key={i} className="line-clamp-1 md:pl-5">
-                <LinkAzul href={link.url} text={link.text} className="w-3/4" />
-              </div>
-            ))}
-          </div>
-        )}
+    return (
+      <Container title={data?.title.rendered!}>
+        <div
+          dangerouslySetInnerHTML={{ __html: updatedHTML }}
+          className="space-y-2"
+        />
       </Container>
-    </>
-  );
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }

@@ -1,48 +1,32 @@
-"use client";
-import { useEffect, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
-import { PostsProps } from "@/interfaces/interfaces";
 import Container from "@/components/container";
-import Loading from "@/app/loading";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import { getData } from "@/services/fetch";
+import cheerio, { CheerioAPI } from "cheerio";
+import { Metadata } from "next";
 
-export default function Home() {
-  const [data, setData] = useState<PostsProps>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+export const metadata: Metadata = {
+  title: "Editais de convocação",
+};
 
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get<PostsProps>("/pages/6560");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Erro ao buscar dados: " + error);
-      setError(true);
-      setLoading(false);
-    }
-  };
+export default async function Home() {
+  try {
+    const data = await getData("/pages/6560");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    const $: CheerioAPI = cheerio.load(data.content.rendered);
+    $("a").addClass(
+      "text-blue-500 hover:text-blue-700 hover:underline break-words",
+    );
+    const updatedHTML = $.html();
 
-  return (
-    <>
-      {error ? (
-        <PaginaNaoEncontrada />
-      ) : (
-        <Container title={data?.title.rendered!} className="space-y-2">
-          {/* Tem que rever essa parte */}
-          {loading ? (
-            <Loading />
-          ) : (
-            <div
-              dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
-            ></div>
-          )}
-        </Container>
-      )}
-    </>
-  );
+    return (
+      <Container title={data?.title.rendered!}>
+        <div
+          dangerouslySetInnerHTML={{ __html: updatedHTML }}
+          className="space-y-4"
+        />
+      </Container>
+    );
+  } catch (error) {
+    return <PaginaNaoEncontrada />;
+  }
 }
