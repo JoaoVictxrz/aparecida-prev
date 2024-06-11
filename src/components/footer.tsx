@@ -15,7 +15,7 @@ export function Footer() {
               href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
               text="agendamentos"
             />
-            <LinksFooter href="/" text="adesão ao ipasgo" />
+            <LinksFooter href="/adesao-ao-ipasgo" text="adesão ao ipasgo" />
             <LinksFooter
               href="/beneficio/aposentadoria-por-invalidez"
               text="aposentadoria por invalidez"
@@ -29,7 +29,10 @@ export function Footer() {
               href="/beneficio/aposentadoria-por-idade"
               text="aposentadoria por idade"
             />
-            <LinksFooter href="/" text="aposentadoria por contribuição" />
+            <LinksFooter
+              href="/aposentadoria-por-contribuicao"
+              text="aposentadoria por contribuição"
+            />
             <LinksFooter
               href="/beneficio/aposentadoria-compulsoria"
               text="aposentadoria compulsória"
@@ -93,7 +96,10 @@ export function Footer() {
             <LinksFooter href="/ouvidoria" text="ouvidoria" />
           </div>
           <div className="flex flex-col py-2">
-            <LinksFooter href="/" text="política de segurança e informação" />
+            <LinksFooter
+              href="/politica-de-seguranca-e-informacao"
+              text="política de segurança e informação"
+            />
             <LinksFooter
               href="/politica-de-valorizacao-dos-servidores"
               text="política de valorização dos servidores"
@@ -103,7 +109,10 @@ export function Footer() {
               href="/sobre/presidencia-e-diretoria"
               text="presidência e diretorias executivas"
             />
-            <LinksFooter href="/" text="previdência no brasil" />
+            <LinksFooter
+              href="/previdencia-no-brasil"
+              text="previdência no brasil"
+            />
             <LinksFooter
               href="/acesso-rapido/situacao-financeira-aparecida-prev"
               text="situação financeira do aparecidaprev"
