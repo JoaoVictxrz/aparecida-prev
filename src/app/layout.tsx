@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import NavBar from "@/components/navbar";
-import { Footer } from "@/components/footer";
 import { Suspense } from "react";
+import { Footer } from "@/components/footer";
+import { Inter } from "next/font/google";
 import Loading from "./loading";
+import NavBar from "@/components/navbar";
 import Modal from "@/components/modal";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+export const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   icons:
