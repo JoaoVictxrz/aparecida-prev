@@ -60,7 +60,7 @@ export default function Home({ params }: Props) {
       <div className="max-w-4xl ">
         {posts.map((post) => (
           <div className="flex flex-col justify-center" key={post.id}>
-            {media && (
+            {media && media.length > 0 && media[0] ? (
               <div className="h-full">
                 <Image
                   src={media[0].source_url}
@@ -70,7 +70,7 @@ export default function Home({ params }: Props) {
                   className="my-4 pl-4"
                 />
               </div>
-            )}
+            ) : null}
             <h1 className="pl-4 text-3xl font-bold">{post.title.rendered}</h1>
             <h2 className="pl-4">Postado em: {formatarData(post.date)}</h2>
             <div
