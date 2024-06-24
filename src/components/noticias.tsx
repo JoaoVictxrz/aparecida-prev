@@ -82,11 +82,9 @@ export default function Noticias() {
                       />
                     </div>
                   ) : (
-                    <div className="bg-white">
-                      <Loading />
-                    </div>
+                    <div className="h-1/2"></div>
                   )}
-
+                  {loading && <Loading />}
                   <div className="flex h-1/2 flex-col justify-between py-2">
                     <h2 className="text-base font-semibold uppercase dark:text-white xl:text-xl">
                       {dados.title.rendered}
