@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   try {
-    const data = await getData("/pages/2782");
+    const data = await getData("/pages/278");
 
     return (
       <Container title="Aposentadoria por invalidez" className="space-y-4">
@@ -22,6 +22,7 @@ export default async function Home() {
       </Container>
     );
   } catch (error) {
+    console.log(error);
     return <PaginaNaoEncontrada />;
   }
 }
