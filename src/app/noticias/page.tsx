@@ -27,6 +27,7 @@ export default function Home() {
   const antNumero = numeroMeio - 1;
 
   const fetchData = async (page: number) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     try {
       const postsResponse = await AxiosInstance.get<PostsProps[]>(
         `/posts?categories=2&page=${page}`,
@@ -126,7 +127,7 @@ export default function Home() {
           className={`${proxNumero > 13 && "hidden"}`}
           onClick={() => (
             setCurrentPage(proxNumero),
-            proxNumero === 13 && window.scrollTo({ top: 0, behavior: "smooth" })
+            window.scrollTo({ top: 0, behavior: "smooth" })
           )}
         >
           {proxNumero}

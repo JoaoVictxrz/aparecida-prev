@@ -2,7 +2,7 @@
 import { PostsProps, mediaProps } from "@/interfaces/interfaces";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
-import { formatarData } from "@/utils/functions";
+import { extractTextFromHtml, formatarData } from "@/utils/functions";
 import Container from "@/components/container";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +22,7 @@ export default function Home({ params }: Props) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const fetchData = async () => {
       try {
         const postsResponse = await AxiosInstance.get<PostsProps[]>(
@@ -55,9 +56,14 @@ export default function Home({ params }: Props) {
   if (error || !posts) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
 
+  const title = posts.map((posts) => posts.title.rendered);
+
   return (
-    <Container title="Noticias" className="flex items-center justify-center">
-      <div className="max-w-4xl ">
+    <Container
+      title={`${extractTextFromHtml(title[0])}`}
+      className="flex items-center justify-center"
+    >
+      <div className="max-w-4xl">
         {posts.map((post) => (
           <div className="flex flex-col justify-center" key={post.id}>
             {media && media.length > 0 && media[0] ? (
