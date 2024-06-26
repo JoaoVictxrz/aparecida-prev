@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,6 +15,7 @@ export function Footer() {
             <LinksFooter
               href="https://www.aparecidaprev.com.br/portal/agendamento/admin/index.php"
               text="agendamentos"
+              target="_blank"
             />
             <LinksFooter href="/adesao-ao-ipasgo" text="adesão ao ipasgo" />
             <LinksFooter
@@ -165,10 +167,20 @@ export function Footer() {
   );
 }
 
-export const LinksFooter = ({ href, text }: any) => {
+export const LinksFooter = ({
+  href,
+  text,
+  target,
+}: {
+  href: string;
+  text: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+}) => {
   return (
     <Link
       href={`${href}`}
+      target={target}
+      onClick={() => window.scrollTo(0, 0)}
       className="upercase p-2 text-zinc-900 hover:text-zinc-700 dark:text-white hover:dark:text-zinc-500"
     >
       {text}
