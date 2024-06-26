@@ -60,6 +60,7 @@ export const LinksAcessoRapido = ({
   return (
     <Link
       target={target}
+      onClick={() => window.scrollTo(0, 0)}
       href={href}
       className="group m-5 flex flex-col items-center justify-center gap-5 p-5 text-center transition duration-300 ease-in-out hover:scale-110 hover:bg-zinc-100/95 hover:text-zinc-900 dark:hover:bg-zinc-800 hover:dark:text-zinc-200"
     >
