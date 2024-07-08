@@ -26,4 +26,5 @@ export interface mediaProps {
     height: number;
   };
   source_url: string;
+  jetpack_featured_media_url: string;
 }
