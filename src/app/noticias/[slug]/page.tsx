@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Loading from "@/app/loading";
+import cheerio, { CheerioAPI } from "cheerio";
 
 interface Props {
   params: {
@@ -58,6 +59,10 @@ export default function Home({ params }: Props) {
 
   const title = posts.map((posts) => posts.title.rendered);
 
+  const $: CheerioAPI = cheerio.load(posts[0]?.content.rendered);
+  $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
+  $("a").attr("target", "_blank");
+  const updateHtml = $.html();
   return (
     <Container
       title={`${extractTextFromHtml(title[0])}`}
@@ -80,7 +85,7 @@ export default function Home({ params }: Props) {
             <h1 className="pl-4 text-3xl font-bold">{post.title.rendered}</h1>
             <h2 className="pl-4">Postado em: {formatarData(post.date)}</h2>
             <div
-              dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+              dangerouslySetInnerHTML={{ __html: updateHtml }}
               className="grid grid-cols-1 gap-4 p-4"
             />
             <div className="flex w-full items-center justify-center">
