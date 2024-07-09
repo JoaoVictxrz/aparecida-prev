@@ -11,7 +11,7 @@ export default function Acessibilidade({ className }: { className?: string }) {
   const [theme, setTheme] = useState<Theme>(null);
 
   const aumentarFonte = () => {
-    const novaFontBase = font + 1;
+    const novaFontBase = font + 2;
     if (novaFontBase >= 25) return;
     document.documentElement.style.setProperty(
       "--font-size-xs",
@@ -45,7 +45,7 @@ export default function Acessibilidade({ className }: { className?: string }) {
   };
 
   const diminuirFonte = () => {
-    const novaFontBase = font - 1;
+    const novaFontBase = font - 2;
     if (novaFontBase <= 16) return;
     document.documentElement.style.setProperty(
       "--font-size-xs",
