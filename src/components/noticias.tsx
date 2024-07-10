@@ -115,12 +115,9 @@ export default function Noticias() {
                     {extractTextFromHtml(post.excerpt.rendered)}
                   </p>
                   <div className="flex w-full justify-center">
-                    <Link
-                      href={`/noticias/${post.slug}`}
-                      className="mt-2 rounded border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-white group-hover:bg-blue-500 group-hover:text-white dark:border-blue-800 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-700"
-                    >
+                    <button className="mt-2 rounded border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-white group-hover:bg-blue-500 group-hover:text-white dark:border-blue-800 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-700">
                       Leia mais
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </Link>
