@@ -14,21 +14,20 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const response = await AxiosInstance.get("/pages?slug=" + params.slug);
+  try {
+    if (response.status !== 200) {
+      throw new Error("Erro ao buscar dados da página");
+    }
 
-  if (response.status !== 200) {
-    throw new Error("Erro ao buscar dados da página");
+    const data: PostsProps = response.data[0];
+    return {
+      title: data.title.rendered,
+    };
+  } catch (error) {
+    return {
+      title: " ",
+    };
   }
-
-  const contentRendered = response.data[0].content.rendered;
-
-  if (!contentRendered || contentRendered.trim().length === 0) {
-    throw new Error("Content is empty");
-  }
-
-  const data: PostsProps = response.data[0];
-  return {
-    title: data.title.rendered,
-  };
 }
 
 export default async function Page({ params }: Props) {
