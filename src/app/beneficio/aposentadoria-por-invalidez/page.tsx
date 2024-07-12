@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   try {
-    const data = await getData("/pages/278");
+    const data = await getData("/pages/2782");
 
     return (
       <Container title="Aposentadoria por invalidez" className="space-y-4">
