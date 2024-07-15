@@ -96,59 +96,67 @@ export default function Home() {
         ))}
       </div>
       <div className="flex w-full justify-center gap-[2px]">
-        <Button
-          onClick={() => (
-            setCurrentPage(1), window.scrollTo({ top: 0, behavior: "smooth" })
-          )}
-          className={`${antNumero < 1 && "hidden"}`}
-        >
-          <MdKeyboardDoubleArrowLeft />
-        </Button>
-        <Button
-          className={`${antNumero < 1 && "hidden"}`}
-          onClick={() => (
-            setCurrentPage(currentPage - 1),
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          )}
-        >
-          <MdKeyboardArrowLeft />
-        </Button>
-        <Button
-          className={`${antNumero < 1 && "hidden"}`}
-          onClick={() => (
-            setCurrentPage(antNumero),
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          )}
-        >
-          {antNumero}
-        </Button>
-        <Button className="bg-zinc-200 dark:bg-zinc-800">{numeroMeio}</Button>
-        <Button
-          className={`${proxNumero > 13 && "hidden"}`}
-          onClick={() => (
-            setCurrentPage(proxNumero),
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          )}
-        >
-          {proxNumero}
-        </Button>
-        <Button
-          className={`${proxNumero > 13 && "hidden"}`}
-          onClick={() => (
-            setCurrentPage(currentPage + 1),
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          )}
-        >
-          <MdKeyboardArrowRight />
-        </Button>
-        <Button
-          onClick={() => (
-            setCurrentPage(13), window.scrollTo({ top: 0, behavior: "smooth" })
-          )}
-          className={`${proxNumero > 13 && "hidden"}`}
-        >
-          <MdKeyboardDoubleArrowRight />
-        </Button>
+        {posts.length < 10 ? null : (
+          <>
+            <Button
+              onClick={() => (
+                setCurrentPage(1),
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              )}
+              className={`${antNumero < 1 && "hidden"}`}
+            >
+              <MdKeyboardDoubleArrowLeft />
+            </Button>
+            <Button
+              className={`${antNumero < 1 && "hidden"}`}
+              onClick={() => (
+                setCurrentPage(currentPage - 1),
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              )}
+            >
+              <MdKeyboardArrowLeft />
+            </Button>
+            <Button
+              className={`${antNumero < 1 && "hidden"}`}
+              onClick={() => (
+                setCurrentPage(antNumero),
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              )}
+            >
+              {antNumero}
+            </Button>
+            <Button className="bg-zinc-200 dark:bg-zinc-800">
+              {numeroMeio}
+            </Button>
+            <Button
+              className={`${proxNumero > 13 && "hidden"}`}
+              onClick={() => (
+                setCurrentPage(proxNumero),
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              )}
+            >
+              {proxNumero}
+            </Button>
+            <Button
+              className={`${proxNumero > 13 && "hidden"}`}
+              onClick={() => (
+                setCurrentPage(currentPage + 1),
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              )}
+            >
+              <MdKeyboardArrowRight />
+            </Button>
+            <Button
+              onClick={() => (
+                setCurrentPage(13),
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              )}
+              className={`${proxNumero > 13 && "hidden"}`}
+            >
+              <MdKeyboardDoubleArrowRight />
+            </Button>
+          </>
+        )}
       </div>
     </Container>
   );
