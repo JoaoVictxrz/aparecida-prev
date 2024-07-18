@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 interface props {
@@ -11,6 +12,7 @@ export const LinksPage = ({ href, text, target }: props) => {
     <Link
       target={target}
       href={href}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className="group flex items-center justify-center bg-zinc-100 p-5 text-center shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-zinc-200 dark:bg-zinc-800 hover:dark:bg-zinc-700"
     >
       <p
