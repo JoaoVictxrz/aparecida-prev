@@ -91,7 +91,9 @@ const MobileNavbar = ({
           key={i}
           href={link.href}
           text={link.text}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => (
+            setIsOpen(!isOpen), window.scrollTo({ top: 0, behavior: "smooth" })
+          )}
         />
       ))}
       <Link
@@ -134,7 +136,9 @@ const DesktopNavbar = ({ active, setActive }: any) => {
             key={i}
             href={link.href}
             text={link.text}
-            onClick={() => setActive(i)}
+            onClick={() => (
+              setActive(i), window.scrollTo({ top: 0, behavior: "smooth" })
+            )}
             className={`${
               active === i
                 ? "border-b-2 border-zinc-300/50 dark:border-zinc-600/40"
