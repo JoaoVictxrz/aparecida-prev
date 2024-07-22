@@ -35,7 +35,7 @@ export default function Home() {
   if (error) return <PaginaNaoEncontrada />;
 
   return (
-    <Container title="Balanço Orcamentário" className="grid md:grid-cols-2">
+    <Container title="Comparativo da Despesa" className="grid md:grid-cols-2">
       {posts?.map((post, i) => (
         <Cards
           key={i}
