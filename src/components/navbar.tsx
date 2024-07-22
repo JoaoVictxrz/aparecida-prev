@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import Acessibilidade from "./Acessibilidade";
+import Acessibilidade from "./acessibilidade";
 
 const links = [
   { href: "/", text: "HOME" },
