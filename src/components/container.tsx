@@ -1,3 +1,4 @@
+import ScrollToTop from "./subir-ao-topo";
 import Title from "./title";
 interface props {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ export default function Container({
       <section className="container px-2">
         <Title title={title} postadoEm={PostadoEm} />
         <div className={`${className} container w-full gap-5 p-2 pb-20`}>
+          <ScrollToTop />
           {children}
         </div>
       </section>
