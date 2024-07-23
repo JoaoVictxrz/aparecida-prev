@@ -34,6 +34,7 @@ export default function Home() {
             width={400}
             height={400}
             className="w-44"
+            priority
           />
         </Link>
         <ProGestao />
