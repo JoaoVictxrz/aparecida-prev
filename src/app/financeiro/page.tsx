@@ -120,7 +120,6 @@ export default function Home() {
       result.data.length,
     ]),
   );
-  console.log(resultMap);
   return (
     <Container title="Financeiro" className="grid md:grid-cols-2">
       {links
