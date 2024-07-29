@@ -123,7 +123,12 @@ export default function Home() {
   return (
     <Container title="Financeiro" className="grid md:grid-cols-2">
       {links
-        .filter((link) => resultMap.has(link.href))
+        .filter(
+          (link) =>
+            resultMap.get(
+              link.href.replace(/^\/(institucional|acesso-rapido)\//, ""),
+            ) > 0,
+        )
         .map((link, i) => (
           <LinksPage
             href={link.href}
