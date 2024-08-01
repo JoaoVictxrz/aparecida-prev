@@ -17,10 +17,12 @@ export default function Home() {
       try {
         const response = await AxiosInstance.get("/posts?categories=27");
         setPostsDpir(response.data);
-        const responsePage2 = await AxiosInstance.get(
-          "/posts?categories=27&page=2",
-        );
-        setPostsDpir((prevPosts) => [...prevPosts, ...responsePage2.data]);
+        if (postsDpir.length > 10) {
+          const responsePage2 = await AxiosInstance.get(
+            "/posts?categories=27&page=2",
+          );
+          setPostsDpir((prevPosts) => [...prevPosts, ...responsePage2.data]);
+        }
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -29,7 +31,7 @@ export default function Home() {
       }
     };
     fetchData();
-  }, []);
+  }, [postsDpir]);
 
   if (loading) return <Loading />;
   if (error) return <PaginaNaoEncontrada />;

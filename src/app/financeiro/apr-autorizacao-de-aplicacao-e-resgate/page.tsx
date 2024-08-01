@@ -17,10 +17,12 @@ export default function Home() {
       const fetchData = async () => {
         const response = await AxiosInstance.get("/posts?categories=22");
         setPosts(response.data);
-        const responsePage2 = await AxiosInstance.get(
-          "/posts?categories=22&page=2",
-        );
-        setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
+        if (posts.length > 10) {
+          const responsePage2 = await AxiosInstance.get(
+            "/posts?categories=22&page=2",
+          );
+          setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
+        }
         setLoading(false);
       };
       fetchData();
@@ -29,7 +31,7 @@ export default function Home() {
       setError(true);
       setLoading(false);
     }
-  }, []);
+  }, [posts]);
 
   return (
     <>
