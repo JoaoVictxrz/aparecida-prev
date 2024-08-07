@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PostsProps } from "@/interfaces/interfaces";
-import { fetchPostsBySlug } from "@/services/fetch-noticias";
+import { fetchPostsBySlug } from "@/services/fetch-by-slug";
 
 export default function useFetchPosts(slug: string) {
   const [posts, setPosts] = useState<PostsProps[] | null>(null);
