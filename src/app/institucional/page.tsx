@@ -1,13 +1,9 @@
 "use client";
 import { LinksPage } from "@/components/links";
+import { useMemo } from "react";
 import Container from "@/components/container";
-import { AxiosResponse } from "axios";
-import { useEffect, useMemo, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
 
 export default function Sobre() {
-  const [results, setResults] = useState<AxiosResponse<any, any>[]>([]);
-
   const links = useMemo(
     () => [
       {
@@ -104,63 +100,11 @@ export default function Sobre() {
     [],
   );
 
-  useEffect(() => {
-    if (links.length === 0) return;
-
-    const filteredHrefs = links
-      .map((link) =>
-        link.href.replace(/^\/(institucional|acesso-rapido)\//, ""),
-      )
-      .filter((href) => links.some((link) => link.href.includes(href)));
-
-    async function fetchData() {
-      try {
-        const promises = filteredHrefs
-          .map((href) => {
-            // Pular links que já possuem resultados
-            if (href.includes("https")) return null;
-            return AxiosInstance.get(`/pages?slug=${href}`);
-          })
-          .filter(
-            (promise): promise is Promise<AxiosResponse<any, any>> =>
-              promise !== null,
-          );
-
-        const data = await Promise.all(promises);
-        setResults(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchData();
-  }, [links]);
-
-  // Cria um mapeamento dos hrefs para o tamanho dos dados retornados
-  const resultMap = new Map(
-    results.map((result) => [
-      result.config.url?.split("?slug=")[1] || "",
-      result.data.length,
-    ]),
-  );
-
   return (
     <Container title="Institucional" className="grid md:grid-cols-2">
-      {links
-        .filter(
-          (link) =>
-            resultMap.get(
-              link.href.replace(/^\/(institucional|acesso-rapido)\//, ""),
-            ) > 0,
-        )
-        .map((link, i) => (
-          <LinksPage
-            href={link.href}
-            text={link.text}
-            target={link.target}
-            key={i}
-          />
-        ))}
+      {links.map((link, i) => (
+        <LinksPage key={i} {...link} />
+      ))}
     </Container>
   );
 }
