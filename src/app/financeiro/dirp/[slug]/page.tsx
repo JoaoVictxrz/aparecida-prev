@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  const { posts, loading, error } = useFetchPosts(params.slug as string);
+  const { posts, loading, error } = useFetchPosts("?slug=" + params.slug);
 
   return <PaginaSlug data={posts} loading={loading} error={error} />;
 }
