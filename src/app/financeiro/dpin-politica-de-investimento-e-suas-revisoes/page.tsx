@@ -1,40 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
-import { PostsProps } from "@/interfaces/interfaces";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPosts from "@/hooks/useFetchPosts";
 import Container from "@/components/container";
 import Loading from "@/app/loading";
 import Cards from "@/components/card";
 
 export default function Home() {
-  const [posts, setPosts] = useState<PostsProps[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await AxiosInstance.get("/posts?categories=24");
-        setPosts(response.data);
-        if (posts.length > 10) {
-          const responsePage2 = await AxiosInstance.get(
-            "/posts?categories=24&page=2",
-          );
-          setPosts((prevPosts) => [...prevPosts, ...responsePage2.data]);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-        setError(true);
-      }
-    };
-    fetchData();
-  }, [posts]);
-
+  const { posts, loading, error } = useFetchPosts("?categories=24");
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
+
+  console.log(posts);
 
   return (
     <Container
