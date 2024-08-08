@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PostsProps } from "@/interfaces/interfaces";
-import { fetchPostsBySlug } from "@/services/fetch-by-slug";
+import { fetchPosts } from "@/services/fetch-posts";
 
 export default function useFetchPosts(slug: string) {
   const [posts, setPosts] = useState<PostsProps[] | null>(null);
@@ -11,7 +11,7 @@ export default function useFetchPosts(slug: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchPostsBySlug(slug);
+        const data = await fetchPosts(slug);
         setPosts(data);
       } catch (err) {
         console.log("Erro ao buscar dados da página:", err);
