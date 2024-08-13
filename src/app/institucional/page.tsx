@@ -87,7 +87,7 @@ export default function Sobre() {
         target: "_self",
       },
       {
-        href: "/institucional/prova-de-vida-anual",
+        href: "/institucional/prova-anual-de-vida",
         text: "Prova de vida anual",
         target: "_self",
       },
