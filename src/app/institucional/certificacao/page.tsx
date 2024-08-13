@@ -1,35 +1,27 @@
-import { PostsProps } from "@/interfaces/interfaces";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
+"use client";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
 import Container from "@/components/container";
+import Loading from "@/app/loading";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Certificação",
-  };
-}
+export default function Home() {
+  const { pages, error, loading } = useFetchPages(
+    "?slug=certificacao-cpa-10-anbima",
+  );
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
+  const page = pages[0];
 
-export default async function Home() {
-  try {
-    const data: PostsProps = await getData("/pages/555");
+  const updatedHTML = CheerioLink(page.content.rendered!);
 
-    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
-
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
-    const updatedHTML = $.html();
-
-    return (
-      <Container title={data.title.rendered}>
-        <div
-          dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="space-y-2"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  return (
+    <Container title={page.title.rendered}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="space-y-2"
+      />
+    </Container>
+  );
 }

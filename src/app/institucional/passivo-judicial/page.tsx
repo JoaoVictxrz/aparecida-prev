@@ -7,38 +7,23 @@ import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
 import LinkAzul from "../components/links";
 import Loading from "@/app/loading";
+import useFetchPages from "@/hooks/useFetchPages";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 
 export default function Home() {
-  const [data, setData] = useState<PostsProps>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get("/pages/5958");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("erro ao buscar dados: " + error);
-      setLoading(false);
-      setError(true);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { pages, error, loading } = useFetchPages("?slug=passivo-judicial");
 
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
+  if (!pages) return;
 
-  const links = extrairLinksDoHtml(data?.content.rendered!);
+  const data = pages[0];
+
+  const updatedHTML = CheerioLink(data.content.rendered!);
 
   return (
     <Container title={data?.title.rendered!}>
-      {links.map((link, i) => (
-        <LinkAzul href={link.url} text={link.text} key={i} className="pl-5" />
-      ))}
+      <div dangerouslySetInnerHTML={{ __html: updatedHTML }} />
     </Container>
   );
 }

@@ -1,37 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
-import { PostsProps } from "@/interfaces/interfaces";
-import cheerio, { CheerioAPI } from "cheerio";
-import Container from "@/components/container";
+import cheerio from "cheerio";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
+import Container from "@/components/container";
 import Loading from "@/app/loading";
 
 export default function Home() {
-  const [data, setData] = useState<PostsProps>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const { pages, error, loading } = useFetchPages("?slug=audiencia-publica");
 
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get("/pages/6515");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Erro ao buscar dados da página:", error);
-      setLoading(false);
-      setError(true);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
+  if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
+  if (!pages) return;
 
-  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  const page = pages[0];
+
+  const $ = cheerio.load(page.content.rendered!);
   $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
   $("a").attr("target", "_blank");
   const selector = {
@@ -45,12 +28,11 @@ export default function Home() {
 
   $(selector[1]).attr("href", newHref[1]);
   $(selector[2]).attr("href", newHref[2]);
-  $("strong").contents().unwrap();
-  $("p").addClass("font-bold");
+  $("strong").wrap("<p></p>");
   const updateHtml = $.html();
 
   return (
-    <Container title={data?.title.rendered}>
+    <Container title={page?.title.rendered}>
       <div
         dangerouslySetInnerHTML={{ __html: updateHtml }}
         className="space-y-4"
