@@ -2,39 +2,22 @@
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
-import cheerio, { CheerioAPI } from "cheerio";
+import cheerio from "cheerio";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
 import Loading from "@/app/loading";
+import useFetchPages from "@/hooks/useFetchPages";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState<PostsProps>();
-
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get("/pages/551");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Erro ao buscar dados: " + error);
-      setLoading(false);
-      setError(true);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (error || !data?.content.rendered) return <PaginaNaoEncontrada />;
+  const { pages, loading, error } = useFetchPages(
+    "?slug=local-de-reunioes-comiteconselho",
+  );
+  if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
+  const data = pages![0];
 
-  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
-  $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
-  $("span").removeAttr("style");
-  const updateHtml = $.html();
+  const updateHtml = CheerioLink(data.content.rendered);
 
   return (
     <Container title="Local e data das reuniões do comitê/conselho">

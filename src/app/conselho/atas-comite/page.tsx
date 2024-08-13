@@ -1,43 +1,36 @@
+"use client";
+import Loading from "@/app/loading";
 import Container from "@/components/container";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
 import { PostsProps } from "@/interfaces/interfaces";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
-import { Metadata } from "next";
+import cheerio from "cheerio";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Atas comitê",
-  };
-}
+export default function Home() {
+  const { pages, loading, error } = useFetchPages("?slug=atas-comiteconselho");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
+  const data = pages[0];
 
-export default async function Home() {
-  try {
-    const data: PostsProps = await getData("/pages/553");
+  const $ = cheerio.load(data.content.rendered);
+  $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
+  $("li").addClass("pl-5");
+  $("h2").addClass("font-bold");
 
-    if (!data) return <PaginaNaoEncontrada />;
+  $("p").each((_, element) => {
+    if ($(element).html()?.trim() === "&nbsp;") {
+      $(element).remove();
+    }
+  });
+  const updatedHTML = $.html();
 
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
-    $("li").addClass("pl-5");
-    $("h2").addClass("font-bold");
-
-    $("p").each((_, element) => {
-      if ($(element).html()?.trim() === "&nbsp;") {
-        $(element).remove();
-      }
-    });
-    const updatedHTML = $.html();
-
-    return (
-      <Container title={data.title.rendered}>
-        <div
-          dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="space-y-4"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  return (
+    <Container title={data.title.rendered}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="space-y-4"
+      />
+    </Container>
+  );
 }

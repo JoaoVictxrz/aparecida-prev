@@ -1,41 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
-import { PostsProps } from "@/interfaces/interfaces";
-import cheerio, { CheerioAPI } from "cheerio";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
 import Container from "@/components/container";
 import Loading from "@/app/loading";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState<PostsProps>();
-
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get("/pages/3326");
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("erro ao buscar dados: " + error);
-      setLoading(false);
-      setError(true);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  const { error, loading, pages } = useFetchPages("?slug=regimento-interno");
   if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
+  const data = pages![0];
 
-  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
-  $("span").removeAttr("style");
-  $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
-  const updateHtml = $.html();
-
+  const updateHtml = CheerioLink(data.content.rendered!);
   return (
     <Container title={data?.title.rendered!}>
       <div
