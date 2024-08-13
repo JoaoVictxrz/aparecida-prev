@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PostsProps } from "@/interfaces/interfaces";
-import { fetchPages } from "@/services/fetch-posts";
+import { fetchPages } from "@/services/fetch-api";
 
 export default function useFetchPages(slug: string) {
   const [pages, setPages] = useState<PostsProps[] | null>(null);
