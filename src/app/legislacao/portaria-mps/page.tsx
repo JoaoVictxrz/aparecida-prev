@@ -1,22 +1,19 @@
-import { PostsProps } from "@/interfaces/interfaces";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
-import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+"use client";
+import Loading from "@/app/loading";
 import Container from "@/components/container";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
+import cheerio from "cheerio";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Portaria MPS",
-  };
-}
+export default function Home() {
+  const { pages, error, loading } = useFetchPages("?slug=portaria-mps");
 
-export default async function Home() {
-  const data: PostsProps = await getData("/pages/663");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
 
-  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
-
-  const $: CheerioAPI = cheerio.load(data.content.rendered);
+  const data = pages[0];
+  const $ = cheerio.load(data.content.rendered);
   $("strong").addClass("font-bold");
   $("a").addClass("text-blue-500 pl-5 font-light hover:text-blue-800");
   $("span").removeAttr("style");
@@ -25,7 +22,7 @@ export default async function Home() {
   const updatedHTML = $.html();
 
   return (
-    <Container title={data?.title.rendered!} className="font-light">
+    <Container title={data.title.rendered!} className="font-light">
       <div
         dangerouslySetInnerHTML={{ __html: updatedHTML }}
         className="flex flex-col space-y-2 dark:text-white"

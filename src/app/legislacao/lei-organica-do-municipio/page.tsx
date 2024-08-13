@@ -1,29 +1,22 @@
-import { PostsProps } from "@/interfaces/interfaces";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
+"use client";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
 import Container from "@/components/container";
+import Loading from "@/app/loading";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Lei orgânica do município",
-  };
-}
+export default function Home() {
+  const { pages, error, loading } = useFetchPages(
+    "?slug=lei-organica-do-municipio",
+  );
 
-export default async function Home() {
-  const data: PostsProps = await getData("/pages/2781");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
 
-  if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
-
-  const $: CheerioAPI = cheerio.load(data.content.rendered);
-  $("a").addClass("pl-5 text-blue-500 hover:text-blue-700 hover:underline");
-  $("a").attr("target", "_blank");
-
-  const updatedHTML = $.html();
-
+  const updatedHTML = CheerioLink(pages[0].content.rendered);
   return (
-    <Container title={data.title.rendered}>
+    <Container title={pages[0].title.rendered}>
       <div
         dangerouslySetInnerHTML={{ __html: updatedHTML }}
         className="flex flex-col space-y-2"
