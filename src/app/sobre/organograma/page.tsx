@@ -1,20 +1,19 @@
+"use client";
+import Loading from "@/app/loading";
 import Container from "@/components/container";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import { getData } from "@/services/fetch";
+import useFetchPages from "@/hooks/useFetchPages";
 
-export const metadata = {
-  title: "Organograma",
-};
+export default function Organograma() {
+  const { pages, error, loading } = useFetchPages("?slug=organograma");
 
-export default async function Organograma() {
-  try {
-    const data = await getData("/pages/6609");
-    return (
-      <Container title={data?.title.rendered!} className="flex justify-center">
-        <div dangerouslySetInnerHTML={{ __html: data?.content.rendered! }} />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
+  const data = pages[0];
+  return (
+    <Container title={data?.title.rendered!} className="flex justify-center">
+      <div dangerouslySetInnerHTML={{ __html: data.content.rendered! }} />
+    </Container>
+  );
 }

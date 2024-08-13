@@ -1,35 +1,30 @@
-import Container from "@/components/container";
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import { PostsProps } from "@/interfaces/interfaces";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
-import { Metadata } from "next";
+import useFetchPages from "@/hooks/useFetchPages";
+import Container from "@/components/container";
+import cheerio from "cheerio";
+import Loading from "@/app/loading";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Presidência e diretoria executivas",
-  };
-}
+export default function Equipe() {
+  const { pages, loading, error } = useFetchPages("?slug=equipe");
 
-export default async function Equipe() {
-  try {
-    const data = await getData("/pages/2779");
-    if (!data) return <PaginaNaoEncontrada />;
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
 
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("pre").addClass("flex items-center flex-col");
-    $("img").removeAttr("class");
-    const updatedHTML = $.html();
+  const data = pages[0];
 
-    return (
-      <Container title="Presidência e diretoria executivas">
-        <div
-          dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="text-cemter flex flex-col items-center"
-        />
-      </Container>
-    );
-  } catch (error) {
-    <PaginaNaoEncontrada />;
-  }
+  const $ = cheerio.load(data.content.rendered);
+  $("pre").addClass("flex items-center flex-col");
+  $("img").removeAttr("class");
+  const updatedHTML = $.html();
+
+  return (
+    <Container title="Presidência e diretoria executivas">
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="text-cemter flex flex-col items-center"
+      />
+    </Container>
+  );
 }

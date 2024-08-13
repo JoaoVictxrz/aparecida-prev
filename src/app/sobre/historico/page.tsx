@@ -1,36 +1,29 @@
-import { PostsProps } from "@/interfaces/interfaces";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
 import Container from "@/components/container";
+import Loading from "@/app/loading";
+import cheerio from "cheerio";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Histórico",
-  };
-}
+export default function Historico() {
+  const { pages, loading, error } = useFetchPages("?slug=historico");
 
-export default async function Historico() {
-  try {
-    const data = await getData("/pages/2775");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
+  const data = pages[0];
 
-    if (!data) return <PaginaNaoEncontrada />;
+  const $ = cheerio.load(data.content.rendered);
+  $("b").addClass("font-semibold");
+  $("span").removeAttr("style");
+  const updatedHTML = $.html();
 
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("b").addClass("font-semibold");
-    $("span").removeAttr("style");
-    const updatedHTML = $.html();
-
-    return (
-      <Container title="Histórico" className="flex flex-col gap-5 font-light">
-        <div
-          dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="flex flex-col space-y-2"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  return (
+    <Container title="Histórico" className="flex flex-col gap-5 font-light">
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="flex flex-col space-y-2"
+      />
+    </Container>
+  );
 }

@@ -1,27 +1,22 @@
-import Container from "@/components/container";
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import { PostsProps } from "@/interfaces/interfaces";
-import { getData } from "@/services/fetch";
-import { Metadata } from "next";
+import useFetchPages from "@/hooks/useFetchPages";
+import Container from "@/components/container";
+import Loading from "@/app/loading";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Visão",
-  };
-}
+export default function Visão() {
+  const { pages, loading, error } = useFetchPages("?slug=visao");
 
-export default async function Visão() {
-  try {
-    const data: PostsProps = await getData("/pages/2778");
+  if (error) return <PaginaNaoEncontrada />;
 
-    if (!data || !data.content.rendered) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
 
-    return (
-      <Container title={data.title.rendered} className="max-w-4xl text-xl">
-        <div dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  const data = pages[0];
+
+  return (
+    <Container title={data.title.rendered} className="max-w-4xl text-xl">
+      <div dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
+    </Container>
+  );
 }

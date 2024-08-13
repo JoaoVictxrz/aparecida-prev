@@ -1,30 +1,22 @@
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
-import cheerio, { CheerioAPI } from "cheerio";
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
+import useFetchPages from "@/hooks/useFetchPages";
 import Container from "@/components/container";
+import Loading from "@/app/loading";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Valores",
-  };
-}
+export default function Valores() {
+  const { error, loading, pages } = useFetchPages("?slug=valores");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  if (!pages) return;
 
-export default async function Valores() {
-  try {
-    const data = await getData("/pages/2776");
-    if (!data) return <PaginaNaoEncontrada />;
-
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("ul").addClass("space-y-2");
-    const updatedHTML = $.html();
-
-    return (
-      <Container title="Valores">
-        <div dangerouslySetInnerHTML={{ __html: updatedHTML }} />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  const data = pages[0];
+  return (
+    <Container title="Valores">
+      <div
+        dangerouslySetInnerHTML={{ __html: data.content.rendered }}
+        className="space-y-4"
+      />
+    </Container>
+  );
 }
