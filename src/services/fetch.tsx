@@ -64,6 +64,12 @@ export class getAllDataPages {
 
   async getAllMedia(url: string): Promise<Response<mediaProps[]>> {
     const response = await this.getData<mediaProps>(`/media${url}`);
+    if (response.statusCode === 204) {
+      return {
+        statusCode: 204,
+        data: [] as mediaProps[],
+      };
+    }
     return { statusCode: response.statusCode, data: response.data };
   }
 }
