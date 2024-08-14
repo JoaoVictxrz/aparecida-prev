@@ -1,26 +1,22 @@
-import Container from "@/components/container";
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import { getData } from "@/services/fetch";
-import { Metadata } from "next";
+import useFetchPages from "@/hooks/useFetchPages";
+import Container from "@/components/container";
+import Loading from "@/app/loading";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Aposentadoria compulsória",
-  };
-}
-
-export default async function Home() {
-  try {
-    const data = await getData("/pages/2783");
-    return (
-      <Container title="Aposentadoria Compulsoria">
-        <div
-          dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
-          className="flex flex-col space-y-2"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+export default function Home() {
+  const { pages, error, loading } = useFetchPages(
+    "?slug=aposentadoria-compulsoria",
+  );
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  const data = pages![0];
+  return (
+    <Container title={data.title.rendered!}>
+      <div
+        dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
+        className="flex flex-col space-y-2"
+      />
+    </Container>
+  );
 }

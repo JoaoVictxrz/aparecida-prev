@@ -1,27 +1,21 @@
-import Container from "@/components/container";
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
+import useFetchPages from "@/hooks/useFetchPages";
+import Container from "@/components/container";
+import Loading from "@/app/loading";
+export default function Home() {
+  const { pages, error, loading } = useFetchPages("?slug=pensao-por-morte");
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Pensão por Morte",
-  };
-}
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
 
-export default async function Home() {
-  try {
-    const data = await getData("/pages/6517");
-
-    return (
-      <Container title={data?.title.rendered!} className="space-y-4">
-        <div
-          dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
-          className="space-y-2"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  const data = pages![0];
+  return (
+    <Container title={data.title.rendered!} className="space-y-4">
+      <div
+        dangerouslySetInnerHTML={{ __html: data?.content.rendered! }}
+        className="space-y-2"
+      />
+    </Container>
+  );
 }
