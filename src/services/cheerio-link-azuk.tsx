@@ -1,14 +1,11 @@
 import * as cheerio from "cheerio";
-export function CheerioLink(data: string, modify?: ($: cheerio.Root) => void) {
+export function CheerioLink(data: string) {
   const $ = cheerio.load(data);
   $("a").addClass("pl-5 text-blue-500 hover:underline hover:text-blue-700");
-  $("strong");
+  $("strong").contents().unwrap();
   const span = $("span");
   if (span) {
     span.removeAttr("style");
-  }
-  if (typeof modify === "function") {
-    modify($);
   }
   const updateHtml = $.html();
   return updateHtml;
