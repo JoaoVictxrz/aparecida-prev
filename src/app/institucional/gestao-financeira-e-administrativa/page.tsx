@@ -1,13 +1,9 @@
 "use client";
-import Loading from "@/app/loading";
-import Container from "@/components/container";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import useFetchPages from "@/hooks/useFetchPages";
-import { PostsProps } from "@/interfaces/interfaces";
-import { AxiosInstance } from "@/services/axios";
-import { CheerioLink } from "@/services/cheerio-link-azuk";
-import cheerio from "cheerio";
-import { useEffect, useState } from "react";
+import Container from "@/components/container";
+import Loading from "@/app/loading";
 
 export default function Home() {
   const { pages, error, loading } = useFetchPages(
