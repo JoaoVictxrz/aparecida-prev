@@ -17,13 +17,9 @@ export default function PaginaSlug({ data, loading, error }: Props) {
   if (!data || data.length === 0) return <Loading />;
 
   const $ = cheerio.load(data[0].content.rendered);
-  const hasStrong = $("strong").length > 0;
   $("a")
     .addClass('pl-5 text-blue-500 hover:text-blue-700 hover:underline"')
     .attr("target", "_blank");
-  if (hasStrong) {
-    $("strong").contents().unwrap();
-  }
   const updatedHtml = $.html();
 
   return (
