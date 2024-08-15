@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
 import { PostsProps } from "@/interfaces/interfaces";
 import { IoMdClose } from "react-icons/io";
-import cheerio, { CheerioAPI } from "cheerio";
+import cheerio from "cheerio";
 
 export default function Modal() {
   const [data, setData] = useState<PostsProps | null>(null);
@@ -43,7 +43,7 @@ export default function Modal() {
   if (!data || !data.content || !data.content.rendered) {
     return null;
   }
-  const $: CheerioAPI = cheerio.load(data?.content.rendered!);
+  const $ = cheerio.load(data?.content.rendered!);
   $("a").attr("target", "_blank");
   const updatedHTML = $.html()!;
 
