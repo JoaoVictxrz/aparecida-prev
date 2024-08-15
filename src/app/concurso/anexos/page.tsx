@@ -1,34 +1,23 @@
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import cheerio, { CheerioAPI } from "cheerio";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
+import useFetchPages from "@/hooks/useFetchPages";
+import Loading from "@/app/loading";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
 
-export const metadata: Metadata = {
-  title: "Anexos",
-};
+export default function Home() {
+  const { pages, loading, error } = useFetchPages("?slug=anexos");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  const data = pages![0];
+  const updatedHTML = CheerioLink(data.content.rendered);
 
-export default async function Home() {
-  try {
-    const data = await getData("/pages/6961");
-
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("a").addClass(
-      "text-blue-500 hover:text-blue-700 hover:underline pl-5 break-words",
-    );
-    $("a").attr("target", "_blank");
-    $("strong").contents().unwrap();
-    const updatedHTML = $.html();
-
-    return (
-      <Container title={data?.title.rendered!}>
-        <div
-          dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="space-y-2"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  return (
+    <Container title={data?.title.rendered!}>
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="space-y-2"
+      />
+    </Container>
+  );
 }

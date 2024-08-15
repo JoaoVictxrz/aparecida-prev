@@ -1,36 +1,32 @@
+"use client";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
-import cheerio, { CheerioAPI } from "cheerio";
-import { Metadata } from "next";
-import { getData } from "@/services/fetch";
+import useFetchPages from "@/hooks/useFetchPages";
+import Loading from "@/app/loading";
+import cheerio from "cheerio";
 
-export const metadata: Metadata = {
-  title: "Edital",
-};
+export default function Home() {
+  const { pages, error, loading } = useFetchPages("?slug=edital-n001-2017");
+  if (error) return <PaginaNaoEncontrada />;
+  if (loading) return <Loading />;
+  const data = pages![0];
 
-export default async function Home() {
-  try {
-    const data = await getData("/pages/6983");
+  const $ = cheerio.load(data.content.rendered);
+  $("a").addClass(
+    " pl-5 text-blue-500 hover:text-blue-700 hover:underline break-words",
+  );
+  $("a").attr("target", "_blank");
+  $("a").removeAttr("style");
+  $("li").addClass("flex flex-col");
+  $("ul").addClass("w-full");
+  const updatedHTML = $.html();
 
-    const $: CheerioAPI = cheerio.load(data.content.rendered);
-    $("a").addClass(
-      " pl-5 text-blue-500 hover:text-blue-700 hover:underline break-words",
-    );
-    $("a").attr("target", "_blank");
-    $("strong").contents().unwrap();
-    $("li").addClass("flex flex-col");
-    $("ul").addClass("w-full");
-    const updatedHTML = $.html();
-
-    return (
-      <Container title={data?.title.rendered!} className="max-auto">
-        <div
-          dangerouslySetInnerHTML={{ __html: updatedHTML }}
-          className="overflow-wrap"
-        />
-      </Container>
-    );
-  } catch (error) {
-    return <PaginaNaoEncontrada />;
-  }
+  return (
+    <Container title={data?.title.rendered!} className="max-auto">
+      <div
+        dangerouslySetInnerHTML={{ __html: updatedHTML }}
+        className="overflow-wrap"
+      />
+    </Container>
+  );
 }
