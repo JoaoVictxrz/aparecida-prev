@@ -1,14 +1,14 @@
 "use client";
+import { extractTextFromHtml, formatarData } from "@/utils/functions";
 import { PostsProps, mediaProps } from "@/interfaces/interfaces";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "@/services/axios";
-import { extractTextFromHtml, formatarData } from "@/utils/functions";
+import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
+import Loading from "@/app/loading";
+import cheerio from "cheerio";
 import Image from "next/image";
 import Link from "next/link";
-import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import Loading from "@/app/loading";
-import cheerio, { CheerioAPI } from "cheerio";
 
 interface Props {
   params: {
@@ -59,7 +59,7 @@ export default function Home({ params }: Props) {
 
   const title = posts.map((posts) => posts.title.rendered);
 
-  const $: CheerioAPI = cheerio.load(posts[0]?.content.rendered);
+  const $ = cheerio.load(posts[0]?.content.rendered);
   $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
   $("a").attr("target", "_blank");
   const updateHtml = $.html();
