@@ -1,7 +1,6 @@
 "use client";
 import { extractTextFromHtml, formatarData } from "@/utils/functions";
-import { PostsProps, mediaProps } from "@/interfaces/interfaces";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "@/components/container";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,82 +11,50 @@ import {
 } from "react-icons/md";
 import Loading from "../loading";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
-import { fetchMedia, fetchPosts } from "@/services/fetch-noticias";
 import { Button } from "@/components/botao-paginação-noticias";
-
-interface Props {
-  posts: PostsProps[];
-  media: mediaProps[];
-}
+import { useNotices } from "@/hooks/useNotices";
+import { fetchPosts } from "@/services/fetch-api";
 
 export default function Home() {
-  const [proxPagina, setProxPagina] = useState<PostsProps[]>([]);
-  const [data, setData] = useState<Props | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const { notices, loading, error } = useNotices(
+    `?categories=2&page=${currentPage}`,
+  );
   const [hasMorePages, setHasMorePages] = useState(true);
-  const numeroMeio = currentPage;
-  const proxNumero = numeroMeio + 1;
-  const antNumero = numeroMeio - 1;
-
-  const fetchData = useCallback(async (page: number) => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    try {
-      setLoading(true);
-      setError(false);
-      const posts = await fetchPosts(page);
-      const mediaIds = posts
-        .map((post) => post.featured_media)
-        .filter((id) => id);
-      const media = await fetchMedia(mediaIds);
-      const combinedData: Props = { posts, media };
-      setData(combinedData);
-      setHasMorePages(posts.length === 10);
-      if (posts.length === 10) {
-        const nextPagePosts = await fetchPosts(page + 1);
-        setProxPagina(nextPagePosts);
-      } else {
-        setProxPagina([]);
-      }
-    } catch (error) {
-      console.error("Erro ao buscar os dados:", error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage, fetchData]);
+    if (notices && notices.post.length >= 10) {
+      setHasMorePages(true);
+      const fetchData = async () => {
+        try {
+          const response = await fetchPosts(
+            `?categories=2&page=${currentPage + 1}`,
+          );
+          console.log(response);
+          if (response.length === 0) {
+            setHasMorePages(false);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    if (proxPagina.length > 0) {
-      setData({ posts: proxPagina, media: data?.media || [] });
-      setProxPagina([]);
-      setHasMorePages(proxPagina.length === 10);
-      if (proxPagina.length === 10) {
-        fetchPosts(page + 1).then((nextPagePosts) =>
-          setProxPagina(nextPagePosts),
-        );
-      }
-    } else {
-      fetchData(page);
+      fetchData();
     }
-  };
+  }, [notices, currentPage]);
 
+  if (!notices?.post.length) return;
   if (loading) return <Loading />;
   if (error) return <PaginaNaoEncontrada />;
+  console.log(notices?.post);
 
   return (
     <Container title="Notícias" className="flex flex-col items-center">
       <div className="max-w-5xl">
-        {data?.posts.map((post, i) => {
-          const mediaItem = data.media.find(
-            (media) => media.id === post.featured_media,
-          );
+        {notices!.post.map((post, i) => {
+          const mediaItem = post.featured_media
+            ? notices?.media.find((media) => media.id === post.featured_media)
+            : null;
           return (
             <div key={i}>
               <div className="pb-10">
@@ -102,13 +69,10 @@ export default function Home() {
                     />
                   </div>
                 ) : null}
-                <div
-                  className="text-2xl font-semibold"
-                  dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                />
+                <p className="text-2xl font-semibold">{post.title.rendered}</p>
                 <p className="pb-4">Postado em: {formatarData(post.date)}</p>
                 <p className="pb-4">
-                  {extractTextFromHtml(post.excerpt.rendered)}
+                  {extractTextFromHtml(post.content.rendered)}
                 </p>
 
                 <Link
@@ -122,50 +86,35 @@ export default function Home() {
           );
         })}
       </div>
+      {/* 
       <div className="flex w-full justify-center gap-[2px]">
-        {data && data.posts.length < 10 ? null : (
+        {notices?.post.length >= 10 && (
           <>
-            <Button
-              onClick={() => handlePageChange(1)}
-              className={`${currentPage === 1 ? "hidden" : ""}`}
-              disabled={loading}
-            >
+            <Button onClick={() => setCurrentPage(1)} disabled={loading}>
               <MdKeyboardDoubleArrowLeft />
             </Button>
             <Button
-              onClick={() => handlePageChange(currentPage - 1)}
-              className={`${currentPage === 1 ? "hidden" : ""}`}
+              onClick={() => setCurrentPage(currentPage - 1)}
               disabled={loading}
             >
               <MdKeyboardArrowLeft />
             </Button>
+          </>
+        )}
+        <Button className="bg-zinc-200 dark:bg-zinc-800" disabled>
+          {currentPage}
+        </Button>
+        {hasMorePages && (
+          <>
             <Button
-              onClick={() => handlePageChange(antNumero)}
-              className={`${currentPage === 1 ? "hidden" : ""}`}
-              disabled={loading}
-            >
-              {antNumero}
-            </Button>
-            <Button className="bg-zinc-200 dark:bg-zinc-800" disabled>
-              {currentPage}
-            </Button>
-            <Button
-              onClick={() => handlePageChange(proxNumero)}
-              className={`${!hasMorePages ? "hidden" : ""}`}
-              disabled={loading}
-            >
-              {proxNumero}
-            </Button>
-            <Button
-              onClick={() => handlePageChange(currentPage + 1)}
-              className={`${!hasMorePages ? "hidden" : ""}`}
+              onClick={() => setCurrentPage(currentPage + 1)}
               disabled={loading}
             >
               <MdKeyboardArrowRight />
             </Button>
           </>
         )}
-      </div>
+      </div> */}
     </Container>
   );
 }
