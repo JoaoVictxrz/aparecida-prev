@@ -1,5 +1,5 @@
 "use client";
-import { LinksPage } from "@/components/links";
+import { LinksPage } from "@/components/links-page";
 import { useMemo } from "react";
 import Container from "@/components/container";
 

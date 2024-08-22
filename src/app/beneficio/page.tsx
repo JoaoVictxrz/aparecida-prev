@@ -1,5 +1,5 @@
-import { LinksPage } from "@/components/links";
 import Container from "@/components/container";
+import { LinksPage } from "@/components/links-page";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

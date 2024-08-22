@@ -1,4 +1,4 @@
-import { LinksPage } from "@/components/links";
+import { LinksPage } from "@/components/links-page";
 import Container from "@/components/container";
 import { Metadata } from "next";
 
