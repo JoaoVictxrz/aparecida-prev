@@ -11,10 +11,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const { notices, loading, error } = useNotices(`?categories=2`);
   const [page, setPage] = useState(1);
+  const { notices, loading, error } = useNotices(`?categories=2&page=${page}`);
 
-  if (!notices?.post.length) return;
+  if (!notices?.post.length) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
   if (error) return <PaginaNaoEncontrada />;
 

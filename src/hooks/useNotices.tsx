@@ -22,7 +22,7 @@ export function useNotices(url: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const posts = await fetchPosts(url + "&per_page=100");
+        const posts = await fetchPosts(url);
         const media = await fetchMedia(`/${posts[0].featured_media}`);
         setState({
           notices: { media: media, post: posts },
@@ -30,13 +30,11 @@ export function useNotices(url: string) {
           error: false,
         });
 
-        if (posts.length >= 100) {
+        if (posts.length >= 10) {
           const allPosts = [...posts];
           const allMedia = [...media];
           for (let i = 2; i <= Math.ceil(posts.length / 100); i++) {
-            const postsResponse = await fetchPosts(
-              url + `&per_page=100&page=${i}`,
-            );
+            const postsResponse = await fetchPosts(url + `&page=${i}`);
             if (postsResponse.length === 0) break;
             if (postsResponse.length > 0) {
               allPosts.push(...postsResponse);
