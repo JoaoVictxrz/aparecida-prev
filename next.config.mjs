@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["aparecidaprev.go.gov.br"],
     remotePatterns: [
       {
         protocol: "https",
