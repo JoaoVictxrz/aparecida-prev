@@ -1,6 +1,11 @@
 "use client";
+import {
+  AiOutlineDoubleLeft,
+  AiOutlineDoubleRight,
+  AiOutlineLeft,
+  AiOutlineRight,
+} from "react-icons/ai";
 import { extractTextFromHtml, formatarData } from "@/utils/functions";
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useNotices } from "@/hooks/useNotices";
 import { useState } from "react";
 import { Button } from "@/components/botao-paginação-noticias";
@@ -12,29 +17,32 @@ import Link from "next/link";
 
 export default function Home() {
   const [page, setPage] = useState(1);
-  const { notices, loading, error } = useNotices(`?categories=2&page=${page}`);
+  const { notices, loading, error } = useNotices(`?categories=2`);
+  const itensPorPagina = 5;
 
-  if (!notices?.post.length) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
   if (error) return <PaginaNaoEncontrada />;
 
-  const total_pages = notices.post.length / 10;
-
-  function proximaPagina() {
-    if (page < total_pages) {
-      setPage(page + 1);
-    }
-  }
-  function paginaAnterior() {
+  const totalPages = Math.ceil(notices!.post.length / itensPorPagina);
+  const paginaAnterior = () => {
     if (page > 1) {
       setPage(page - 1);
     }
-  }
+  };
+
+  const proximaPagina = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
+  const startIndex = (page - 1) * itensPorPagina;
+  const endIndex = startIndex + itensPorPagina;
 
   return (
     <Container title="Notícias" className="flex flex-col items-center">
       <div className="max-w-5xl">
-        {notices!.post.map((post, i) => {
+        {notices!.post.slice(startIndex, endIndex).map((post, i) => {
           const mediaItem = post.featured_media
             ? notices?.media.find((media) => media.id === post.featured_media)
             : null;
@@ -74,16 +82,36 @@ export default function Home() {
         })}
       </div>
 
-      {notices.post.length >= 10 && (
+      {notices!.post.length >= 0 && (
         <div className="flex w-full justify-center gap-[2px]">
-          <Button onClick={() => paginaAnterior()}>
+          <Button onClick={paginaAnterior} disabled={page === 1}>
+            <AiOutlineDoubleLeft />
+          </Button>
+          <Button onClick={paginaAnterior} disabled={page === 1}>
             <AiOutlineLeft />
           </Button>
-          <p>
-            {page}/{Math.floor(total_pages)}
-          </p>
-          <Button onClick={() => proximaPagina()}>
+          <Button
+            onClick={proximaPagina}
+            className={page === 1 ? "hidden" : ""}
+          >
+            {page - 1}
+          </Button>
+          <Button>{page}</Button>
+          <Button
+            onClick={proximaPagina}
+            className={page === totalPages ? "hidden" : ""}
+          >
+            {page + 1}
+          </Button>
+
+          <Button onClick={() => setPage(1)} disabled={page === totalPages}>
             <AiOutlineRight />
+          </Button>
+          <Button
+            onClick={() => setPage(totalPages)}
+            disabled={page === totalPages}
+          >
+            <AiOutlineDoubleRight />
           </Button>
         </div>
       )}
