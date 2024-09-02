@@ -1,12 +1,10 @@
 "use client";
-import { extractTextFromHtml, formatarData } from "@/utils/functions";
-import { PostsProps, mediaProps } from "@/interfaces/interfaces";
-import { useEffect, useState } from "react";
-import { AxiosInstance } from "@/services/axios";
+import { formatarData } from "@/utils/functions";
+import { CheerioLink } from "@/services/cheerio-link-azuk";
+import { useNotices } from "@/hooks/useNotices";
 import PaginaNaoEncontrada from "@/components/pagina-nao-encontrada";
 import Container from "@/components/container";
 import Loading from "@/app/loading";
-import cheerio from "cheerio";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,55 +15,17 @@ interface Props {
 }
 
 export default function Home({ params }: Props) {
-  const [posts, setPosts] = useState<PostsProps[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [media, setMedia] = useState<mediaProps[] | null>(null);
-  const [error, setError] = useState(false);
+  const { notices, error, loading } = useNotices("?slug=" + params.slug);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    const fetchData = async () => {
-      try {
-        const postsResponse = await AxiosInstance.get<PostsProps[]>(
-          "/posts?slug=" + params.slug,
-        );
-        setPosts(postsResponse.data);
-
-        const mediaIds = postsResponse.data.map(
-          (noticia) => noticia.featured_media,
-        );
-
-        const mediaResponses = [];
-
-        for (const mediaId of mediaIds) {
-          const response = await AxiosInstance.get<mediaProps[]>(
-            `/media?include=${mediaId}`,
-          );
-          mediaResponses.push(response.data);
-        }
-        setMedia(mediaResponses.map((response) => response[0]));
-        setLoading(false);
-      } catch (error) {
-        console.error("Erro ao buscar posts:", error);
-        setLoading(false);
-        setError(true);
-      }
-    };
-    fetchData();
-  }, [params.slug]);
-
-  if (error || !posts) return <PaginaNaoEncontrada />;
+  if (error) return <PaginaNaoEncontrada />;
   if (loading) return <Loading />;
+  const posts = notices?.post!;
+  const media = notices?.media!;
 
-  const title = posts.map((posts) => posts.title.rendered);
-
-  const $ = cheerio.load(posts[0]?.content.rendered);
-  $("a").addClass("text-blue-500 hover:text-blue-700 hover:underline");
-  $("a").attr("target", "_blank");
-  const updateHtml = $.html();
+  const updateHtml = CheerioLink(posts[0].content.rendered!);
   return (
     <Container
-      title={`${extractTextFromHtml(title[0])}`}
+      title={posts[0].title.rendered}
       className="flex items-center justify-center"
     >
       <div className="max-w-4xl">
